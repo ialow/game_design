@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1049167472002964782}
   - component: {fileID: 7130861882267500184}
   - component: {fileID: 8992953153309335894}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lowpoly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5070975963174097393}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Forward
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
@@ -172,10 +172,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6343784878690033719}
   - component: {fileID: 1719590312483524924}
+  - component: {fileID: 1750564021293301472}
   - component: {fileID: 4878701367145947670}
   - component: {fileID: 6899641666672359468}
   - component: {fileID: 939537528883406739}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -207,8 +208,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7771549180855938584}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 40
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -226,6 +227,29 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!136 &1750564021293301472
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7771549180855938584}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 3383
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4878701367145947670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,11 +275,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae05c74a402128246ae0bf2bb9a9ba0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <TurnDegreesInSecond>k__BackingField: 90
   <IgnoringRadiusTurn>k__BackingField: 1
   <MaxSpeedWalk>k__BackingField: 5
-  <SpeedInNewtons>k__BackingField: 15
-  <CorrectorSpeedBack>k__BackingField: 0.944
-  <CorrectorSpeedRightOrLeft>k__BackingField: 0.97
+  <SpeedInNewtons>k__BackingField: 500
+  <CorrectorSpeedBack>k__BackingField: 0.64
+  <CorrectorSpeedRightOrLeft>k__BackingField: 0.7
 --- !u!114 &939537528883406739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77cc5e8dea1fbc499c6388ef9f06966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orthographicCamera: {fileID: 0}
 --- !u!1 &8280167971670996383
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3843053995305336478}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
