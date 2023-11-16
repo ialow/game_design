@@ -114,3 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f16c2de0f0df704d94aefdb27a147a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visualPrafabItem: {fileID: 6135463839745038766, guid: 27484cabbdb35d540bbd57353bcbecfa, type: 3}
+  locationInactiveItem: {fileID: 0}
+  <Full>k__BackingField: 0

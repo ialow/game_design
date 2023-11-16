@@ -3,8 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Camera orthographicCamera;
-
     private Rigidbody rb;
     private PlayerParameters parameters;
 
@@ -22,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         get
         {
-            var derection = new Vector3(InputParametrs.DiresctionWalk.x, 0f, InputParametrs.DiresctionWalk.y).normalized;
+            var derection = new Vector3(InputParametrs.ControllerPosition.x, 0f, InputParametrs.ControllerPosition.y).normalized;
 
             if (derection.z < 0) { derection.z *= correctorSpeedBack; }
             derection.x *= correctorSpeedRightOrLeft;
@@ -72,14 +70,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OffsetAngle()
     {
-        var playerPos = transform.position;
-        var posMouseVector3 = orthographicCamera.ScreenToWorldPoint(Input.mousePosition);
+        var playerPosXZ = new Vector2(transform.position.x, transform.position.z);
+        var mousePosXZ = InputParametrs.MousePositionXZ;
 
-        if (Vector2.Distance(new Vector2(posMouseVector3.x, posMouseVector3.z),
-            new Vector2(playerPos.x, playerPos.z)) > ignoringRadiusTurn)
+        if (Vector2.Distance(mousePosXZ, playerPosXZ) > ignoringRadiusTurn)
         {
-            var differenceBetweenCursorAndPlayerPosition = posMouseVector3 - playerPos;
-            turnY = Mathf.Atan2(differenceBetweenCursorAndPlayerPosition.x, differenceBetweenCursorAndPlayerPosition.z) * Mathf.Rad2Deg;
+            var differenceBetweenCursorAndPlayerPosition = mousePosXZ - playerPosXZ;
+            turnY = Mathf.Atan2(differenceBetweenCursorAndPlayerPosition.x, differenceBetweenCursorAndPlayerPosition.y) * Mathf.Rad2Deg;
         }
     }
 }

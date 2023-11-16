@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ItemWeapon : Item
+public class ItemWeapon : Item<ItemWeaponData>
 {
-    private ItemWeaponData data;
-
-    public override void AddItemInventory() => InventoryManager.Instance.AddItemWeapon(data.Image);
+    public override void AddItemInventory()
+    {
+        InventoryManager.Instance.AddItemWeapon(transform, data.Sprite);
+    }
 }

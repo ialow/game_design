@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item
+public abstract class Item<T> : MonoBehaviour, IInventorying
 {
+    [SerializeField] protected T data;
+
     public abstract void AddItemInventory();
-    //protected ItemData itemData;
 }

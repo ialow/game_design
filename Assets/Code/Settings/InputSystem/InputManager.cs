@@ -36,7 +36,7 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
 
     public void OnTurn(InputAction.CallbackContext context)
     {
-        TurnEvent?.Invoke(context.ReadValue<Vector2>());
+        TurnEvent?.Invoke(Mouse.current.position.ReadValue());
     }
 
     public void OnWalk(InputAction.CallbackContext context)

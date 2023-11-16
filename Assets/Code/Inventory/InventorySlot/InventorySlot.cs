@@ -1,23 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class InventorySlot : MonoBehaviour
+public abstract class InventorySlot : MonoBehaviour, IKeeper
 {
-    protected Image igame;
-    [field: SerializeField] public bool Full { get; protected set; } = false;
+    [Header("Only UI")]
+    [SerializeField] protected GameObject visualPrafabItem;
 
-    public void AddItem(Image icon)
+    [Header("Only settings")]
+    [SerializeField] protected Transform locationInactiveItem;
+
+    protected Transform item;
+    protected GameObject visualItem;
+
+    [field: SerializeField] public bool Full { get; set; } = false;
+
+    public void AddItemSlot(Transform transform, Sprite sprite)
     {
-        igame = Instantiate(icon);
+        AddVisualItemSlot(sprite);
+        AddPhysicalItemSlot(transform);
         Full = true;
+
+        Debug.Log("Add item inventory");
     }
 
-    public void RemoveItem()
+    protected virtual void AddVisualItemSlot(Sprite sprite)
     {
-        Destroy(igame);
+        visualItem = Instantiate(visualPrafabItem, transform);
+        visualItem.GetComponent<Image>().sprite = sprite;
+    }
 
-        Full = false;
+    protected virtual void AddPhysicalItemSlot(Transform transform)
+    {
+        item = transform;
+        item.SetParent(locationInactiveItem);
+        item.gameObject.SetActive(false);
     }
 }

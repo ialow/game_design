@@ -83,7 +83,7 @@
                 {
                     "name": "",
                     "id": "d6703338-2ac6-4f3c-bf3c-719474ba879f",
-                    "path": "<Mouse>/delta",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",

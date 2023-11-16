@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -16,33 +14,28 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
-    // refactoring
-    public void AddItemOther(Image imageOther)
+    public void AddItemOther(Transform transform, Sprite sprite)
     {
-        for (var i = 0; i < inventorySlotForOther.Count; i++)
+        AddItem(inventorySlotForOther, transform, sprite);
+    }
+
+    public void AddItemWeapon(Transform transform, Sprite sprite)
+    {
+        AddItem(inventorySlotForWeapon, transform, sprite);
+    }
+
+    public void AddItem<T>(List<T> inventorySlots, Transform transform, Sprite sprite)
+        where T : Component
+    {
+        for (var i = 0; i < inventorySlots.Count; i++)
         {
-            var slot = inventorySlotForOther[i].GetComponent<InventorySlotForOther>();
+            var slot = inventorySlots[i].GetComponent<IKeeper>();
 
             if (!slot.Full)
             {
-                slot.AddItem(imageOther);
+                slot.AddItemSlot(transform, sprite);
                 return;
             }
         }
     }
-
-    public void AddItemWeapon(Image imageWeapon)
-    {
-        for (var i = 0; i < inventorySlotForWeapon.Count; i++)
-        {
-            var slot = inventorySlotForOther[i].GetComponent<InventorySlotForWeapon>();
-
-            if (!slot.Full)
-            {
-                slot.AddItem(imageWeapon);
-                return;
-            }
-        }
-    }
-    // 
 }
