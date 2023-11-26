@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,14 +8,21 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        userInput.TurnEvent += HandlerTurn;
         userInput.WalkEvent += HandlerWalk;
+        userInput.ToolbarEvent += HandlerChangeSelectedItem;
+        userInput.ThrowItemEvent += HandlerThrowItem;
+    }
+
+    private void Update()
+    {
+        HandlerTurn(Mouse.current.position.ReadValue());
     }
 
     private void OnDisable()
     {
-        userInput.TurnEvent -= HandlerTurn;
         userInput.WalkEvent -= HandlerWalk;
+        userInput.ToolbarEvent -= HandlerChangeSelectedItem;
+        userInput.ThrowItemEvent -= HandlerThrowItem;
     }
 
     private void HandlerTurn(Vector3 turn)
@@ -25,6 +33,17 @@ public class PlayerController : MonoBehaviour
 
     private void HandlerWalk(Vector2 diresction)
     {
-        InputParametrs.ControllerPosition = diresction;
+        InputParametrs.ControllerPositionXZ = diresction;
+    }
+
+    private void HandlerChangeSelectedItem(int newSlot)
+    {
+        InputParametrs.InventorySlot = newSlot;
+        InventoryManager.Instance.ChangeSelectedSlot(InputParametrs.InventorySlot);
+    }
+
+    private void HandlerThrowItem()
+    {
+        InventoryManager.Instance.ThrowItem();
     }
 }

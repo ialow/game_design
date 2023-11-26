@@ -2,6 +2,6 @@ public class ItemOther : Item<ItemOtherData>
 {
     public override void AddItemInventory()
     {
-        InventoryManager.Instance.AddItemOther(transform, data.Sprite);
+        InventoryManager.Instance.TakeItemOther(transform, data.Sprite);
     }
 }

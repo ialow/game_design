@@ -7,8 +7,9 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
 {
     private UserInput userInput;
 
-    public event Action<Vector3> TurnEvent;
     public event Action<Vector2> WalkEvent;
+    public event Action<int> ToolbarEvent;
+    public event Action ThrowItemEvent;
 
     private void OnEnable()
     {
@@ -34,18 +35,30 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
         userInput.UI.Enable();
     }
 
-    public void OnTurn(InputAction.CallbackContext context)
-    {
-        TurnEvent?.Invoke(Mouse.current.position.ReadValue());
-    }
-
     public void OnWalk(InputAction.CallbackContext context)
     {
         WalkEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
+    public void OnToolbar(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            var key = Convert.ToUInt16(context.control.name);
+            ToolbarEvent?.Invoke(key);
+        }
+    }
+
+    public void OnThrowItem(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            ThrowItemEvent?.Invoke();
+        }
+    }
+
     public void OnNewaction(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

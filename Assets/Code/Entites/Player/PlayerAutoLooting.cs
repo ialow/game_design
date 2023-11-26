@@ -14,7 +14,7 @@ public class PlayerAutoLooting : MonoBehaviour
         areaLooting.radius = parameters.DistanceAutoLooting;
     }
 
-    // «аменить на stay (проверить на массе)
+    // «аменить на stay (проверить на массе + цикличность)
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out IInventorying item))

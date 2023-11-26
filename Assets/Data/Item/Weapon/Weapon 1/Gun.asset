@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: 3f281d98846a4224388a54e151d33705, type: 3}
+  timeInvisibleColider: 4
