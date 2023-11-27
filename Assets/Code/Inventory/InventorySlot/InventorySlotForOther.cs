@@ -9,12 +9,12 @@ public class InventorySlotForOther : InventorySlot
     {
         currentSprite.sprite = selectedSlot;
 
-        if (Full)
+        if (itemSetting != null)
         {
-            item.SetParant(locationActiveItem);
-            item.SetLocalPosition(Vector3.zero);
-            item.SetLocalRotation(Quaternion.identity);
-            item.SetActive(true);
+            itemSetting.SetParant(locationActiveItem);
+            itemSetting.SetLocalPosition(Vector3.zero);
+            itemSetting.SetLocalRotation(Quaternion.identity);
+            itemSetting.SetActive(true);
             //Func для LKM
         }
     }
@@ -23,20 +23,18 @@ public class InventorySlotForOther : InventorySlot
     {
         currentSprite.sprite = deselectedSlot;
 
-        if (Full) 
+        if (itemSetting != null) 
         {
-            item.SetParant(locationInactiveItem);
-            item.SetActive(false);
+            itemSetting.SetParant(locationInactiveItem);
+            itemSetting.SetActive(false);
         }
     }
 
     protected override void PhysicalSlotForItem(Transform transform)
     {
-        item = transform.GetComponent<ISettingable>();
+        itemSetting.SetParant(locationInactiveItem);
+        itemSetting.SetActive(false);
 
-        item.SetParant(locationInactiveItem);
-        item.SetActive(false);
-
-        InventoryManager.Instance.ChangeSelectedSlot(InputParametrs.InventorySlot);
+        InventoryManager.Instance.ChangeSelectedSlot(InputParametrs.Toolbar);
     }
 }

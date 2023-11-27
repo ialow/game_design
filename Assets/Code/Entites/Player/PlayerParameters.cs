@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerParameters : MonoBehaviour
 {
+    public static Vector3 position;
+
     [field: Header("Turn/Walk parameters")]
     [field: SerializeField] public float TurnDegreesInSecond { get; private set; } = 90f;
     [field: SerializeField] public float IgnoringRadiusTurn { get; private set; } = 1f;
@@ -13,6 +15,5 @@ public class PlayerParameters : MonoBehaviour
     [field: SerializeField, Range(0f, 1f)] public float CorrectorSpeedRightOrLeft { get; private set; } = 0.8f;
 
     [field: Space, Header("Autolooting system")]
-    [field: SerializeField] public float DistanceAutoLooting { get; private set; } = 1.5f;
-
+    [field: SerializeField] public float RadiusAutoLooting { get; private set; } = 1.5f;
 }

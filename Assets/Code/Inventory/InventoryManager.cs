@@ -36,17 +36,17 @@ public class InventoryManager : MonoBehaviour
         selectedSlot?.Selected();
     }
 
-    public void TakeItemOther(Transform transform, Sprite sprite)
+    public IKeeper CheckingFreeSpaceItemOther()
     {
-        TakeItem(inventorySlotForOther, transform, sprite);
+        return CheckingFreeSpace(inventorySlotForOther);
     }
 
-    public void TakeItemWeapon(Transform transform, Sprite sprite)
+    public IKeeper CheckingFreeSpaceItemWeapon()
     {
-        TakeItem(inventorySlotForWeapon, transform, sprite);
+        return CheckingFreeSpace(inventorySlotForWeapon);
     }
 
-    public void TakeItem<T>(List<T> inventorySlots, Transform transform, Sprite sprite)
+    public IKeeper CheckingFreeSpace<T>(List<T> inventorySlots)
         where T : Component
     {
         for (var i = 0; i < inventorySlots.Count; i++)
@@ -55,10 +55,11 @@ public class InventoryManager : MonoBehaviour
 
             if (!slot.Full)
             {
-                slot.TakeItem(transform, sprite);
-                return;
+                slot.Full = true;
+                return slot;
             }
         }
+        return null;
     }
 
     public void ThrowItem()

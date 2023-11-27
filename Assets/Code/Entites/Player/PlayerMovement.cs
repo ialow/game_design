@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         get
         {
-            var derection = new Vector3(InputParametrs.ControllerPositionXZ.x, 0f, InputParametrs.ControllerPositionXZ.y).normalized;
+            var derection = new Vector3(InputParametrs.ControllerDirectionXZ.x, 0f, InputParametrs.ControllerDirectionXZ.y).normalized;
 
             if (derection.z < 0) { derection.z *= correctorSpeedBack; }
             derection.x *= correctorSpeedRightOrLeft;

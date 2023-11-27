@@ -1,4 +1,8 @@
+using System.Collections;
+
 public interface IInventorying
 {
-    public void AddItemInventory();
+    public bool CheckingFreeSpaceInventory();
+    public IEnumerator AnimationTakeItem();
+    public void AddItemInventorySlot();
 }

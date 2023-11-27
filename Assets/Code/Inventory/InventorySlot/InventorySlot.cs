@@ -5,7 +5,7 @@ public abstract class InventorySlot : MonoBehaviour, IKeeper
 {
     protected Image currentSprite;
 
-    protected ISettingable item;
+    protected ISettingable itemSetting;
     protected GameObject visualItem;
 
     [Header("Only UI")]
@@ -29,22 +29,25 @@ public abstract class InventorySlot : MonoBehaviour, IKeeper
 
     public void TakeItem(Transform transform, Sprite sprite)
     {
-        Full = true;
+        itemSetting = transform.GetComponent<ISettingable>();
+
         VisualSlotForItem(sprite);
         PhysicalSlotForItem(transform);
-
         Debug.Log("Add item inventory");
     }
 
     public void ThrowItem()
     {
-        if (Full)
+        if (itemSetting != null)
         {
             Full = false;
             VisualSlotForItem(null);
 
-            item.SetInvisibleColiderForSeconds(timeIgnoringItem);
-            item.SetParant(null);
+            itemSetting.SetInvisibleColiderForSeconds(timeIgnoringItem);
+            itemSetting.BreakDependency();
+            itemSetting.SetParant(null);
+            itemSetting = null;
+            Debug.Log("Throw item");
         }
     }
 

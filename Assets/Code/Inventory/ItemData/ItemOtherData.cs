@@ -4,5 +4,8 @@ using UnityEngine;
 public class ItemOtherData : ScriptableObject
 {
     // refactoring
-    public Sprite Sprite;
+    [field: SerializeField] public Sprite Sprite { get; private set; }
+
+    [field: SerializeField, Space] public float TimeAnimationTake { get; private set; }
+    [field: SerializeField] public AnimationCurve AnimationTake { get; private set; }
 }

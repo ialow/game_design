@@ -17,12 +17,10 @@ public class InventorySlotForWeapon : InventorySlot
 
     protected override void PhysicalSlotForItem(Transform transform)
     {
-        item = transform.GetComponent<ISettingable>();
+        itemSetting.SetParant(locationItem);
+        itemSetting.SetLocalPosition(Vector3.zero);
+        itemSetting.SetLocalRotation(Quaternion.identity);
 
-        item.SetParant(locationItem);
-        item.SetLocalPosition(Vector3.zero);
-        item.SetLocalRotation(Quaternion.identity);
-
-        InventoryManager.Instance.ChangeSelectedSlot(InputParametrs.InventorySlot);
+        InventoryManager.Instance.ChangeSelectedSlot(InputParametrs.Toolbar);
     }
 }

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class InputParametrs
+public static class InputParametrs
 {
     public static Vector2 MousePositionXZ;
-    public static Vector2 ControllerPositionXZ;
-    public static int InventorySlot;
+    public static Vector2 ControllerDirectionXZ;
+    public static int Toolbar;
 }

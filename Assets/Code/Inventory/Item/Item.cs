@@ -3,27 +3,35 @@ using UnityEngine;
 
 public abstract class Item<T> : MonoBehaviour, IInventorying, ISettingable
 {
+    protected IKeeper keeper;
+
     protected Collider colider;
+    protected AnimationItemForInventory animationInventory;
 
     [SerializeField] protected T data;
 
     private void Awake()
     {
         colider = GetComponent<Collider>();
+        animationInventory = GetComponent<AnimationItemForInventory>();
     }
 
-    public abstract void AddItemInventory();
+    public abstract void AddItemInventorySlot();
+    public abstract IEnumerator AnimationTakeItem();
+    public abstract bool CheckingFreeSpaceInventory();
 
     public void SetParant(Transform parant) => gameObject.transform.parent = parant;
     public void SetActive(bool activeted) => gameObject.SetActive(activeted);
+    public void SetActiveCollider(bool activeted) => colider.enabled = activeted;
     public void SetLocalPosition(Vector3 position) => transform.localPosition = position;
     public void SetLocalRotation(Quaternion rotation) => transform.localRotation = rotation;
     public void SetInvisibleColiderForSeconds(float second) => StartCoroutine(SetInvisibleColiderCoroutine(second));
+    public void BreakDependency() => keeper = null;
 
     private IEnumerator SetInvisibleColiderCoroutine(float second)
     {
-        colider.enabled = false;
+        SetActiveCollider(false);
         yield return new WaitForSeconds(second);
-        colider.enabled = true;
+        SetActiveCollider(true);
     }
 }
