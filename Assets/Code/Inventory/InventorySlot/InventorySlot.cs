@@ -6,6 +6,7 @@ public abstract class InventorySlot : MonoBehaviour, IKeeper
     protected Image currentSprite;
 
     protected ISettingable itemSetting;
+    protected IInventorying itemInventorying;
     protected GameObject visualItem;
 
     [Header("Only UI")]
@@ -30,6 +31,7 @@ public abstract class InventorySlot : MonoBehaviour, IKeeper
     public void TakeItem(Transform transform, Sprite sprite)
     {
         itemSetting = transform.GetComponent<ISettingable>();
+        itemInventorying = transform.GetComponent<IInventorying>();
 
         VisualSlotForItem(sprite);
         PhysicalSlotForItem(transform);
@@ -46,7 +48,10 @@ public abstract class InventorySlot : MonoBehaviour, IKeeper
             itemSetting.SetInvisibleColiderForSeconds(timeIgnoringItem);
             itemSetting.BreakDependency();
             itemSetting.SetParant(null);
+            itemInventorying.AnimationThrowItem();
+
             itemSetting = null;
+            itemInventorying = null;
             Debug.Log("Throw item");
         }
     }

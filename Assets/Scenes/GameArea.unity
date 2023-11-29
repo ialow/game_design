@@ -2378,6 +2378,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: Potion (item)
       objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_PreInfinity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[0].time
+      value: 0.23136298
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[1].time
+      value: 0.23391522
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[2].time
+      value: 0.33522666
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[3].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[0].value
+      value: 0.40980628
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[1].value
+      value: 0.40661594
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[2].value
+      value: 0.49238062
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[3].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508254291092976968, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
+      propertyPath: s.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5598301116946513075, guid: 16fb811c00b82084a8a55fcf6cd84888, type: 3}
       propertyPath: m_Enabled
       value: 1

@@ -19,6 +19,7 @@ public abstract class Item<T> : MonoBehaviour, IInventorying, ISettingable
     public abstract void AddItemInventorySlot();
     public abstract IEnumerator AnimationTakeItem();
     public abstract bool CheckingFreeSpaceInventory();
+    public abstract void AnimationThrowItem();
 
     public void SetParant(Transform parant) => gameObject.transform.parent = parant;
     public void SetActive(bool activeted) => gameObject.SetActive(activeted);

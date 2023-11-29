@@ -1,17 +1,39 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationItemForInventory : MonoBehaviour
 {
-    public IEnumerator MathAnimationTake(AnimationCurve intensity, float second)
+    private const float PosYForDisconnectedItem = 0.1f;
+
+    private float TimeAnimation(float correctionPerMeter, Vector3 endPosition) => Vector3.Distance(transform.position, endPosition) 
+        * correctionPerMeter;
+
+    public IEnumerator MathAnimationTake(AnimationCurve intensity, float ñorrectionPerMeter)
     {
-        var time = 0f;
+        var aroundSecond = TimeAnimation(ñorrectionPerMeter, PlayerParameters.position);
         var startPosition = transform.position;
-        while (time < 1)
+
+        for (var scaleTimer = Time.deltaTime / aroundSecond; scaleTimer < 1; 
+            scaleTimer = Mathf.Clamp01(scaleTimer + Time.deltaTime / aroundSecond))
         {
-            transform.position = Vector3.Lerp(startPosition, PlayerParameters.position, intensity.Evaluate(time));
-            time += Mathf.Clamp01(Time.deltaTime / second);
+            transform.position = Vector3.Lerp(startPosition, PlayerParameters.position, intensity.Evaluate(scaleTimer));
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    public IEnumerator MathAnimationThrow(float correctionPerMeter)
+    {
+        var distanceY = transform.position.y - PosYForDisconnectedItem;
+        var endPoint = transform.position + transform.forward * distanceY * 1.25f;
+        endPoint.y = transform.position.y - distanceY;
+
+        var aroundSecond = TimeAnimation(correctionPerMeter, endPoint);
+        var startPosition = transform.position;
+
+        for (var scaleTimer = Time.deltaTime / aroundSecond; scaleTimer < 1; 
+            scaleTimer = Mathf.Clamp01(scaleTimer + Time.deltaTime / aroundSecond)) 
+        {
+            transform.position = Vector3.Lerp(startPosition, endPoint, scaleTimer);
             yield return new WaitForEndOfFrame();
         }
     }
