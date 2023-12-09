@@ -24,7 +24,6 @@ namespace Domain
         public GameObject[] platformPatterns;
         public float detectionRange;
         public float platformSize;
-        public float spawnOffset;
         public int platformsToPreCreate;
 
         private List<GameObject> platforms = new List<GameObject>();
@@ -104,9 +103,13 @@ namespace Domain
 
         public void SpawnPlatform(int directionZ = 1, int directionX = 0)
         {
+            if (CheckPlayerOnPlatform())
+            {
+                return;
+            }
+
             var platformPattern = platformPatterns[Random.Range(0, platformPatterns.Length)];
             Vector3 spawnPosition;
-
             if (directionZ > 0)
             {
                 spawnPosition = lastSpawnPosition + new Vector3(0f, 0f, platformSize);
@@ -127,21 +130,28 @@ namespace Domain
             var newPlatform = Instantiate(platformPattern, spawnPosition, Quaternion.identity);
             lastSpawnPosition = newPlatform.transform.position;
 
-            if (CheckPatternConditions(newPlatform))
+            platforms.Add(newPlatform);
+            if (platforms.Count > platformsToPreCreate)
             {
-                Destroy(newPlatform);
-                SpawnPlatform(directionZ, directionX);
+                Destroy(platforms[0]);
+                platforms.RemoveAt(0);
             }
-            else
-            {
-                platforms.Add(newPlatform);
+        }
 
-                if (platforms.Count > platformsToPreCreate)
+        private bool CheckPlayerOnPlatform()
+        {
+            foreach (var platform in platforms)
+            {
+                if (player.position.z > platform.transform.position.z - platformSize / 2 &&
+                    player.position.z < platform.transform.position.z + platformSize / 2 &&
+                    player.position.x > platform.transform.position.x - platformSize / 2 &&
+                    player.position.x < platform.transform.position.x + platformSize / 2)
                 {
-                    Destroy(platforms[0]);
-                    platforms.RemoveAt(0);
+                    return true;
                 }
             }
+
+            return false;
         }
 
         public bool CheckPatternConditions(GameObject platform)
