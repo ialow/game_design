@@ -637,9 +637,8 @@ MonoBehaviour:
   - {fileID: 3113241732628179947, guid: d3c818d29b9d7a24ebce5c572c03542e, type: 3}
   - {fileID: 3113241732628179947, guid: 82963f4d7e7f25b418dd21379981e147, type: 3}
   - {fileID: 3113241732628179947, guid: eb9c25db1a00af741b25edfcda8c219e, type: 3}
-  detectionRange: 22
+  detectionRange: 20
   platformSize: 40
-  spawnOffset: 0
   platformsToPreCreate: 5
 --- !u!1 &705507993
 GameObject:
