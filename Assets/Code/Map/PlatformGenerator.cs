@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -133,19 +134,25 @@ namespace Domain
             platforms.Add(newPlatform);
             if (platforms.Count > platformsToPreCreate)
             {
-                Destroy(platforms[0]);
+                StartCoroutine(DestroyPlatformAfterDelay(platforms[0]));
                 platforms.RemoveAt(0);
             }
+        }
+
+        private IEnumerator DestroyPlatformAfterDelay(GameObject platform)
+        {
+            yield return new WaitForSeconds(1f);
+            Destroy(platform);
         }
 
         private bool CheckPlayerOnPlatform()
         {
             foreach (var platform in platforms)
             {
-                if (player.position.z > platform.transform.position.z - platformSize / 2 &&
-                    player.position.z < platform.transform.position.z + platformSize / 2 &&
-                    player.position.x > platform.transform.position.x - platformSize / 2 &&
-                    player.position.x < platform.transform.position.x + platformSize / 2)
+                if (player.position.z > platform.transform.position.z - platformSize / 2 
+                    && player.position.z < platform.transform.position.z + platformSize / 2 
+                    &&player.position.x > platform.transform.position.x - platformSize / 2 
+                    && player.position.x < platform.transform.position.x + platformSize / 2)
                 {
                     return true;
                 }
