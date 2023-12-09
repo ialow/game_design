@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -631,15 +631,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e09bd0a9fc2513408e18a581b8b2cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 97759849}
+  player: {fileID: 1911132175}
   platformPatterns:
   - {fileID: 3113241732628179947, guid: ec60bbde85742b44eae5c221b0bc89d7, type: 3}
   - {fileID: 3113241732628179947, guid: d3c818d29b9d7a24ebce5c572c03542e, type: 3}
   - {fileID: 3113241732628179947, guid: 82963f4d7e7f25b418dd21379981e147, type: 3}
   - {fileID: 3113241732628179947, guid: eb9c25db1a00af741b25edfcda8c219e, type: 3}
-  detectionRange: 20
+  detectionRange: 22
   platformSize: 40
-  spawnOffset: 30
+  spawnOffset: 0
   platformsToPreCreate: 5
 --- !u!1 &705507993
 GameObject:
@@ -1485,7 +1485,9 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 523476925618021138, guid: a37774937f183b2439903388d75133b6, type: 3}
+    - {fileID: 2168286837330305003, guid: a37774937f183b2439903388d75133b6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a37774937f183b2439903388d75133b6, type: 3}
 --- !u!1 &1554711874
 GameObject:
@@ -1764,6 +1766,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3113241732628179951, guid: ec60bbde85742b44eae5c221b0bc89d7, type: 3}
   m_PrefabInstance: {fileID: 3113241731070630433}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1911132175 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5143045489833347846, guid: a37774937f183b2439903388d75133b6, type: 3}
+  m_PrefabInstance: {fileID: 1420509643}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2088483962
 GameObject:

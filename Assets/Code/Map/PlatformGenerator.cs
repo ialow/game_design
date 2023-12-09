@@ -18,7 +18,7 @@ namespace Domain
         bool CheckPatternConditions(GameObject platform);
     }
 
-    public class Domain : MonoBehaviour, IPatternGenerator
+    public class PlatformGenerator : MonoBehaviour, IPatternGenerator
     {
         public Transform player;
         public GameObject[] platformPatterns;
