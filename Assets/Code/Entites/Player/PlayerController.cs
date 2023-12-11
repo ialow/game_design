@@ -50,6 +50,6 @@ public class PlayerController : MonoBehaviour
 
     private void HandlerPosition()
     {
-        PlayerParameters.position = transform.position;
+        Player.position = transform.position;
     }
 }

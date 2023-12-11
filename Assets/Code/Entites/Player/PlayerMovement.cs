@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
-    private PlayerParameters parameters;
+    private Player parameters;
 
     private float turnY;
     private float turnDegreesInSecond;
@@ -32,9 +32,14 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        parameters = GetComponent<PlayerParameters>();
+        parameters = GetComponent<Player>();
 
         turnY = transform.rotation.y;
+        InitializationParameters();
+    }
+
+    public void InitializationParameters() 
+    {
         turnDegreesInSecond = parameters.TurnDegreesInSecond;
         ignoringRadiusTurn = parameters.IgnoringRadiusTurn;
 

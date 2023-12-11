@@ -10,13 +10,13 @@ public class AnimationItemForInventory : MonoBehaviour
 
     public IEnumerator MathAnimationTake(AnimationCurve intensity, float ñorrectionPerMeter)
     {
-        var aroundSecond = TimeAnimation(ñorrectionPerMeter, PlayerParameters.position);
+        var aroundSecond = TimeAnimation(ñorrectionPerMeter, Player.position);
         var startPosition = transform.position;
 
         for (var scaleTimer = Time.deltaTime / aroundSecond; scaleTimer < 1; 
             scaleTimer = Mathf.Clamp01(scaleTimer + Time.deltaTime / aroundSecond))
         {
-            transform.position = Vector3.Lerp(startPosition, PlayerParameters.position, intensity.Evaluate(scaleTimer));
+            transform.position = Vector3.Lerp(startPosition, Player.position, intensity.Evaluate(scaleTimer));
             yield return new WaitForEndOfFrame();
         }
     }

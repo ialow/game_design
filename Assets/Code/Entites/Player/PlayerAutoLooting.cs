@@ -3,19 +3,24 @@ using UnityEngine;
 
 public class PlayerAutoLooting : MonoBehaviour
 {
-    private PlayerParameters parameters;
+    private Player parameters;
 
     private CapsuleCollider areaLooting;
 
     private void Awake()
     {
         areaLooting = GetComponent<CapsuleCollider>();
-        parameters = GetComponent<PlayerParameters>();
+        parameters = GetComponent<Player>();
 
+        InitializationParameters();
+    }
+
+    public void InitializationParameters()
+    {
         areaLooting.radius = parameters.RadiusAutoLooting;
     }
 
-    private void OnTriggerStay(Collider other)
+        private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.TryGetComponent(out IInventorying item))
         {

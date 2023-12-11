@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 1719590312483524924}
   - component: {fileID: 1750564021293301472}
   - component: {fileID: 4878701367145947670}
-  - component: {fileID: 6899641666672359468}
+  - component: {fileID: 7224885351653162382}
   - component: {fileID: 939537528883406739}
   - component: {fileID: 105516141777766185}
   m_Layer: 8
@@ -327,7 +327,7 @@ Transform:
   - {fileID: 3590103819480121931}
   - {fileID: 943271064009023059}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1719590312483524924
 Rigidbody:
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orthographicCamera: {fileID: 0}
   userInput: {fileID: 11400000, guid: b134e573f2780ed4fa35010090dbad5d, type: 2}
---- !u!114 &6899641666672359468
+--- !u!114 &7224885351653162382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7771549180855938584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae05c74a402128246ae0bf2bb9a9ba0b, type: 3}
+  m_Script: {fileID: 11500000, guid: e72d651fb6e7d544dbd4dbeafb09f75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <TurnDegreesInSecond>k__BackingField: 90
@@ -411,7 +411,7 @@ MonoBehaviour:
   <SpeedInNewtons>k__BackingField: 500
   <CorrectorSpeedBack>k__BackingField: 0.64
   <CorrectorSpeedRightOrLeft>k__BackingField: 0.8
-  <DistanceAutoLooting>k__BackingField: 1.5
+  <RadiusAutoLooting>k__BackingField: 1.5
 --- !u!114 &939537528883406739
 MonoBehaviour:
   m_ObjectHideFlags: 0
