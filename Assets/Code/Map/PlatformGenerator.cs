@@ -141,7 +141,7 @@ namespace Domain
 
         private IEnumerator DestroyPlatformAfterDelay(GameObject platform)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.7f);
             Destroy(platform);
         }
 
@@ -149,10 +149,11 @@ namespace Domain
         {
             foreach (var platform in platforms)
             {
-                if (player.position.z > platform.transform.position.z - platformSize / 2 
-                    && player.position.z < platform.transform.position.z + platformSize / 2 
-                    &&player.position.x > platform.transform.position.x - platformSize / 2 
-                    && player.position.x < platform.transform.position.x + platformSize / 2)
+                var position = platform.transform.position;
+                var halfSize = platformSize / 2;
+
+                if (player.position.z > position.z - halfSize && player.position.z < position.z + halfSize 
+                    && player.position.x > position.x - halfSize && player.position.x < position.x + halfSize)
                 {
                     return true;
                 }
