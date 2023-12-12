@@ -26,6 +26,8 @@ namespace Domain
         public float detectionRange;
         public float platformSize;
         public int platformsToPreCreate;
+        private float delayDestroy = 10f;
+
 
         private List<GameObject> platforms = new List<GameObject>();
         private Vector3 lastSpawnPosition;
@@ -141,7 +143,7 @@ namespace Domain
 
         private IEnumerator DestroyPlatformAfterDelay(GameObject platform)
         {
-            yield return new WaitForSeconds(1.7f);
+            yield return new WaitForSeconds(delayDestroy);
             Destroy(platform);
         }
 

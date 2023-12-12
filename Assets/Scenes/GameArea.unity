@@ -637,7 +637,7 @@ MonoBehaviour:
   - {fileID: 3113241732628179947, guid: d3c818d29b9d7a24ebce5c572c03542e, type: 3}
   - {fileID: 3113241732628179947, guid: 82963f4d7e7f25b418dd21379981e147, type: 3}
   - {fileID: 3113241732628179947, guid: eb9c25db1a00af741b25edfcda8c219e, type: 3}
-  detectionRange: 3
+  detectionRange: 15
   platformSize: 40
   platformsToPreCreate: 6
 --- !u!1 &705507993
@@ -1428,6 +1428,10 @@ PrefabInstance:
       propertyPath: orthographicCamera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 5143045489833347846, guid: a37774937f183b2439903388d75133b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6343784878690033719, guid: a37774937f183b2439903388d75133b6, type: 3}
       propertyPath: m_RootOrder
       value: 2
