@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemWeapon : Item<ItemWeaponData>
+public class ItemLaserWeapon : Item<ItemLaserWeaponData>
 {
     public override bool CheckingFreeSpaceInventory()
     {

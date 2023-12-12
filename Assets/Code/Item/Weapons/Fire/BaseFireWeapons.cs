@@ -6,10 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(WeaponSettings))]
 public abstract class BaseFireWeapons : MonoBehaviour, IShootingable
 {
-    [field: Header("Current specification of weapon/missile settings")]
-    [field: SerializeField] public SpecificationWeapon TTXWeapon { get; private set; }
-    [field: SerializeField, Space] public List<ImprovementSpecification> ImprovementSpecificationsTTX { get; private set; }
-
     protected WeaponSettings weaponSettings;
 
     public static PoolObjects<GameObject> poolMissiles { get; protected set; }

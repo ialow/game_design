@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public struct SpecificationWeapon
+public struct SpecificationFireWeapon
 {
     [Tooltip("Missile flight speed")] public float SpeedShot;
     [Tooltip("The spread of the shot relative to the PointsShot")] public float SpreadShot;
