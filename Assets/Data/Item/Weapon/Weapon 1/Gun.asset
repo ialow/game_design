@@ -38,4 +38,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   <TimeCorrectionPerMeterTake>k__BackingField: 0.8
-  <TimeCorrectionPerMeterThrow>k__BackingField: 0.5
+  <TimeCorrectionPerMeterThrow>k__BackingField: 0.3
+  <TTXWeapon>k__BackingField:
+    SpeedShot: 10
+    SpreadShot: 0.05
+    AutoShooting: 1
+    CooldownTime: 0.5

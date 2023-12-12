@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,11 +7,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera orthographicCamera;
     [SerializeField] private InputManager userInput;
 
+    private static Action StartUseItem;
+    private static Action EndUseItem;
+
     private void Awake()
     {
         userInput.WalkEvent += HandlerWalk;
         userInput.ToolbarEvent += HandlerChangeSelectedItem;
         userInput.ThrowItemEvent += HandlerThrowItem;
+
+        userInput.StartUseItemEvent += HandlerPerformedUseItem;
+        userInput.EndUseItemEvent += HandlerCanceledUseItem;
     }
 
     private void Update()
@@ -24,6 +31,9 @@ public class PlayerController : MonoBehaviour
         userInput.WalkEvent -= HandlerWalk;
         userInput.ToolbarEvent -= HandlerChangeSelectedItem;
         userInput.ThrowItemEvent -= HandlerThrowItem;
+
+        userInput.StartUseItemEvent -= HandlerPerformedUseItem;
+        userInput.EndUseItemEvent -= HandlerCanceledUseItem;
     }
 
     private void HandlerWalk(Vector2 diresction)
@@ -51,5 +61,21 @@ public class PlayerController : MonoBehaviour
     private void HandlerPosition()
     {
         Player.position = transform.position;
+    }
+
+    private void HandlerPerformedUseItem()
+    {
+        StartUseItem?.Invoke();
+    }
+
+    private void HandlerCanceledUseItem()
+    {
+        EndUseItem?.Invoke();
+    }
+
+    public static void SetActionUsingItem(Action startUseItem, Action endUseItem)
+    {
+        StartUseItem = startUseItem;
+        EndUseItem = endUseItem;
     }
 }

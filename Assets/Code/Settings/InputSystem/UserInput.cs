@@ -37,6 +37,15 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""a63857ab-1ebf-47f1-b96e-062a4c9e00c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Toolbar"",
                     ""type"": ""Button"",
                     ""id"": ""19fabdcb-a9a9-49b1-b4c1-31d80a0b0f60"",
@@ -209,6 +218,17 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
                     ""action"": ""ThrowItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5c098b1-a9dc-446c-b4e4-f0fdfc772665"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -263,6 +283,7 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Walk = m_Gameplay.FindAction("Walk", throwIfNotFound: true);
+        m_Gameplay_UseItem = m_Gameplay.FindAction("UseItem", throwIfNotFound: true);
         m_Gameplay_Toolbar = m_Gameplay.FindAction("Toolbar", throwIfNotFound: true);
         m_Gameplay_ThrowItem = m_Gameplay.FindAction("ThrowItem", throwIfNotFound: true);
         // UI
@@ -330,6 +351,7 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Walk;
+    private readonly InputAction m_Gameplay_UseItem;
     private readonly InputAction m_Gameplay_Toolbar;
     private readonly InputAction m_Gameplay_ThrowItem;
     public struct GameplayActions
@@ -337,6 +359,7 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
         private @UserInput m_Wrapper;
         public GameplayActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Gameplay_Walk;
+        public InputAction @UseItem => m_Wrapper.m_Gameplay_UseItem;
         public InputAction @Toolbar => m_Wrapper.m_Gameplay_Toolbar;
         public InputAction @ThrowItem => m_Wrapper.m_Gameplay_ThrowItem;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -351,6 +374,9 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
             @Walk.started += instance.OnWalk;
             @Walk.performed += instance.OnWalk;
             @Walk.canceled += instance.OnWalk;
+            @UseItem.started += instance.OnUseItem;
+            @UseItem.performed += instance.OnUseItem;
+            @UseItem.canceled += instance.OnUseItem;
             @Toolbar.started += instance.OnToolbar;
             @Toolbar.performed += instance.OnToolbar;
             @Toolbar.canceled += instance.OnToolbar;
@@ -364,6 +390,9 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
             @Walk.started -= instance.OnWalk;
             @Walk.performed -= instance.OnWalk;
             @Walk.canceled -= instance.OnWalk;
+            @UseItem.started -= instance.OnUseItem;
+            @UseItem.performed -= instance.OnUseItem;
+            @UseItem.canceled -= instance.OnUseItem;
             @Toolbar.started -= instance.OnToolbar;
             @Toolbar.performed -= instance.OnToolbar;
             @Toolbar.canceled -= instance.OnToolbar;
@@ -445,6 +474,7 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnWalk(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
         void OnToolbar(InputAction.CallbackContext context);
         void OnThrowItem(InputAction.CallbackContext context);
     }

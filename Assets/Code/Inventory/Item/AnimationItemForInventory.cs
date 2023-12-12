@@ -19,6 +19,8 @@ public class AnimationItemForInventory : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, Player.position, intensity.Evaluate(scaleTimer));
             yield return new WaitForEndOfFrame();
         }
+
+        yield break;
     }
 
     public IEnumerator MathAnimationThrow(float correctionPerMeter)
@@ -36,5 +38,7 @@ public class AnimationItemForInventory : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, endPoint, scaleTimer);
             yield return new WaitForEndOfFrame();
         }
+
+        yield break;
     }
 }

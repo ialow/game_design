@@ -25,4 +25,10 @@ public class ItemWeapon : Item<ItemWeaponData>
     {
         StartCoroutine(animationInventory.MathAnimationThrow(data.TimeCorrectionPerMeterThrow));
     }
+
+    public override void SetActionItem()
+    {
+        Debug.Log($"The functionality is not implemented - ItemWeapon");
+        //PlayerController.SetActionUsingItem();
+    }
 }

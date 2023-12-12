@@ -25,4 +25,9 @@ public class ItemOther : Item<ItemOtherData>
     {
         StartCoroutine(animationInventory.MathAnimationThrow(data.TimeCorrectionPerMeterThrow));
     }
+
+    public override void SetActionItem()
+    {
+        Debug.Log($"The functionality is not implemented - ItemOther");
+    }
 }

@@ -27,6 +27,7 @@ public abstract class InventorySlot : MonoBehaviour, IKeeper
 
     public abstract void Selected();
     public abstract void Deselected();
+    protected void DisableActionSlot() => PlayerController.SetActionUsingItem(null, null);
 
     public void TakeItem(Transform transform, Sprite sprite)
     {

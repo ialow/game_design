@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "UseItem",
+                    "type": "Button",
+                    "id": "a63857ab-1ebf-47f1-b96e-062a4c9e00c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Toolbar",
                     "type": "Button",
                     "id": "19fabdcb-a9a9-49b1-b4c1-31d80a0b0f60",
@@ -185,6 +194,17 @@
                     "processors": "",
                     "groups": "Keyboard + Mouse",
                     "action": "ThrowItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5c098b1-a9dc-446c-b4e4-f0fdfc772665",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard + Mouse",
+                    "action": "UseItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

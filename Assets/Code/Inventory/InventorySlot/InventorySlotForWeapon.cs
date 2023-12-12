@@ -7,12 +7,16 @@ public class InventorySlotForWeapon : InventorySlot
     public override void Selected()
     {
         currentSprite.sprite = selectedSlot;
+
         //Func для LKM
+        if (itemInventorying != null)
+            itemInventorying.SetActionItem();
     }
 
     public override void Deselected()
     {
         currentSprite.sprite = deselectedSlot;
+        DisableActionSlot();
     }
 
     protected override void PhysicalSlotForItem(Transform transform)

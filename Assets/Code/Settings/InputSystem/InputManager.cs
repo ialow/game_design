@@ -8,6 +8,10 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
     private UserInput userInput;
 
     public event Action<Vector2> WalkEvent;
+
+    public event Action StartUseItemEvent;
+    public event Action EndUseItemEvent;
+
     public event Action<int> ToolbarEvent;
     public event Action ThrowItemEvent;
 
@@ -38,6 +42,15 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
     public void OnWalk(InputAction.CallbackContext context)
     {
         WalkEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnUseItem(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            StartUseItemEvent?.Invoke();
+
+        if (context.phase == InputActionPhase.Canceled)
+            EndUseItemEvent?.Invoke();
     }
 
     public void OnToolbar(InputAction.CallbackContext context)

@@ -15,7 +15,9 @@ public class InventorySlotForOther : InventorySlot
             itemSetting.SetLocalPosition(Vector3.zero);
             itemSetting.SetLocalRotation(Quaternion.identity);
             itemSetting.SetActive(true);
+
             //Func для LKM
+            itemInventorying.SetActionItem();
         }
     }
 
@@ -28,6 +30,8 @@ public class InventorySlotForOther : InventorySlot
             itemSetting.SetParant(locationInactiveItem);
             itemSetting.SetActive(false);
         }
+
+        DisableActionSlot();
     }
 
     protected override void PhysicalSlotForItem(Transform transform)

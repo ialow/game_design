@@ -6,4 +6,6 @@ public interface IInventorying
     public IEnumerator AnimationTakeItem();
     public void AddItemInventorySlot();
     public void AnimationThrowItem();
+
+    public void SetActionItem();
 }

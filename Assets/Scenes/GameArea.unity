@@ -577,10 +577,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun (item)
       objectReference: {fileID: 0}
-    - target: {fileID: 1403512622843108134, guid: 893762932ce585d41b33b2f093f9ccc4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4221894697750239561, guid: 893762932ce585d41b33b2f093f9ccc4, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -625,10 +621,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5295366461243821721, guid: 893762932ce585d41b33b2f093f9ccc4, type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 5de8dcda2829bb64297d9384f2b59b98, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
