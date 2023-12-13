@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireWeapons : BaseFireWeapons
+public class FireWeapon : BaseFireWeapons
 {
     private Coroutine shooting;
     private float timeStartShotting;
@@ -34,7 +34,7 @@ public class FireWeapons : BaseFireWeapons
     {
         if (canShot)
         {
-            //VariantShotWeapon(poolMissiles);
+            variantShotWeapon(poolMissiles);
 
             canShot = false;
             StartCoroutine(Refresh());
@@ -44,7 +44,7 @@ public class FireWeapons : BaseFireWeapons
     private IEnumerator Refresh()
     {
         timeStartShotting = Time.time;
-        yield return new WaitForSeconds(/*weaponVariant.TTXWeapon.CooldownTime*/3f);
+        yield return new WaitForSeconds(variantFireWeapon.TTXWeapon.CooldownTime);
         canShot = true;
     }
 }

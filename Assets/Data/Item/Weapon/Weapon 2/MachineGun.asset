@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cca925f74c0eac499d3baa9a97b3ce7, type: 3}
-  m_Name: Gun
+  m_Name: MachineGun
   m_EditorClassIdentifier: 
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 3f281d98846a4224388a54e151d33705, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: f223ec4624ebe6e4cb37900e450137d7, type: 3}
   <AnimationTake>k__BackingField:
     serializedVersion: 2
     m_Curve:
@@ -41,14 +41,12 @@ MonoBehaviour:
   <TimeCorrectionPerMeterThrow>k__BackingField: 0.3
   <TTXWeapon>k__BackingField:
     SpeedShot: 10
-    SpreadShot: 0.05
+    SpreadShot: 0.15
     AutoShooting: 1
-    CooldownTime: 0.5
+    CooldownTime: 0.1
   <TTXMissile>k__BackingField:
-    Damage: 10
-    DamageDropCoefficient: 0.05
-    DistanceWithMaxDamage: 5
+    Damage: 8
+    DamageDropCoefficient: 0.1
+    DistanceWithMaxDamage: 8
     MaxDistance: 12
-    prefabMissile: {fileID: 0}
-    parentContainerMissile: {fileID: 0}
   <ImprovementSpecificationsTTX>k__BackingField: []

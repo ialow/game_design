@@ -3,6 +3,17 @@ using UnityEngine;
 
 public class ItemFireWeapon : Item<ItemFireWeaponData>
 {
+    private BaseFireWeapons weapon;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        weapon = GetComponent<BaseFireWeapons>();
+        weapon.InitializationWeapon();
+        weapon.InitializationParametrs(data.TTXWeapon, data.TTXMissile);
+    }
+
     public override bool CheckingFreeSpaceInventory()
     {
         keeper = InventoryManager.Instance.CheckingFreeSpaceItemWeapon();
@@ -28,7 +39,6 @@ public class ItemFireWeapon : Item<ItemFireWeaponData>
 
     public override void SetActionItem()
     {
-        Debug.Log($"The functionality is not implemented - ItemWeapon");
-        //PlayerController.SetActionUsingItem();
+        PlayerController.SetActionUsingItem(weapon.StartShooting, weapon.StopShooting);
     }
 }

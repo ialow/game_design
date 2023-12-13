@@ -12,7 +12,8 @@ public class ItemFireWeaponData : ScriptableObject
     [field: SerializeField] public float TimeCorrectionPerMeterThrow { get; private set; }
 
 
-    [field: Header("Current specification of weapon/missile settings")]
+    [field: Header("Current specification of weapon/missile")]
     [field: SerializeField] public SpecificationFireWeapon TTXWeapon { get; private set; }
+    [field: SerializeField] public SpecificationMissile TTXMissile { get; protected set; }
     [field: SerializeField, Space] public List<ImprovementSpecificationFireWeapon> ImprovementSpecificationsTTX { get; private set; }
 }

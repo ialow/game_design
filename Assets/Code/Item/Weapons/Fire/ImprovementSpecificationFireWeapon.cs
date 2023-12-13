@@ -4,5 +4,5 @@ using UnityEngine;
 public struct ImprovementSpecificationFireWeapon
 {
     [field: SerializeField] public SpecificationFireWeapon TTXWeapon;
-    //[field: SerializeField] public SpecificationMissile TTXMissile;
+    [field: SerializeField] public SpecificationMissile TTXMissile;
 }

@@ -10,7 +10,7 @@ public abstract class Item<T> : MonoBehaviour, IInventorying, ISettingable
 
     [SerializeField] protected T data;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         colider = GetComponent<Collider>();
         animationInventory = GetComponent<AnimationItemForInventory>();

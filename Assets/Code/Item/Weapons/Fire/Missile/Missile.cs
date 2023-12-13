@@ -1,0 +1,70 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Missile : MonoBehaviour
+{
+    [HideInInspector] public int pointShot = 0;
+
+    private const int idLayer = 27;
+
+    private Rigidbody rb;
+    private VariantFireWeapon weaponVariant;
+    private BaseFireWeapons weapon;
+
+    private float distance;
+
+    private void Awake()
+    {
+        gameObject.layer = idLayer;
+
+        rb = GetComponent<Rigidbody>();
+        rb.useGravity = false;
+    }
+
+    // заменить на куратину
+    private void Update()
+    {
+        distance = Vector3.Distance(weaponVariant.PointsShot[pointShot].position, transform.position);
+
+        if (distance > weaponVariant.TTXMissile.MaxDistance)
+            weapon.poolMissiles.ReturnInActive(this.gameObject);
+    }
+    //
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.TryGetComponent(out IDamagable enity))
+        {
+            var damage = DamageCalculation(collision.transform.position);
+            //Debug.Log("Ќанесенный урон " + damage);
+            //collision.gameObject.GetComponent<AbstractEntity>().GetDamage(damage);
+        }
+        weapon.poolMissiles.ReturnInActive(this.gameObject);
+    }
+
+    private float DamageCalculation(Vector3 pointHit)
+    {
+        distance = Vector3.Distance(weaponVariant.PointsShot[pointShot].position, pointHit);
+
+        if (distance < weaponVariant.TTXMissile.DistanceWithMaxDamage)
+        {
+            return weaponVariant.TTXMissile.Damage;
+        }
+        else
+        {
+            var exceedingDistance = Mathf.Round(distance - weaponVariant.TTXMissile.DistanceWithMaxDamage);
+            var damage = weaponVariant.TTXMissile.Damage * Mathf.Pow((1 - weaponVariant.TTXMissile.DamageDropCoefficient / 1), exceedingDistance);
+            return damage;
+        }
+    }
+
+    public void UpdatinParameters(VariantFireWeapon weaponVariant) => this.weaponVariant = weaponVariant;
+
+    public void Initialization(VariantFireWeapon weaponVariant, BaseFireWeapons weapon)
+    {
+        this.weaponVariant = weaponVariant;
+        this.weapon = weapon;
+    }
+}
