@@ -39,6 +39,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   <TimeCorrectionPerMeterTake>k__BackingField: 0.8
   <TimeCorrectionPerMeterThrow>k__BackingField: 0.3
+  <InventorySlot>k__BackingField: 01000000
   <TTXWeapon>k__BackingField:
     SpeedShot: 10
     SpreadShot: 0.05
@@ -49,6 +50,4 @@ MonoBehaviour:
     DamageDropCoefficient: 0.05
     DistanceWithMaxDamage: 5
     MaxDistance: 12
-    prefabMissile: {fileID: 0}
-    parentContainerMissile: {fileID: 0}
   <ImprovementSpecificationsTTX>k__BackingField: []

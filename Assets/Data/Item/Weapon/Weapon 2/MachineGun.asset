@@ -39,6 +39,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   <TimeCorrectionPerMeterTake>k__BackingField: 0.8
   <TimeCorrectionPerMeterThrow>k__BackingField: 0.3
+  <InventorySlot>k__BackingField: 02000000
   <TTXWeapon>k__BackingField:
     SpeedShot: 10
     SpreadShot: 0.15

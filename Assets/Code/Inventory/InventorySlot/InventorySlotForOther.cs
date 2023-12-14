@@ -5,6 +5,8 @@ public class InventorySlotForOther : InventorySlot
     [Space, SerializeField] private Transform locationInactiveItem;
     [SerializeField] private Transform locationActiveItem;
 
+    public override TypeSlot TypeInventorySlot() => TypeSlot.OtherItem;
+
     public override void Selected()
     {
         currentSprite.sprite = selectedSlot;

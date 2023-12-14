@@ -6,7 +6,7 @@ public class ItemLaserWeapon : Item<ItemLaserWeaponData>
 {
     public override bool CheckingFreeSpaceInventory()
     {
-        keeper = InventoryManager.Instance.CheckingFreeSpaceItemWeapon();
+        keeper = InventoryManager.Instance.CheckingFreeSpaceItemWeapon(data.InventorySlot);
         return keeper != null ? true : false;
     }
 
@@ -29,7 +29,7 @@ public class ItemLaserWeapon : Item<ItemLaserWeaponData>
 
     public override void SetActionItem()
     {
-        Debug.Log($"The functionality is not implemented - ItemWeapon");
+        Debug.Log($"The functionality is not implemented - ItemLaserWeapon");
         //PlayerController.SetActionUsingItem();
     }
 }

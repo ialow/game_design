@@ -17,6 +17,7 @@ public abstract class InventorySlot : MonoBehaviour, IKeeper
 
     [Header("Only settings")]
     [SerializeField] protected float timeIgnoringItem;
+
     [field: SerializeField] public bool Full { get; set; } = false;
 
     private void Awake()
@@ -24,6 +25,8 @@ public abstract class InventorySlot : MonoBehaviour, IKeeper
         currentSprite = transform.gameObject.GetComponent<Image>();
         Deselected();
     }
+
+    public abstract TypeSlot TypeInventorySlot();
 
     public abstract void Selected();
     public abstract void Deselected();

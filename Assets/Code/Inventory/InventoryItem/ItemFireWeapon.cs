@@ -16,7 +16,7 @@ public class ItemFireWeapon : Item<ItemFireWeaponData>
 
     public override bool CheckingFreeSpaceInventory()
     {
-        keeper = InventoryManager.Instance.CheckingFreeSpaceItemWeapon();
+        keeper = InventoryManager.Instance.CheckingFreeSpaceItemWeapon(data.InventorySlot);
         return keeper != null ? true : false;
     }
 

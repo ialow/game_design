@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    private IKeeper slot;
     private int countSlotForOther;
     private int countSlotForWeapon;
     private InventorySlot selectedSlot = null;
@@ -38,22 +41,24 @@ public class InventoryManager : MonoBehaviour
 
     public IKeeper CheckingFreeSpaceItemOther()
     {
-        return CheckingFreeSpace(inventorySlotForOther);
+        return CheckingFreeSpace(inventorySlotForOther, new List<TypeSlot> { TypeSlot.OtherItem }, CheckingTypeItemAndSlot);
     }
 
-    public IKeeper CheckingFreeSpaceItemWeapon()
+    public IKeeper CheckingFreeSpaceItemWeapon(List<TypeSlot> itemType)
     {
-        return CheckingFreeSpace(inventorySlotForWeapon);
+        return CheckingFreeSpace(inventorySlotForWeapon, itemType, CheckingTypeItemAndSlot);
     }
 
-    public IKeeper CheckingFreeSpace<T>(List<T> inventorySlots)
+    private bool CheckingTypeItemAndSlot(List<TypeSlot> item) => item.Contains(slot.TypeInventorySlot());
+
+    public IKeeper CheckingFreeSpace<T>(List<T> inventorySlots, List<TypeSlot> itemType, Func<List<TypeSlot>, bool> CheckingTypeItemAndSlot)
         where T : Component
     {
         for (var i = 0; i < inventorySlots.Count; i++)
         {
-            var slot = inventorySlots[i].GetComponent<IKeeper>();
+            slot = inventorySlots[i].GetComponent<IKeeper>();
 
-            if (!slot.Full)
+            if (!slot.Full && CheckingTypeItemAndSlot(itemType))
             {
                 slot.Full = true;
                 return slot;

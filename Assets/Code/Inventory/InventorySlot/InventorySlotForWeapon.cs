@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class InventorySlotForWeapon : InventorySlot
 {
+    [SerializeField] private TypeSlot typeSlot;
+
     [Space, SerializeField] private Transform locationItem;
+
+    public override TypeSlot TypeInventorySlot() => typeSlot;
 
     public override void Selected()
     {
