@@ -27,7 +27,7 @@ public class ItemLaserWeapon : Item<ItemLaserWeaponData>
         StartCoroutine(animationInventory.MathAnimationThrow(data.TimeCorrectionPerMeterThrow));
     }
 
-    public override void SetActionItem()
+    public override void SetActionItem(bool enable = true)
     {
         Debug.Log($"The functionality is not implemented - ItemLaserWeapon");
         //PlayerController.SetActionUsingItem();

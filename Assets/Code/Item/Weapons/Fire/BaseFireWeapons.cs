@@ -2,10 +2,9 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(WeaponSettings))]
+[RequireComponent(typeof(VariantFireWeapon))]
 public abstract class BaseFireWeapons : MonoBehaviour, IShootingable
 {
-    protected WeaponSettings weaponSettings;
     protected VariantFireWeapon variantFireWeapon;
 
     protected Action<PoolObjects<GameObject>> variantShotWeapon;
@@ -18,9 +17,6 @@ public abstract class BaseFireWeapons : MonoBehaviour, IShootingable
         variantFireWeapon.InitializationWeapon(this);
 
         poolMissiles = new PoolObjects<GameObject>(GenerationMissile, ReturnInActive, ReturnActive, 5);
-
-        weaponSettings = GetComponent<WeaponSettings>();
-        weaponSettings.SettingsShooting(StartShooting, StopShooting);
     }
 
     public virtual void InitializationParametrs(SpecificationFireWeapon tTXWeapon, SpecificationMissile tTXMissile)
@@ -65,8 +61,8 @@ public abstract class BaseFireWeapons : MonoBehaviour, IShootingable
             PositionActive(missile, 0);
             missile.GetComponent<Missile>().pointShot = 0;
 
-            Debug.LogException(new ArgumentException(string.Format("PointsShot (у оружия) не соотвествует числу выстреливанмых пуль: " +
-                "{0}/{1}", (position + 1), variantFireWeapon.PointsShot.Count)));
+            Debug.LogException(new ArgumentException($"PointsShot (at the weapon) does not match the number of missiles fired: " +
+                $"{position + 1}/{variantFireWeapon.PointsShot.Count}"));
         }
 
         var spreadMissile = new Vector3(Random.Range(-variantFireWeapon.TTXWeapon.SpreadShot, variantFireWeapon.TTXWeapon.SpreadShot),

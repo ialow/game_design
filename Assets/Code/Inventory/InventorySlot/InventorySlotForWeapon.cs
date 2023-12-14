@@ -20,7 +20,11 @@ public class InventorySlotForWeapon : InventorySlot
     public override void Deselected()
     {
         currentSprite.sprite = deselectedSlot;
-        DisableActionSlot();
+
+        if (itemInventorying != null)
+            itemInventorying.SetActionItem(false);
+        else
+            DisableActionSlot();
     }
 
     protected override void PhysicalSlotForItem(Transform transform)

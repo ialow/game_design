@@ -37,8 +37,16 @@ public class ItemFireWeapon : Item<ItemFireWeaponData>
         StartCoroutine(animationInventory.MathAnimationThrow(data.TimeCorrectionPerMeterThrow));
     }
 
-    public override void SetActionItem()
+    public override void SetActionItem(bool enable = true)
     {
-        PlayerController.SetActionUsingItem(weapon.StartShooting, weapon.StopShooting);
+        if (enable)
+        {
+            PlayerController.SetActionUsingItem(weapon.StartShooting, weapon.StopShooting);
+        }
+        else
+        {
+            weapon.StopShooting();
+            PlayerController.SetActionUsingItem(null, null);
+        }
     }
 }

@@ -27,13 +27,16 @@ public class InventorySlotForOther : InventorySlot
     {
         currentSprite.sprite = deselectedSlot;
 
-        if (itemSetting != null) 
+        if (itemSetting != null)
         {
             itemSetting.SetParant(locationInactiveItem);
             itemSetting.SetActive(false);
+            itemInventorying.SetActionItem(false);
         }
-
-        DisableActionSlot();
+        else
+        {
+            DisableActionSlot();
+        }
     }
 
     protected override void PhysicalSlotForItem(Transform transform)

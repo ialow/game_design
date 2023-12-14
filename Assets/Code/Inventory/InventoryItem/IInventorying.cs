@@ -7,5 +7,5 @@ public interface IInventorying
     public void AddItemInventorySlot();
     public void AnimationThrowItem();
 
-    public void SetActionItem();
+    public void SetActionItem(bool enable = true);
 }
