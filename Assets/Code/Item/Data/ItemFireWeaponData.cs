@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,10 +15,37 @@ public class ItemFireWeaponData : ScriptableObject
 
 
     [field: Header("Current specification of weapon/missile")]
-    [field: SerializeField] public SpecificationFireWeapon TTXWeapon { get; private set; }
-    [field: SerializeField] public SpecificationMissile TTXMissile { get; protected set; }
+    [field: SerializeField] public ushort MaxLeavel { get; private set; } = 1;
+
+    [field: Space, SerializeField] public SpecificationFireWeapon TTXWeapon { get; private set; }
+    [field: SerializeField] public SpecificationMissile TTXMissile { get; private set; }
 
 
     [field: Header("Improved specification of weapon/missile")]
     [field: SerializeField, Space] public List<ImprovementSpecificationFireWeapon> ImprovementSpecificationsTTX { get; private set; }
+
+    private void OnValidate()
+    {
+        OnValidateLeavel();
+        OnValidateImprovementSpecification();
+    }
+
+    private void OnValidateLeavel()
+    {
+        if (1 > MaxLeavel)
+            MaxLeavel = 1;
+    }
+
+    private void OnValidateImprovementSpecification()
+    {
+        var lengthImprovementSpecificationsTTX = ImprovementSpecificationsTTX.Count;
+
+        if (MaxLeavel == 1)
+            ImprovementSpecificationsTTX = null;
+        else if (MaxLeavel > 1)
+            for (; lengthImprovementSpecificationsTTX + 1 < MaxLeavel; lengthImprovementSpecificationsTTX++)
+                ImprovementSpecificationsTTX.Add(new ImprovementSpecificationFireWeapon());
+        else
+            ImprovementSpecificationsTTX.RemoveRange(MaxLeavel - 1, lengthImprovementSpecificationsTTX - MaxLeavel - 1);
+    }
 }

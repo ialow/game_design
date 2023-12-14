@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class ItemFireWeapon : Item<ItemFireWeaponData>
+public class ItemFireWeapon : Item<ItemFireWeaponData>, IImprovable
 {
+    private ushort currentLeavel = 1;
+    
     private BaseFireWeapons weapon;
 
     protected override void Awake()
@@ -13,6 +15,9 @@ public class ItemFireWeapon : Item<ItemFireWeaponData>
         weapon.InitializationWeapon();
         weapon.InitializationParametrs(data.TTXWeapon, data.TTXMissile);
     }
+
+    public int CurrentLeavel => currentLeavel;
+    public int MaxLeavel => data.MaxLeavel;
 
     public override bool CheckingFreeSpaceInventory()
     {
@@ -47,6 +52,17 @@ public class ItemFireWeapon : Item<ItemFireWeaponData>
         {
             weapon.StopShooting();
             PlayerController.SetActionUsingItem(null, null);
+        }
+    }
+
+    //[ContextMenu("UppParametrs")]
+    public void UppParametrs()
+    {
+        if (currentLeavel < MaxLeavel)
+        {
+            weapon.InitializationParametrs(data.ImprovementSpecificationsTTX[currentLeavel - 1].TTXWeapon, 
+                data.ImprovementSpecificationsTTX[currentLeavel - 1].TTXMissile);
+            currentLeavel++;
         }
     }
 }

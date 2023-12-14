@@ -23,25 +23,23 @@ public class Missile : MonoBehaviour
         rb.useGravity = false;
     }
 
-    // заменить на куратину
     private void Update()
     {
         distance = Vector3.Distance(weaponVariant.PointsShot[pointShot].position, transform.position);
 
         if (distance > weaponVariant.TTXMissile.MaxDistance)
-            weapon.poolMissiles.ReturnInActive(this.gameObject);
+            weapon.poolMissiles.ReturnInActive(gameObject);
     }
-    //
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.TryGetComponent(out IDamagable enity))
         {
             var damage = DamageCalculation(collision.transform.position);
-            //Debug.Log("Ќанесенный урон " + damage);
+            //Debug.Log("The damage done " + damage);
             //collision.gameObject.GetComponent<AbstractEntity>().GetDamage(damage);
         }
-        weapon.poolMissiles.ReturnInActive(this.gameObject);
+        weapon.poolMissiles.ReturnInActive(gameObject);
     }
 
     private float DamageCalculation(Vector3 pointHit)

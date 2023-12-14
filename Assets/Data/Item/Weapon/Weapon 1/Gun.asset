@@ -40,6 +40,7 @@ MonoBehaviour:
   <TimeCorrectionPerMeterTake>k__BackingField: 0.8
   <TimeCorrectionPerMeterThrow>k__BackingField: 0.3
   <InventorySlot>k__BackingField: 01000000
+  <MaxLeavel>k__BackingField: 1
   <TTXWeapon>k__BackingField:
     SpeedShot: 10
     SpreadShot: 0.05

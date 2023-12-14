@@ -52,6 +52,8 @@ public abstract class InventorySlot : MonoBehaviour, IKeeper
             itemSetting.SetInvisibleColiderForSeconds(timeIgnoringItem);
             itemSetting.BreakDependency();
             itemSetting.SetParant(null);
+
+            itemInventorying.SetActionItem(false);
             itemInventorying.AnimationThrowItem();
 
             itemSetting = null;

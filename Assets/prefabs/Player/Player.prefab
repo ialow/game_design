@@ -186,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3605213497908063469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.75, z: 0.75}
+  m_LocalPosition: {x: -0.45000002, y: 0.75, z: 0.45000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -327,7 +327,7 @@ Transform:
   - {fileID: 3590103819480121931}
   - {fileID: 943271064009023059}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1719590312483524924
 Rigidbody:
@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72d651fb6e7d544dbd4dbeafb09f75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CurrentHealth>k__BackingField: 100
   <TurnDegreesInSecond>k__BackingField: 90
   <IgnoringRadiusTurn>k__BackingField: 1
   <MaxSpeedWalk>k__BackingField: 4

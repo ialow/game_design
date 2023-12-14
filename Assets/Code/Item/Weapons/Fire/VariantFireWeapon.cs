@@ -10,9 +10,9 @@ public abstract class VariantFireWeapon : MonoBehaviour
     [field: SerializeField] public GameObject PrefabMissile { get; protected set; }
     [field: SerializeField] public Transform ParentContainerMissile { get; protected set; }
 
-    [field: Header("Current specification of weapon/missile")]
-    [field: SerializeField] public SpecificationFireWeapon TTXWeapon { get; protected set; }
-    [field: SerializeField] public SpecificationMissile TTXMissile { get; protected set; }
+    //[field: Header("Current specification of weapon/missile")]
+    /*[field: SerializeField] */public SpecificationFireWeapon TTXWeapon { get; protected set; }
+    /*[field: SerializeField] */public SpecificationMissile TTXMissile { get; protected set; }
 
     public virtual void InitializationWeapon(BaseFireWeapons weapon)
     {
