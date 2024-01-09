@@ -211,9 +211,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099f16ff1e72c12448d8ad572892f67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CurrentHealth>k__BackingField: 7
   movementSpeed: 0
   changePositionTime: 5
   moveDistance: 10
+  detectionRadius: 10
+  currentHealth: 7
 --- !u!1 &8280167971670996383
 GameObject:
   m_ObjectHideFlags: 0

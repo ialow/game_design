@@ -17,7 +17,8 @@ public abstract class AbstractEntity : MonoBehaviour, IDamagable
 
     public virtual void OnDeath()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
+        Destroy(gameObject);
     }
 
     public virtual void OnRevival()

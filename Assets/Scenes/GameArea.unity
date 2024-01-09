@@ -1702,6 +1702,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1046929608934639826, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
+      propertyPath: CurrentHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046929608934639826, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
       propertyPath: movementSpeed
       value: 6
       objectReference: {fileID: 0}
