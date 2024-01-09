@@ -21,6 +21,7 @@ public class AiNpc : AbstractEntity
     [Header("GameObject")]
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject NPC;
+    [SerializeField] private GameObject gearPrefab;
 
     private void Start()
     {
@@ -93,6 +94,7 @@ public class AiNpc : AbstractEntity
         movementSpeed = 0f;
         explosion.SetActive(true);
         NPC.SetActive(false);
+        var gear = Instantiate(gearPrefab, NPC.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(duration);
         base.OnDeath();
         explosion.SetActive(false);

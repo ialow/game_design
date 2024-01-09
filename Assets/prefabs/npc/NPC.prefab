@@ -10029,6 +10029,7 @@ MonoBehaviour:
   detectionRadius: 10
   explosion: {fileID: 488024578618640588}
   NPC: {fileID: 8280167971670996383}
+  gearPrefab: {fileID: 7856472295871962048, guid: 91d92e64cf15fc540814b13a40e32a24, type: 3}
 --- !u!1 &8280167971670996383
 GameObject:
   m_ObjectHideFlags: 0
