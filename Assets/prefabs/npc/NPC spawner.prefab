@@ -114,6 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6343784878690033719}
+  - component: {fileID: 4605005749321978916}
   m_Layer: 0
   m_Name: NPC spawner
   m_TagString: Untagged
@@ -137,6 +138,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4605005749321978916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7771549180855938584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091da00294b55f84a88026f907dfd4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawner: {fileID: 7771549180855938584}
+  NPC: {fileID: 7771549180855938584, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
 --- !u!1 &8280167971670996383
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3843053995305336478
 Transform:
   m_ObjectHideFlags: 0
