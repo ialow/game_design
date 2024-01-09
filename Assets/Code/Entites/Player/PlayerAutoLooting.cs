@@ -1,26 +1,40 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAutoLooting : MonoBehaviour
 {
-    private PlayerParameters parameters;
+    private Player parameters;
 
     private CapsuleCollider areaLooting;
 
     private void Awake()
     {
         areaLooting = GetComponent<CapsuleCollider>();
-        parameters = GetComponent<PlayerParameters>();
+        parameters = GetComponent<Player>();
 
-        areaLooting.radius = parameters.DistanceAutoLooting;
+        InitializationParameters();
     }
 
-    // Заменить на stay (проверить на массе)
-    private void OnTriggerEnter(Collider other)
+    public void InitializationParameters()
+    {
+        areaLooting.radius = parameters.RadiusAutoLooting;
+    }
+
+        private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.TryGetComponent(out IInventorying item))
         {
-            Debug.Log("Trigger AutoLooting");
-            item.AddItemInventory();
+            if (item.CheckingFreeSpaceInventory())
+            {
+                Debug.Log("Trigger AutoLooting");
+                StartCoroutine(TakeItem(item));
+            }
         }
+    }
+
+    private IEnumerator TakeItem(IInventorying item) 
+    {
+        yield return item.AnimationTakeItem();
+        item.AddItemInventorySlot();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
-    private PlayerParameters parameters;
+    private Player parameters;
 
     private float turnY;
     private float turnDegreesInSecond;
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         get
         {
-            var derection = new Vector3(InputParametrs.ControllerPosition.x, 0f, InputParametrs.ControllerPosition.y).normalized;
+            var derection = new Vector3(InputParametrs.ControllerDirectionXZ.x, 0f, InputParametrs.ControllerDirectionXZ.y).normalized;
 
             if (derection.z < 0) { derection.z *= correctorSpeedBack; }
             derection.x *= correctorSpeedRightOrLeft;
@@ -32,9 +32,14 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        parameters = GetComponent<PlayerParameters>();
+        parameters = GetComponent<Player>();
 
         turnY = transform.rotation.y;
+        InitializationParameters();
+    }
+
+    public void InitializationParameters() 
+    {
         turnDegreesInSecond = parameters.TurnDegreesInSecond;
         ignoringRadiusTurn = parameters.IgnoringRadiusTurn;
 

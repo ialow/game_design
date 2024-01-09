@@ -3,36 +3,78 @@ using UnityEngine.UI;
 
 public abstract class InventorySlot : MonoBehaviour, IKeeper
 {
+    protected Image currentSprite;
+
+    protected ISettingable itemSetting;
+    protected IInventorying itemInventorying;
+    protected GameObject visualItem;
+
     [Header("Only UI")]
-    [SerializeField] protected GameObject visualPrafabItem;
+    [SerializeField] protected Sprite selectedSlot;
+    [SerializeField] protected Sprite deselectedSlot;
+
+    [Space, SerializeField] protected GameObject visualSlotForItem;
 
     [Header("Only settings")]
-    [SerializeField] protected Transform locationInactiveItem;
-
-    protected Transform item;
-    protected GameObject visualItem;
+    [SerializeField] protected float timeIgnoringItem;
 
     [field: SerializeField] public bool Full { get; set; } = false;
 
-    public void AddItemSlot(Transform transform, Sprite sprite)
+    private void Awake()
     {
-        AddVisualItemSlot(sprite);
-        AddPhysicalItemSlot(transform);
-        Full = true;
+        currentSprite = transform.gameObject.GetComponent<Image>();
+        Deselected();
+    }
 
+    public abstract TypeSlot TypeInventorySlot();
+
+    public abstract void Selected();
+    public abstract void Deselected();
+    protected void DisableActionSlot() => PlayerController.SetActionUsingItem(null, null);
+
+    public void TakeItem(Transform transform, Sprite sprite)
+    {
+        itemSetting = transform.GetComponent<ISettingable>();
+        itemInventorying = transform.GetComponent<IInventorying>();
+
+        VisualSlotForItem(sprite);
+        PhysicalSlotForItem(transform);
         Debug.Log("Add item inventory");
     }
 
-    protected virtual void AddVisualItemSlot(Sprite sprite)
+    public void ThrowItem()
     {
-        visualItem = Instantiate(visualPrafabItem, transform);
-        visualItem.GetComponent<Image>().sprite = sprite;
+        if (itemSetting != null)
+        {
+            Full = false;
+            VisualSlotForItem(null);
+
+            itemSetting.SetInvisibleColiderForSeconds(timeIgnoringItem);
+            itemSetting.BreakDependency();
+            itemSetting.SetParant(null);
+
+            itemInventorying.SetActionItem(false);
+            itemInventorying.AnimationThrowItem();
+
+            itemSetting = null;
+            itemInventorying = null;
+            Debug.Log("Throw item");
+        }
     }
 
-    protected virtual void AddPhysicalItemSlot(Transform transform)
+    protected virtual void VisualSlotForItem(Sprite sprite)
     {
-        item = transform;
-        item.SetParent(locationInactiveItem);
-        item.gameObject.SetActive(false);
+        if (sprite != null)
+        {
+            visualSlotForItem.GetComponent<Image>().sprite = sprite;
+            visualSlotForItem.SetActive(true);
+        }
+        else
+        {
+            visualSlotForItem.SetActive(false);
+            visualSlotForItem.GetComponent<Image>().sprite = sprite;
+        }
     }
+
+    protected abstract void PhysicalSlotForItem(Transform transform);
 }

@@ -37,13 +37,31 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Turn"",
-                    ""type"": ""Value"",
-                    ""id"": ""14b4c486-b61e-4d31-8d12-6487816dd647"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""a63857ab-1ebf-47f1-b96e-062a4c9e00c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Toolbar"",
+                    ""type"": ""Button"",
+                    ""id"": ""19fabdcb-a9a9-49b1-b4c1-31d80a0b0f60"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ThrowItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e6c310a-e307-4101-a076-ffcd3aaa3895"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -104,12 +122,111 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d6703338-2ac6-4f3c-bf3c-719474ba879f"",
-                    ""path"": ""<Mouse>/position"",
+                    ""id"": ""c4163aa6-7c40-40be-b6b7-3926a7afdf23"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""Turn"",
+                    ""action"": ""Toolbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04133d42-d1ca-4e77-bdf4-d1534ce3ecac"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Toolbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""743cef72-3c81-42c7-9bee-e0af1ec7d32b"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Toolbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf91fa7d-6316-40d4-b7c7-fb1de7c605ba"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Toolbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9ac11b5-535e-49f2-81ab-8a47ec18737b"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Toolbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bc66589-6b10-44b3-ac50-0521a303e54c"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Toolbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb4117e4-abb0-46a9-a55c-55ea2a6be701"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Toolbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""602ee3ab-454e-4e24-845c-2511c7d3004f"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Toolbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""adef9d48-0c4f-4f22-9f18-6776fef49750"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""ThrowItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5c098b1-a9dc-446c-b4e4-f0fdfc772665"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -166,7 +283,9 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Walk = m_Gameplay.FindAction("Walk", throwIfNotFound: true);
-        m_Gameplay_Turn = m_Gameplay.FindAction("Turn", throwIfNotFound: true);
+        m_Gameplay_UseItem = m_Gameplay.FindAction("UseItem", throwIfNotFound: true);
+        m_Gameplay_Toolbar = m_Gameplay.FindAction("Toolbar", throwIfNotFound: true);
+        m_Gameplay_ThrowItem = m_Gameplay.FindAction("ThrowItem", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -232,13 +351,17 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Walk;
-    private readonly InputAction m_Gameplay_Turn;
+    private readonly InputAction m_Gameplay_UseItem;
+    private readonly InputAction m_Gameplay_Toolbar;
+    private readonly InputAction m_Gameplay_ThrowItem;
     public struct GameplayActions
     {
         private @UserInput m_Wrapper;
         public GameplayActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Gameplay_Walk;
-        public InputAction @Turn => m_Wrapper.m_Gameplay_Turn;
+        public InputAction @UseItem => m_Wrapper.m_Gameplay_UseItem;
+        public InputAction @Toolbar => m_Wrapper.m_Gameplay_Toolbar;
+        public InputAction @ThrowItem => m_Wrapper.m_Gameplay_ThrowItem;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -251,9 +374,15 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
             @Walk.started += instance.OnWalk;
             @Walk.performed += instance.OnWalk;
             @Walk.canceled += instance.OnWalk;
-            @Turn.started += instance.OnTurn;
-            @Turn.performed += instance.OnTurn;
-            @Turn.canceled += instance.OnTurn;
+            @UseItem.started += instance.OnUseItem;
+            @UseItem.performed += instance.OnUseItem;
+            @UseItem.canceled += instance.OnUseItem;
+            @Toolbar.started += instance.OnToolbar;
+            @Toolbar.performed += instance.OnToolbar;
+            @Toolbar.canceled += instance.OnToolbar;
+            @ThrowItem.started += instance.OnThrowItem;
+            @ThrowItem.performed += instance.OnThrowItem;
+            @ThrowItem.canceled += instance.OnThrowItem;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -261,9 +390,15 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
             @Walk.started -= instance.OnWalk;
             @Walk.performed -= instance.OnWalk;
             @Walk.canceled -= instance.OnWalk;
-            @Turn.started -= instance.OnTurn;
-            @Turn.performed -= instance.OnTurn;
-            @Turn.canceled -= instance.OnTurn;
+            @UseItem.started -= instance.OnUseItem;
+            @UseItem.performed -= instance.OnUseItem;
+            @UseItem.canceled -= instance.OnUseItem;
+            @Toolbar.started -= instance.OnToolbar;
+            @Toolbar.performed -= instance.OnToolbar;
+            @Toolbar.canceled -= instance.OnToolbar;
+            @ThrowItem.started -= instance.OnThrowItem;
+            @ThrowItem.performed -= instance.OnThrowItem;
+            @ThrowItem.canceled -= instance.OnThrowItem;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -339,7 +474,9 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnWalk(InputAction.CallbackContext context);
-        void OnTurn(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
+        void OnToolbar(InputAction.CallbackContext context);
+        void OnThrowItem(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
