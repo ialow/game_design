@@ -62,6 +62,15 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""6526000c-5c7e-49e3-b255-53dfdda05138"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -229,6 +238,17 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
                     ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07665967-9672-4ba7-88c5-5d221bcc3548"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -237,7 +257,7 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
             ""id"": ""f0ccad7e-6123-4711-a78c-ce043da433d0"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Resume"",
                     ""type"": ""Button"",
                     ""id"": ""58953153-29ef-4d5d-8fcb-0a498ae74d0c"",
                     ""expectedControlType"": ""Button"",
@@ -250,11 +270,11 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f392e1fc-de14-4f8a-9575-6bbad2a86d5a"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""New action"",
+                    ""action"": ""Resume"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -286,9 +306,10 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
         m_Gameplay_UseItem = m_Gameplay.FindAction("UseItem", throwIfNotFound: true);
         m_Gameplay_Toolbar = m_Gameplay.FindAction("Toolbar", throwIfNotFound: true);
         m_Gameplay_ThrowItem = m_Gameplay.FindAction("ThrowItem", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
+        m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -354,6 +375,7 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_UseItem;
     private readonly InputAction m_Gameplay_Toolbar;
     private readonly InputAction m_Gameplay_ThrowItem;
+    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @UserInput m_Wrapper;
@@ -362,6 +384,7 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
         public InputAction @UseItem => m_Wrapper.m_Gameplay_UseItem;
         public InputAction @Toolbar => m_Wrapper.m_Gameplay_Toolbar;
         public InputAction @ThrowItem => m_Wrapper.m_Gameplay_ThrowItem;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -383,6 +406,9 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
             @ThrowItem.started += instance.OnThrowItem;
             @ThrowItem.performed += instance.OnThrowItem;
             @ThrowItem.canceled += instance.OnThrowItem;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -399,6 +425,9 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
             @ThrowItem.started -= instance.OnThrowItem;
             @ThrowItem.performed -= instance.OnThrowItem;
             @ThrowItem.canceled -= instance.OnThrowItem;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -420,12 +449,12 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_Newaction;
+    private readonly InputAction m_UI_Resume;
     public struct UIActions
     {
         private @UserInput m_Wrapper;
         public UIActions(@UserInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_UI_Newaction;
+        public InputAction @Resume => m_Wrapper.m_UI_Resume;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -435,16 +464,16 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Resume.started += instance.OnResume;
+            @Resume.performed += instance.OnResume;
+            @Resume.canceled += instance.OnResume;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Resume.started -= instance.OnResume;
+            @Resume.performed -= instance.OnResume;
+            @Resume.canceled -= instance.OnResume;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -477,9 +506,10 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
         void OnUseItem(InputAction.CallbackContext context);
         void OnToolbar(InputAction.CallbackContext context);
         void OnThrowItem(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnResume(InputAction.CallbackContext context);
     }
 }
