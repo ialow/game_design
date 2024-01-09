@@ -15,10 +15,10 @@ public class ItemFireWeaponData : ScriptableObject
 
 
     [field: Header("Current specification of weapon/missile")]
-    [field: SerializeField] public ushort MaxLeavel { get; private set; } = 1;
+    [field: SerializeField] public int MaxLeavel { get; private set; } = 1;
 
-    [field: Space, SerializeField] public SpecificationFireWeapon TTXWeapon { get; private set; }
-    [field: SerializeField] public SpecificationMissile TTXMissile { get; private set; }
+    [field: Space, SerializeField] public SpecificationFireWeapon TTXFireWeapon { get; private set; }
+    [field: SerializeField] public SpecificationMissile TTXFireMissile { get; private set; }
 
 
     [field: Header("Improved specification of weapon/missile")]
@@ -26,26 +26,7 @@ public class ItemFireWeaponData : ScriptableObject
 
     private void OnValidate()
     {
-        OnValidateLeavel();
-        OnValidateImprovementSpecification();
-    }
-
-    private void OnValidateLeavel()
-    {
-        if (1 > MaxLeavel)
-            MaxLeavel = 1;
-    }
-
-    private void OnValidateImprovementSpecification()
-    {
-        var lengthImprovementSpecificationsTTX = ImprovementSpecificationsTTX.Count;
-
-        if (MaxLeavel == 1)
-            ImprovementSpecificationsTTX = null;
-        else if (MaxLeavel > 1)
-            for (; lengthImprovementSpecificationsTTX + 1 < MaxLeavel; lengthImprovementSpecificationsTTX++)
-                ImprovementSpecificationsTTX.Add(new ImprovementSpecificationFireWeapon());
-        else
-            ImprovementSpecificationsTTX.RemoveRange(MaxLeavel - 1, lengthImprovementSpecificationsTTX - MaxLeavel - 1);
+        MaxLeavel = ValidationData.OnValidateMaxLeavel(MaxLeavel);
+        ImprovementSpecificationsTTX = ValidationData.OnValidateListImprovementSpecification(ImprovementSpecificationsTTX, MaxLeavel);
     }
 }

@@ -7,8 +7,8 @@ public class SingleBarrelWeapon : VariantFireWeapon
     public override void InitializationWeapon(BaseFireWeapons weapon)
     {
         base.InitializationWeapon(weapon);
-        weapon.SetVariantShotWeapon(ShotGun);
+        weapon.SetVariantShotWeapon(SingleBarrelShot);
     }
 
-    private void ShotGun(PoolObjects<GameObject> missile) => missile.ReturnActive(1);
+    private void SingleBarrelShot(PoolObjects<GameObject> missile) => missile.ReturnActive(1);
 }

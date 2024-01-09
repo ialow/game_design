@@ -40,14 +40,13 @@ MonoBehaviour:
   <TimeCorrectionPerMeterTake>k__BackingField: 0.8
   <TimeCorrectionPerMeterThrow>k__BackingField: 0.3
   <InventorySlot>k__BackingField: 02000000
-  <CurrentLeavel>k__BackingField: 1
   <MaxLeavel>k__BackingField: 2
-  <TTXWeapon>k__BackingField:
+  <TTXFireWeapon>k__BackingField:
     SpeedShot: 10
     SpreadShot: 0.15
     AutoShooting: 1
     CooldownTime: 0.1
-  <TTXMissile>k__BackingField:
+  <TTXFireMissile>k__BackingField:
     Damage: 8
     DamageDropCoefficient: 0.1
     DistanceWithMaxDamage: 8

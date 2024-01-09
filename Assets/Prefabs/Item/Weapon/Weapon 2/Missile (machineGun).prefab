@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7705101225269771062}
   - component: {fileID: 5797198604444246213}
   - component: {fileID: 1628356002499429043}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Missile (machineGun)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 134219318
+    m_Bits: 134219327
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

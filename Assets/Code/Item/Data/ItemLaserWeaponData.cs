@@ -13,4 +13,20 @@ public class ItemLaserWeaponData : ScriptableObject
     [field: SerializeField] public float TimeCorrectionPerMeterThrow { get; private set; }
 
     [field: SerializeField, Space] public List<TypeSlot> InventorySlot { get; private set; }
+
+    
+    [field: Header("Current specification of weapon/missile")]
+    [field: SerializeField] public int MaxLeavel { get; private set; } = 1;
+    
+    [field: Space, SerializeField] public SpecificationLasersWeapon TTXLaserWeapon { get; private set; }
+
+
+    [field: Header("Improved specification of weapon/missile")]
+    [field: SerializeField, Space] public List<ImprovementSpecificationLasersWeapon> ImprovementSpecificationsTTX { get; private set; }
+
+    private void OnValidate()
+    {
+        MaxLeavel = ValidationData.OnValidateMaxLeavel(MaxLeavel);
+        ImprovementSpecificationsTTX = ValidationData.OnValidateListImprovementSpecification(ImprovementSpecificationsTTX, MaxLeavel);
+    }
 }

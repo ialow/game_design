@@ -5,11 +5,10 @@ public class PlayerAutoLooting : MonoBehaviour
 {
     private Player parameters;
 
-    private CapsuleCollider areaLooting;
+    [SerializeField] private CapsuleCollider areaLooting;
 
     private void Awake()
     {
-        areaLooting = GetComponent<CapsuleCollider>();
         parameters = GetComponent<Player>();
 
         InitializationParameters();
@@ -18,15 +17,16 @@ public class PlayerAutoLooting : MonoBehaviour
     public void InitializationParameters()
     {
         areaLooting.radius = parameters.RadiusAutoLooting;
+
     }
 
-        private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.TryGetComponent(out IInventorying item))
         {
             if (item.CheckingFreeSpaceInventory())
             {
-                Debug.Log("Trigger AutoLooting");
+                Debug.Log("Trigger AutoLooting"); // Требуется корректировка;
                 StartCoroutine(TakeItem(item));
             }
         }

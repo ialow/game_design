@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -18,7 +17,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null) Instance = this;
     }
 
     private void Start()

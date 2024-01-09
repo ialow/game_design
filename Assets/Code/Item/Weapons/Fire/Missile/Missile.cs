@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Missile : MonoBehaviour
@@ -33,11 +30,11 @@ public class Missile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.TryGetComponent(out IDamagable enity))
+        if (collision.transform.root.TryGetComponent(out IDamagable entity))
         {
             var damage = DamageCalculation(collision.transform.position);
-            //Debug.Log("The damage done " + damage);
-            //collision.gameObject.GetComponent<AbstractEntity>().GetDamage(damage);
+            Debug.Log("The damage done " + damage);
+            entity.GetDamage(damage);
         }
         weapon.poolMissiles.ReturnInActive(gameObject);
     }

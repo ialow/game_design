@@ -13,7 +13,7 @@ public class ItemFireWeapon : Item<ItemFireWeaponData>, IImprovable
 
         weapon = GetComponent<BaseFireWeapons>();
         weapon.InitializationWeapon();
-        weapon.InitializationParametrs(data.TTXWeapon, data.TTXMissile);
+        weapon.InitializationParametrs(data.TTXFireWeapon, data.TTXFireMissile);
     }
 
     public int CurrentLeavel => currentLeavel;
@@ -55,14 +55,14 @@ public class ItemFireWeapon : Item<ItemFireWeaponData>, IImprovable
         }
     }
 
-    //[ContextMenu("UppParametrs")]
-    public void UppParametrs()
+    //[ContextMenu("UpLevels")]
+    public void UpLevels()
     {
         if (currentLeavel < MaxLeavel)
         {
-            weapon.InitializationParametrs(data.ImprovementSpecificationsTTX[currentLeavel - 1].TTXWeapon, 
-                data.ImprovementSpecificationsTTX[currentLeavel - 1].TTXMissile);
-            currentLeavel++;
+            //weapon.InitializationParametrs(data.ImprovementSpecificationsTTX[currentLeavel - 1].TTXWeapon, 
+            //    data.ImprovementSpecificationsTTX[currentLeavel - 1].TTXMissile);
+            //currentLeavel++;
         }
     }
 }

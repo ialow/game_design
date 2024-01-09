@@ -2,8 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemLaserWeapon : Item<ItemLaserWeaponData>
+public class ItemLaserWeapon : Item<ItemLaserWeaponData>, IImprovable
 {
+    private ushort currentLeavel = 1;
+
+    private BaseLaserWeapons weapon;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        weapon = GetComponent<BaseLaserWeapons>();
+        weapon.Initialization(data.TTXLaserWeapon);
+    }
+
+    public int CurrentLeavel => currentLeavel;
+    public int MaxLeavel => data.MaxLeavel;
+
     public override bool CheckingFreeSpaceInventory()
     {
         keeper = InventoryManager.Instance.CheckingFreeSpaceItemWeapon(data.InventorySlot);
@@ -29,7 +44,26 @@ public class ItemLaserWeapon : Item<ItemLaserWeaponData>
 
     public override void SetActionItem(bool enable = true)
     {
-        Debug.Log($"The functionality is not implemented - ItemLaserWeapon");
-        //PlayerController.SetActionUsingItem();
+        //Debug.Log($"The functionality is not implemented - ItemLaserWeapon");
+
+        if (enable)
+        {
+            PlayerController.SetActionUsingItem(weapon.StartShooting, weapon.StopShooting);
+        }
+        else
+        {
+            weapon.StopShooting();
+            PlayerController.SetActionUsingItem(null, null);
+        }
+    }
+
+    //[ContextMenu("UpLevels")]
+    public void UpLevels()
+    {
+        if (currentLeavel < MaxLeavel)
+        {
+            //weapon.InitializationParametrs(data.ImprovementSpecificationsTTX[currentLeavel - 1].TTXLaserWeapon);
+            //currentLeavel++;
+        }
     }
 }
