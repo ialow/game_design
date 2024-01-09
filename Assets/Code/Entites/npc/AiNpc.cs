@@ -1,6 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
+using Zenject.SpaceFighter;
 
 public class AiNpc : AbstractEntity
 {
@@ -8,7 +10,7 @@ public class AiNpc : AbstractEntity
     [Inject] private NavMeshAgent navMeshAgent;
     [Inject(Id = "Player")] private GameObject player;
 
-    [SerializeField] private float movementSpeed = 6f;
+    [field: SerializeField] private float movementSpeed = 6f;
     [SerializeField] private float changePositionTime = 5f;
     [SerializeField] private float moveDistance = 30f;
     [SerializeField] private float detectionRadius = 10f;
@@ -16,8 +18,13 @@ public class AiNpc : AbstractEntity
     private bool playerDetected = false;
     private Vector3 patrolPoint;
 
+    [Header("GameObject")]
+    [SerializeField] private GameObject explosion;
+    [SerializeField] private GameObject NPC;
+
     private void Start()
     {
+        explosion.SetActive(false);
         InitializeNavMeshAgent();
         InitializePlayer();
         InvokeRepeating(nameof(MoveNpc), changePositionTime, changePositionTime);
@@ -41,7 +48,7 @@ public class AiNpc : AbstractEntity
 
     public override void OnDeath()
     {
-        base.OnDeath();
+        StartCoroutine(EnableExplosion(1));
     }
 
     public override void OnRevival()
@@ -79,5 +86,15 @@ public class AiNpc : AbstractEntity
     private void Patrol()
     {
         navMeshAgent.SetDestination(patrolPoint);
+    }
+
+    private IEnumerator EnableExplosion(float duration)
+    {
+        movementSpeed = 0f;
+        explosion.SetActive(true);
+        NPC.SetActive(false);
+        yield return new WaitForSeconds(duration);
+        base.OnDeath();
+        explosion.SetActive(false);
     }
 }

@@ -1697,6 +1697,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 488024578618640588, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046929608934639826, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
+      propertyPath: NPC
+      value: 
+      objectReference: {fileID: 609543580}
     - target: {fileID: 1046929608934639826, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
       propertyPath: moveDistance
       value: 20
@@ -3025,6 +3033,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600405972}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &609543580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8280167971670996383, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
+  m_PrefabInstance: {fileID: 306610902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &618504342
 GameObject:
   m_ObjectHideFlags: 0
