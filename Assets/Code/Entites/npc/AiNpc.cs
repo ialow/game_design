@@ -22,10 +22,10 @@ public class AiNpc : AbstractEntity
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject NPC;
     [SerializeField] private GameObject gearPrefab;
+    [SerializeField] private MeshRenderer npcMaterial;
 
     private void Start()
     {
-        explosion.SetActive(false);
         InitializeNavMeshAgent();
         InitializePlayer();
         InvokeRepeating(nameof(MoveNpc), changePositionTime, changePositionTime);
@@ -69,9 +69,24 @@ public class AiNpc : AbstractEntity
 
     private void MoveNpc()
     {
-        if (CanSeePlayer()) { playerDetected = true; AttackPlayer(); }
-        else if (playerDetected) { Patrol(); }
-        else { navMeshAgent.SetDestination(RandomNavSphere(moveDistance)); }
+        if (CanSeePlayer())
+        {
+            AttackPlayer();
+        }
+        else
+        {
+            Patrol();
+        }
+        if (Vector3.Distance(NPC.transform.position, player.transform.position) <= 4f)
+        {
+            StartCoroutine(EnableExplosion(1));
+        }
+    }
+
+    private void AttackPlayer()
+    {
+        playerDetected = true;
+        navMeshAgent.SetDestination(player.transform.position);
     }
 
     private bool CanSeePlayer()
@@ -79,24 +94,20 @@ public class AiNpc : AbstractEntity
         return player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRadius;
     }
 
-    private void AttackPlayer()
-    {
-        navMeshAgent.SetDestination(player.transform.position);
-    }
-
     private void Patrol()
     {
-        navMeshAgent.SetDestination(patrolPoint);
+        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
+            navMeshAgent.SetDestination(RandomNavSphere(moveDistance));
     }
 
     private IEnumerator EnableExplosion(float duration)
     {
-        movementSpeed = 0f;
-        explosion.SetActive(true);
-        NPC.SetActive(false);
+        navMeshAgent.speed = 0;
+        var newExplosion = Instantiate(explosion, NPC.transform.position, Quaternion.identity);
         var gear = Instantiate(gearPrefab, NPC.transform.position, Quaternion.identity);
+        npcMaterial.enabled = false;
         yield return new WaitForSeconds(duration);
+        Destroy(newExplosion);
         base.OnDeath();
-        explosion.SetActive(false);
     }
 }
