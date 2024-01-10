@@ -8,6 +8,7 @@ public class AiNpcInstaller : MonoInstaller
     {
         Container.Bind<NavMeshAgent>().FromComponentInChildren().AsSingle();
         Container.Bind<GameObject>().WithId("Player").FromComponentInHierarchy().AsSingle();
+        //Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
         Container.Bind<AiNpc>().FromComponentInHierarchy().AsSingle();
     }
 }

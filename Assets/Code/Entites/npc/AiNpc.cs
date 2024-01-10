@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 using Zenject.SpaceFighter;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class AiNpc : AbstractEntity
 {
@@ -71,6 +72,8 @@ public class AiNpc : AbstractEntity
     {
         if (!hasDied && Vector3.Distance(NPC.transform.position, player.transform.position) <= 1.7f)
         {
+            player.GetComponent<IDamagable>().GetDamage(50);
+            GetDamage(50);
             OnDeath();
             hasDied = true;
         }
