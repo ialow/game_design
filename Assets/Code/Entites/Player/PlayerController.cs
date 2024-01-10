@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private EntryPoint fsm;
     [SerializeField] private Camera orthographicCamera;
     [SerializeField] private InputManager userInput;
 
@@ -85,11 +84,11 @@ public class PlayerController : MonoBehaviour
 
     private void HandlerPause()
     {
-        fsm.Fsm.EnterIn<PauseMenuState>();
+        EntryPoint.Instance.Fsm.EnterIn<PauseMenuState>();
     }
 
     private void HandlerResume()
     {
-        fsm.Fsm.EnterIn<GameplayState>();
+        EntryPoint.Instance.Fsm.EnterIn<GameplayState>();
     }
 }

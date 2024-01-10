@@ -17,4 +17,9 @@ public class Player : AbstractEntity
     
     [field: Header("Autolooting parameters")]
     [field: SerializeField] public float RadiusAutoLooting { get; private set; } = 1.5f;
+
+    public override void OnDeath()
+    {
+        EntryPoint.Instance.Fsm.EnterIn<DeathMenuState>();
+    }
 }

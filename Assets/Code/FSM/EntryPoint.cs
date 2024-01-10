@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
 {
+    public static EntryPoint Instance;
+
     public FSM Fsm {  get; private set; }
 
-    [Header("Pause UI")]
+    [Header("Menu UI")]
     [SerializeField] private List<GameObject> disenableUI;
-    [SerializeField] private GameObject enableUI;
+    [SerializeField] private GameObject enablePauseUI;
+    [SerializeField] private GameObject enableDeathUI;
 
     private void Awake()
     {
-        Fsm = new FSM(disenableUI, enableUI);
+        if (Instance == null) Instance = this;
+
+        Fsm = new FSM(disenableUI, enablePauseUI, enableDeathUI);
         Fsm.EnterIn<LoadingLevelState>();
     }
 }
