@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 public class EntryPoint : MonoBehaviour
 {
     public static EntryPoint Instance;
 
-    public FSM Fsm {  get; private set; }
+    public FSM Fsm { get; private set; }
 
-    [Header("Menu UI")]
-    [SerializeField] private List<GameObject> disenableUI;
-    [SerializeField] private GameObject enablePauseUI;
-    [SerializeField] private GameObject enableDeathUI;
+    [Inject] private List<GameObject> disenableUI;
+    [Inject(Id = "PauseUI")] private GameObject enablePauseUI;
+    [Inject(Id = "DeathUI")] private GameObject enableDeathUI;
 
     private void Awake()
     {

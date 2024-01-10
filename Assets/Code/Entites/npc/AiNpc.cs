@@ -1,14 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using Zenject;
-using Zenject.SpaceFighter;
 
 public class AiNpc : AbstractEntity
 {
     [Header("Movement parameters")]
-    [Inject] private NavMeshAgent navMeshAgent;
-    [Inject(Id = "Player")] private GameObject player;
+    private NavMeshAgent navMeshAgent;
+    private GameObject player;
 
     [field: SerializeField] private float movementSpeed = 6f;
     [SerializeField] private float changePositionTime = 5f;

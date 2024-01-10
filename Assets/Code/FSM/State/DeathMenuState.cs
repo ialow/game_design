@@ -19,13 +19,12 @@ public class DeathMenuState : IFSMState
 
     public void Enter()
     {
-        var countDisenable = disenableUI.Count;
+        enableUI?.SetActive(true);
 
-        enableUI.SetActive(true);
-        for (var i = 0; i < countDisenable; i++)
-            disenableUI[i].SetActive(false);
+        foreach (var ui in disenableUI)
+            ui?.SetActive(false);
+
         Time.timeScale = 0;
-
         Debug.Log("The gameplay is paused");
     }
 
