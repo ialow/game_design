@@ -15,6 +15,9 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
     public event Action<int> ToolbarEvent;
     public event Action ThrowItemEvent;
 
+    public event Action PauseEvent;
+    public event Action ResetEvent;
+
     private void OnEnable()
     {
         if (userInput is null)
@@ -70,8 +73,21 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
         }
     }
 
-    public void OnNewaction(InputAction.CallbackContext context)
+    public void OnPause(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            PauseEvent?.Invoke();
+            OnUI();
+        }
+    }
+
+    public void OnResume(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            ResetEvent?.Invoke();
+            OnGameplay();
+        }
     }
 }
