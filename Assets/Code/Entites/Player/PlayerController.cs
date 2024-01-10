@@ -4,13 +4,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private EntryPoint fsm;
     [SerializeField] private Camera orthographicCamera;
     [SerializeField] private InputManager userInput;
 
     private static Action StartUseItem;
     private static Action EndUseItem;
 
-    private void Awake()
+    public void Awake()
     {
         userInput.WalkEvent += HandlerWalk;
         userInput.ToolbarEvent += HandlerChangeSelectedItem;
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
         userInput.StartUseItemEvent += HandlerPerformedUseItem;
         userInput.EndUseItemEvent += HandlerCanceledUseItem;
+
+        userInput.PauseEvent += HandlerPause;
+        userInput.ResetEvent += HandlerResume;
     }
 
     private void Update()
@@ -77,5 +81,15 @@ public class PlayerController : MonoBehaviour
     {
         StartUseItem = startUseItem;
         EndUseItem = endUseItem;
+    }
+
+    private void HandlerPause()
+    {
+        fsm.Fsm.EnterIn<PauseMenuState>();
+    }
+
+    private void HandlerResume()
+    {
+        fsm.Fsm.EnterIn<GameplayState>();
     }
 }
