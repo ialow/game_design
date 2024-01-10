@@ -6,6 +6,8 @@ public class EntryPoint : MonoBehaviour
 {
     public static EntryPoint Instance;
 
+    [SerializeField] private InputManager userInput;
+
     public FSM Fsm {  get; private set; }
 
     [Header("Menu UI")]
@@ -15,9 +17,22 @@ public class EntryPoint : MonoBehaviour
 
     private void Awake()
     {
+        userInput.PauseEvent += HandlerPause;
+        userInput.ResetEvent += HandlerResume;
+
         if (Instance == null) Instance = this;
 
-        Fsm = new FSM(disenableUI, enablePauseUI, enableDeathUI);
+        Fsm = new FSM(userInput, disenableUI, enablePauseUI, enableDeathUI);
         Fsm.EnterIn<LoadingLevelState>();
+    }
+
+    private void HandlerPause()
+    {
+        Fsm.EnterIn<PauseMenuState>();
+    }
+
+    private void HandlerResume()
+    {
+        Fsm.EnterIn<GameplayState>();
     }
 }

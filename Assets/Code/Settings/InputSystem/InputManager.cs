@@ -17,6 +17,7 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
 
     public event Action PauseEvent;
     public event Action ResetEvent;
+    public event Action ClickLKMEvent;
 
     private void OnEnable()
     {
@@ -25,8 +26,6 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
             userInput = new UserInput();
             userInput.Gameplay.SetCallbacks(this);
             userInput.UI.SetCallbacks(this);
-
-            OnGameplay();
         }
     }
 
@@ -78,7 +77,6 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
         if (context.phase == InputActionPhase.Canceled)
         {
             PauseEvent?.Invoke();
-            OnUI();
         }
     }
 
@@ -87,7 +85,6 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
         if (context.phase == InputActionPhase.Canceled)
         {
             ResetEvent?.Invoke();
-            OnGameplay();
         }
     }
 }

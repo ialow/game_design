@@ -18,9 +18,6 @@ public class PlayerController : MonoBehaviour
 
         userInput.StartUseItemEvent += HandlerPerformedUseItem;
         userInput.EndUseItemEvent += HandlerCanceledUseItem;
-
-        userInput.PauseEvent += HandlerPause;
-        userInput.ResetEvent += HandlerResume;
     }
 
     private void Update()
@@ -80,15 +77,5 @@ public class PlayerController : MonoBehaviour
     {
         StartUseItem = startUseItem;
         EndUseItem = endUseItem;
-    }
-
-    private void HandlerPause()
-    {
-        EntryPoint.Instance.Fsm.EnterIn<PauseMenuState>();
-    }
-
-    private void HandlerResume()
-    {
-        EntryPoint.Instance.Fsm.EnterIn<GameplayState>();
     }
 }

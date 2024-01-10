@@ -6,15 +6,15 @@ public class FSM
 {
     private Dictionary<Type, IFSMState> states;
 
-    public FSM(List<GameObject> disenableUI, GameObject enablePauseUI, 
+    public FSM(InputManager userInput, List<GameObject> disenableUI, GameObject enablePauseUI, 
         GameObject enableDeathUI)
     {
         states = new Dictionary<Type, IFSMState>()
         {
-            [typeof(LoadingLevelState)] = new LoadingLevelState(this),
+            [typeof(LoadingLevelState)] = new LoadingLevelState(this, userInput),
             [typeof(GameplayState)] = new GameplayState(this),
-            [typeof(PauseMenuState)] = new PauseMenuState(this, disenableUI, enablePauseUI),
-            [typeof(DeathMenuState)] = new DeathMenuState(this, disenableUI, enableDeathUI),
+            [typeof(PauseMenuState)] = new PauseMenuState(this, disenableUI, enablePauseUI, userInput),
+            [typeof(DeathMenuState)] = new DeathMenuState(this, disenableUI, enableDeathUI, userInput),
         };
     }
 
