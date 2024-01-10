@@ -15,6 +15,7 @@ public class AiNpc : AbstractEntity
     [SerializeField] private float moveDistance = 30f;
     [SerializeField] private float detectionRadius = 10f;
 
+    private bool hasDied = false;
     private bool playerDetected = false;
     private Vector3 patrolPoint;
 
@@ -66,21 +67,19 @@ public class AiNpc : AbstractEntity
         return navHit.position;
     }
 
+    private void Update()
+    {
+        if (!hasDied && Vector3.Distance(NPC.transform.position, player.transform.position) <= 1.7f)
+        {
+            OnDeath();
+            hasDied = true;
+        }
+    }
 
     private void MoveNpc()
     {
-        if (CanSeePlayer())
-        {
-            AttackPlayer();
-        }
-        else
-        {
-            Patrol();
-        }
-        if (Vector3.Distance(NPC.transform.position, player.transform.position) <= 4f)
-        {
-            StartCoroutine(EnableExplosion(1));
-        }
+        if (CanSeePlayer()) { AttackPlayer(); }
+        else { Patrol(); }
     }
 
     private void AttackPlayer()
@@ -90,9 +89,7 @@ public class AiNpc : AbstractEntity
     }
 
     private bool CanSeePlayer()
-    {
-        return player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRadius;
-    }
+        => player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRadius;
 
     private void Patrol()
     {
