@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 using Zenject.SpaceFighter;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class AiNpc : AbstractEntity
 {
