@@ -16,9 +16,22 @@ public class EntryPoint : MonoBehaviour
 
     private void Awake()
     {
+        userInput.PauseEvent += HandlerPause;
+        userInput.ResumetEvent += HandlerResume;
+
         if (Instance == null) Instance = this;
 
         Fsm = new FSM(userInput, disenableUI, enablePauseUI, enableDeathUI);
         Fsm.EnterIn<LoadingLevelState>();
+    }
+
+    private void HandlerPause()
+    {
+        Fsm.EnterIn<PauseMenuState>();
+    }
+
+    private void HandlerResume()
+    {
+        Fsm.EnterIn<GameplayState>();
     }
 }
