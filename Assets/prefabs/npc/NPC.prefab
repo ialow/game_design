@@ -297,7 +297,7 @@ MonoBehaviour:
   acceleratedMovementSpeed: 4
   changePositionTime: 0.2
   moveDistance: 26
-  detectionRadius: 12
+  detectionRadius: 9
   explosion: {fileID: 4427707780555905547, guid: 62e434c06924b7543bc21842ae09d879, type: 3}
   runNPC: {fileID: 4427707780555905547, guid: 6fb1100d87a34714cae613ef986178e1, type: 3}
   NPC: {fileID: 7290634981828563348}
