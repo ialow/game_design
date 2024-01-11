@@ -4,7 +4,7 @@ public class NpcSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject NPC;
     [SerializeField] private Transform[] spawnPoints;
-    private int maxNPCs = 2;
+    private int maxNPCs = 5;
 
     private int previousNpcCount = 0;
     private int currentSpawnPointIndex = 0;

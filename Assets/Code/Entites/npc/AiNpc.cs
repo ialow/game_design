@@ -15,6 +15,7 @@ public class AiNpc : AbstractEntity
 
     private bool hasDied = false;
     private bool playerDetected = false;
+    private bool isMovingToPlayer = false; 
     private Vector3 patrolPoint;
 
     [Header("GameObject")]
@@ -78,14 +79,21 @@ public class AiNpc : AbstractEntity
 
     private void MoveNpc()
     {
-        if (CanSeePlayer()) { AttackPlayer(); }
-        else { Patrol(); }
+        if (CanSeePlayer()) 
+        { 
+            isMovingToPlayer = true; AttackPlayer(); 
+        }
+        else if (!isMovingToPlayer) 
+        { 
+            Patrol(); 
+        }
     }
 
     private void AttackPlayer()
     {
         playerDetected = true;
         navMeshAgent.SetDestination(player.transform.position);
+        isMovingToPlayer = true;
     }
 
     private bool CanSeePlayer()
