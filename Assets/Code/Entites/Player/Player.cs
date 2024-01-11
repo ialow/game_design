@@ -1,7 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Player : AbstractEntity
 {
+    private const float DelayDeath = 0.34f;
+
+    public static Action<float> HealthBarEvent;
     public static Vector3 position;
 
     [field: Header("Turn/Walk parameters")]
@@ -17,6 +21,23 @@ public class Player : AbstractEntity
     
     [field: Header("Autolooting parameters")]
     [field: SerializeField] public float RadiusAutoLooting { get; private set; } = 1.5f;
+
+    public override void GetDamage(float damage)
+    {
+        var currentHealth = CurrentHealth - damage;
+
+        if (currentHealth > 0)
+        {
+            CurrentHealth = currentHealth;
+            HealthBarEvent?.Invoke(CurrentHealth);
+        }
+        else
+        {
+            CurrentHealth = 0;
+            HealthBarEvent?.Invoke(CurrentHealth);
+            Invoke("OnDeath", DelayDeath);
+        }
+    }
 
     public override void OnDeath()
     {
