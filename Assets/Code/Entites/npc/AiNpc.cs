@@ -5,17 +5,19 @@ using UnityEngine.AI;
 public class AiNpc : AbstractEntity
 {
     [Header("Movement parameters")]
-    [SerializeField] private float movementSpeed = 4f;
+    [SerializeField] private float standardMovementSpeed = 2.5f;
+    [SerializeField] private float acceleratedMovementSpeed = 4f;
     [SerializeField] private float changePositionTime = 1f;
     [SerializeField] private float moveDistance = 27f;
     [SerializeField] private float detectionRadius = 12f;
 
     private bool hasDied = false;
-    private bool playerDetected = false;
     private bool isMovingToPlayer = false;
+    private bool isRunningCoroutine = false;
 
     [Header("GameObject")]
     [SerializeField] private GameObject explosion;
+    [SerializeField] private GameObject runNPC;
     [SerializeField] private GameObject NPC;
     [SerializeField] private GameObject gearPrefab;
     [SerializeField] private MeshRenderer npcMaterial;
@@ -32,7 +34,7 @@ public class AiNpc : AbstractEntity
     private void InitializeNavMeshAgent()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.speed = movementSpeed;
+        navMeshAgent.speed = standardMovementSpeed;
     }
 
     private void InitializePlayer()
@@ -70,6 +72,10 @@ public class AiNpc : AbstractEntity
 
     private void Update()
     {
+        if (isMovingToPlayer && !isRunningCoroutine)
+        {
+            StartCoroutine(EnableRun(0.6f));
+        }
         if (!hasDied && Vector3.Distance(NPC.transform.position, player.transform.position) <= 1.7f)
         {
             player.GetComponent<IDamagable>().GetDamage(33);
@@ -83,17 +89,19 @@ public class AiNpc : AbstractEntity
     {
         if (CanSeePlayer())
         {
-            isMovingToPlayer = true; AttackPlayer();
+            AttackPlayer();
         }
         else if (!isMovingToPlayer)
+        {
             Patrol();
+        }
     }
 
     private void AttackPlayer()
     {
-        playerDetected = true;
         navMeshAgent.SetDestination(player.transform.position);
         isMovingToPlayer = true;
+        navMeshAgent.speed = acceleratedMovementSpeed;
     }
 
     private bool CanSeePlayer()
@@ -102,7 +110,10 @@ public class AiNpc : AbstractEntity
     private void Patrol()
     {
         if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
+        {
             navMeshAgent.SetDestination(RandomNavSphere(moveDistance));
+            navMeshAgent.speed = standardMovementSpeed;
+        }
     }
 
     private IEnumerator EnableExplosion(float duration)
@@ -114,5 +125,18 @@ public class AiNpc : AbstractEntity
         yield return new WaitForSeconds(duration);
         Destroy(newExplosion);
         base.OnDeath();
+    }
+
+    private IEnumerator EnableRun(float duration)
+    {
+        if (!hasDied)
+        {
+            isRunningCoroutine = true;
+            var prefabRun = Instantiate(runNPC, NPC.transform.position, NPC.transform.rotation);
+            prefabRun.transform.Rotate(new Vector3(0f, 1f, 0f), 90f);
+            yield return new WaitForSeconds(duration);
+            isRunningCoroutine = false;
+            Destroy(prefabRun);
+        }
     }
 }
