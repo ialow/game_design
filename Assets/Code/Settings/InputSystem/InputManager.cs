@@ -16,7 +16,7 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
     public event Action ThrowItemEvent;
 
     public event Action PauseEvent;
-    public event Action ResetEvent;
+    public event Action ResumetEvent;
 
     private void OnEnable()
     {
@@ -83,7 +83,7 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
     {
         if (context.phase == InputActionPhase.Canceled)
         {
-            ResetEvent?.Invoke();
+            ResumetEvent?.Invoke();
         }
     }
 }
