@@ -11798,7 +11798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 0}
+  - {fileID: 1207920830}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
