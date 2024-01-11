@@ -10,6 +10,7 @@ public class EntryPoint : MonoBehaviour
     public FSM Fsm { get; private set; }
 
     [Inject] private List<GameObject> disenableUI;
+    [Inject(Id = "UserInput")] private InputManager userInput;
     [Inject(Id = "PauseUI")] private GameObject enablePauseUI;
     [Inject(Id = "DeathUI")] private GameObject enableDeathUI;
 
@@ -17,7 +18,7 @@ public class EntryPoint : MonoBehaviour
     {
         if (Instance == null) Instance = this;
 
-        Fsm = new FSM(disenableUI, enablePauseUI, enableDeathUI);
+        Fsm = new FSM(userInput, disenableUI, enablePauseUI, enableDeathUI);
         Fsm.EnterIn<LoadingLevelState>();
     }
 }

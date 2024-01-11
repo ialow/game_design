@@ -17,7 +17,6 @@ public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserIn
 
     public event Action PauseEvent;
     public event Action ResetEvent;
-    public event Action ClickLKMEvent;
 
     private void OnEnable()
     {
