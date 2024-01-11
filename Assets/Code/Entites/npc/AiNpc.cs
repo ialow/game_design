@@ -5,24 +5,22 @@ using UnityEngine.AI;
 public class AiNpc : AbstractEntity
 {
     [Header("Movement parameters")]
-    private NavMeshAgent navMeshAgent;
-    private GameObject player;
-
-    [field: SerializeField] private float movementSpeed = 6f;
-    [SerializeField] private float changePositionTime = 5f;
-    [SerializeField] private float moveDistance = 30f;
-    [SerializeField] private float detectionRadius = 10f;
+    [SerializeField] private float movementSpeed = 4f;
+    [SerializeField] private float changePositionTime = 1f;
+    [SerializeField] private float moveDistance = 27f;
+    [SerializeField] private float detectionRadius = 12f;
 
     private bool hasDied = false;
     private bool playerDetected = false;
-    private bool isMovingToPlayer = false; 
-    private Vector3 patrolPoint;
+    private bool isMovingToPlayer = false;
 
     [Header("GameObject")]
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject NPC;
     [SerializeField] private GameObject gearPrefab;
     [SerializeField] private MeshRenderer npcMaterial;
+    private NavMeshAgent navMeshAgent;
+    private GameObject player;
 
     private void Start()
     {
@@ -49,7 +47,11 @@ public class AiNpc : AbstractEntity
 
     public override void OnDeath()
     {
-        StartCoroutine(EnableExplosion(1));
+        if (!hasDied)
+        {
+            StartCoroutine(EnableExplosion(1));
+            hasDied = true;
+        }
     }
 
     public override void OnRevival()
@@ -70,7 +72,7 @@ public class AiNpc : AbstractEntity
     {
         if (!hasDied && Vector3.Distance(NPC.transform.position, player.transform.position) <= 1.7f)
         {
-            player.GetComponent<IDamagable>().GetDamage(50);
+            player.GetComponent<IDamagable>().GetDamage(33);
             GetDamage(50);
             OnDeath();
             hasDied = true;
@@ -79,14 +81,12 @@ public class AiNpc : AbstractEntity
 
     private void MoveNpc()
     {
-        if (CanSeePlayer()) 
-        { 
-            isMovingToPlayer = true; AttackPlayer(); 
+        if (CanSeePlayer())
+        {
+            isMovingToPlayer = true; AttackPlayer();
         }
-        else if (!isMovingToPlayer) 
-        { 
-            Patrol(); 
-        }
+        else if (!isMovingToPlayer)
+            Patrol();
     }
 
     private void AttackPlayer()
