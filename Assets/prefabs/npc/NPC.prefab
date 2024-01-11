@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CurrentHealth>k__BackingField: 7
-  movementSpeed: 6
+  movementSpeed: 4
   changePositionTime: 3
   moveDistance: 20
   detectionRadius: 10

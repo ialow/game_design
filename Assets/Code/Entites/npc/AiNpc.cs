@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AiNpc : AbstractEntity
 {
+    public static Action<int> DeathEvent;
+
     [Header("Movement parameters")]
     private NavMeshAgent navMeshAgent;
     private GameObject player;
@@ -58,7 +61,7 @@ public class AiNpc : AbstractEntity
 
     private Vector3 RandomNavSphere(float distance)
     {
-        var randomDirection = Random.insideUnitSphere * distance;
+        var randomDirection = UnityEngine.Random.insideUnitSphere * distance;
         randomDirection += transform.position;
         NavMeshHit navHit;
         NavMesh.SamplePosition(randomDirection, out navHit, distance, -1);
@@ -105,6 +108,7 @@ public class AiNpc : AbstractEntity
         npcMaterial.enabled = false;
         yield return new WaitForSeconds(duration);
         Destroy(newExplosion);
+        DeathEvent?.Invoke(UnityEngine.Random.Range(6, 15));
         base.OnDeath();
     }
 }

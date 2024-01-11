@@ -20,7 +20,8 @@ public class EntryPoint : MonoBehaviour
 
         if (Instance == null) Instance = this;
 
-        Fsm = new FSM(userInput, disenableUI, enablePauseUI, enableDeathUI);
+        var score = new GameScore();
+        Fsm = new FSM(userInput, score, disenableUI, enablePauseUI, enableDeathUI);
         Fsm.EnterIn<LoadingLevelState>();
     }
 

@@ -10,6 +10,11 @@ public class Button : MonoBehaviour
         Application.Quit();
     }
 
+    public void ExitGameScene()
+    {
+        EntryPoint.Instance.Fsm.EnterIn<ExitGameSceneState>();
+    }
+
     public void ÑhangeScene()
     {
         SceneManager.LoadScene(numberChangeScean);

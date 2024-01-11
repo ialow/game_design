@@ -61,7 +61,7 @@ public abstract class BaseLaserWeapons : MonoBehaviour, IShootingable
 
             if (hitCast && hitInfo.transform.root.TryGetComponent(out IDamagable entity))
             {
-                Debug.Log("The damage done " + damage);
+                //Debug.Log("The damage done " + damage);
                 entity.GetDamage(damage);
             }
 

@@ -1,19 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseMenuState : IFSMState
 {
-    private readonly FSM levelStateMachine;
-
     private readonly InputManager userInput;
     private readonly List<GameObject> disenableUI;
     private readonly GameObject enableUI;
 
-    public PauseMenuState(FSM levelStateMachine, List<GameObject> disenableUI, GameObject enableUI, InputManager userInput)
+    public PauseMenuState(List<GameObject> disenableUI, GameObject enableUI, InputManager userInput)
     {
-        this.levelStateMachine = levelStateMachine;
-
         this.userInput = userInput;
         this.disenableUI = disenableUI;
         this.enableUI = enableUI;

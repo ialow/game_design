@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class GameplayState : IFSMState
 {
-    private readonly FSM levelStateMachine;
-    public GameplayState(FSM levelStateMachine)
+    public GameplayState()
     {
-        this.levelStateMachine = levelStateMachine;
     }
 
     public void Enter()

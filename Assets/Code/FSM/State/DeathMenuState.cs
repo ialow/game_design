@@ -1,22 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class DeathMenuState : IFSMState
 {
-    private readonly FSM levelStateMachine;
-
     private readonly InputManager userInput;
     private readonly List<GameObject> disenableUI;
     private readonly GameObject enableUI;
+    private readonly GameScore score;
 
-    public DeathMenuState(FSM levelStateMachine, List<GameObject> disenableUI, GameObject enableUI, InputManager userInput)
+    public DeathMenuState(List<GameObject> disenableUI, GameObject enableUI, InputManager userInput, GameScore score)
     {
-        this.levelStateMachine = levelStateMachine;
-
         this.userInput = userInput;
         this.disenableUI = disenableUI;
         this.enableUI = enableUI;
+        this.score = score;
     }
 
     public void Enter()
@@ -27,12 +25,12 @@ public class DeathMenuState : IFSMState
         foreach (var ui in disenableUI)
             ui?.SetActive(false);
 
+        score.SaveScore();
         Time.timeScale = 0;
         Debug.Log("The gameplay is paused");
     }
 
     public void Exit()
     {
-        throw new System.NotImplementedException();
     }
 }
