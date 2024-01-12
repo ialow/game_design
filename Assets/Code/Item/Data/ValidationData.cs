@@ -1,26 +1,29 @@
 using System.Collections.Generic;
 
-public static class ValidationData
+namespace Ddd.Infrastructure
 {
-    public static int OnValidateMaxLeavel(int maxLeavel)
+    public static class ValidationData
     {
-        return 1 > maxLeavel ? 1 : maxLeavel;
-    }
+        public static int OnValidateMaxLeavel(int maxLeavel)
+        {
+            return 1 > maxLeavel ? 1 : maxLeavel;
+        }
 
-    public static List<T> OnValidateListImprovementSpecification<T>(List<T> ImprovementSpecificationsTTX, int maxLeavel)
-        where T : struct
-    {
-        var newListIS = ImprovementSpecificationsTTX;
-        var lengthLastListIS = ImprovementSpecificationsTTX.Count;
+        public static List<T> OnValidateListImprovementSpecification<T>(List<T> ImprovementSpecificationsTTX, int maxLeavel)
+            where T : struct
+        {
+            var newListIS = ImprovementSpecificationsTTX;
+            var lengthLastListIS = ImprovementSpecificationsTTX.Count;
 
-        if (maxLeavel == 1)
-            return null;
-        else if (maxLeavel > 1 && lengthLastListIS < maxLeavel - 1)
-            for (; lengthLastListIS + 1 < maxLeavel; lengthLastListIS++)
-                newListIS.Add(new T());
-        else
-            newListIS.RemoveRange(maxLeavel - 1, lengthLastListIS - maxLeavel + 1);
+            if (maxLeavel == 1)
+                return null;
+            else if (maxLeavel > 1 && lengthLastListIS < maxLeavel - 1)
+                for (; lengthLastListIS + 1 < maxLeavel; lengthLastListIS++)
+                    newListIS.Add(new T());
+            else
+                newListIS.RemoveRange(maxLeavel - 1, lengthLastListIS - maxLeavel + 1);
 
-        return newListIS;
+            return newListIS;
+        }
     }
 }

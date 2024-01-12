@@ -1,43 +1,46 @@
 using System;
 using System.Collections.Generic;
 
-public class PoolObjects<T>
+namespace Ddd.Infrastructure
 {
-    public List<T> poolAllObj { get; private set; } = new List<T>();
-    private Queue<T> poolDisabledObj = new Queue<T>();
-
-    private Func<T> generationObj;
-    private Action<T> returnInActive;
-    private Action<T, int> returnActive;
-
-    public PoolObjects(Func<T> GenerationObj, Action<T> ReturnInActive, Action<T, int> ReturnActive, int countObj)
+    public class PoolObjects<T>
     {
-        generationObj += GenerationObj;
-        returnInActive += ReturnInActive;
-        returnActive += ReturnActive;
+        public List<T> poolAllObj { get; private set; } = new List<T>();
+        private Queue<T> poolDisabledObj = new Queue<T>();
 
-        GenerationStartingObj(countObj);
-    }
+        private Func<T> generationObj;
+        private Action<T> returnInActive;
+        private Action<T, int> returnActive;
 
-    private void GenerationStartingObj(int countObjs)
-    {
-        for (var i = 0; i < countObjs; i++)
+        public PoolObjects(Func<T> GenerationObj, Action<T> ReturnInActive, Action<T, int> ReturnActive, int countObj)
         {
-            var obj = generationObj();
-            poolAllObj.Add(obj);
-            ReturnInActive(obj);
+            generationObj += GenerationObj;
+            returnInActive += ReturnInActive;
+            returnActive += ReturnActive;
+
+            GenerationStartingObj(countObj);
         }
-    }
 
-    public void ReturnInActive(T obj)
-    {
-        returnInActive(obj);
-        poolDisabledObj.Enqueue(obj);
-    }
+        private void GenerationStartingObj(int countObjs)
+        {
+            for (var i = 0; i < countObjs; i++)
+            {
+                var obj = generationObj();
+                poolAllObj.Add(obj);
+                ReturnInActive(obj);
+            }
+        }
 
-    public void ReturnActive(int countObjs)
-    {
-        for (var i = 0; i < countObjs; i++)
-            returnActive(poolDisabledObj.Count > 0 ? poolDisabledObj.Dequeue() : generationObj(), i);
+        public void ReturnInActive(T obj)
+        {
+            returnInActive(obj);
+            poolDisabledObj.Enqueue(obj);
+        }
+
+        public void ReturnActive(int countObjs)
+        {
+            for (var i = 0; i < countObjs; i++)
+                returnActive(poolDisabledObj.Count > 0 ? poolDisabledObj.Dequeue() : generationObj(), i);
+        }
     }
 }

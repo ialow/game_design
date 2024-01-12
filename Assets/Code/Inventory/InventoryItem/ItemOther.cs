@@ -1,33 +1,37 @@
+using Ddd.Domain;
 using System.Collections;
 using UnityEngine;
 
-public class ItemOther : Item<ItemOtherData>
+namespace Ddd.Application
 {
-    public override bool CheckingFreeSpaceInventory()
+    public class ItemOther : Item<ItemOtherData>
     {
-        keeper = InventoryManager.Instance.CheckingFreeSpaceItemOther();
-        return keeper != null ? true : false;
-    }
+        public override bool CheckingFreeSpaceInventory()
+        {
+            keeper = InventoryManager.Instance.CheckingFreeSpaceItemOther();
+            return keeper != null ? true : false;
+        }
 
-    public override IEnumerator AnimationTakeItem()
-    {
-        SetActiveCollider(false);
-        yield return animationInventory.MathAnimationTake(data.AnimationTake, data.TimeCorrectionPerMeterTake);
-        SetActiveCollider(true);
-    }
+        public override IEnumerator AnimationTakeItem()
+        {
+            SetActiveCollider(false);
+            yield return animationInventory.MathAnimationTake(data.AnimationTake, data.TimeCorrectionPerMeterTake);
+            SetActiveCollider(true);
+        }
 
-    public override void AddItemInventorySlot()
-    {
-        keeper?.TakeItem(transform, data.Sprite);
-    }
+        public override void AddItemInventorySlot()
+        {
+            keeper?.TakeItem(transform, data.Sprite);
+        }
 
-    public override void AnimationThrowItem()
-    {
-        StartCoroutine(animationInventory.MathAnimationThrow(data.TimeCorrectionPerMeterThrow));
-    }
+        public override void AnimationThrowItem()
+        {
+            StartCoroutine(animationInventory.MathAnimationThrow(data.TimeCorrectionPerMeterThrow));
+        }
 
-    public override void SetActionItem(bool enable = true)
-    {
-        Debug.Log($"The functionality is not implemented - ItemOther");
+        public override void SetActionItem(bool enable = true)
+        {
+            Debug.Log($"The functionality is not implemented - ItemOther");
+        }
     }
 }

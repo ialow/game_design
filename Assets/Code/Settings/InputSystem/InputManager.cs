@@ -1,89 +1,93 @@
+using Ddd.Domain;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(menuName = "Scriptable object/InputManager")]
-public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserInput.IUIActions
+namespace Ddd.Application
 {
-    private UserInput userInput;
-
-    public event Action<Vector2> WalkEvent;
-
-    public event Action StartUseItemEvent;
-    public event Action EndUseItemEvent;
-
-    public event Action<int> ToolbarEvent;
-    public event Action ThrowItemEvent;
-
-    public event Action PauseEvent;
-    public event Action ResumetEvent;
-
-    private void OnEnable()
+    [CreateAssetMenu(menuName = "Scriptable object/InputManager")]
+    public class InputManager : ScriptableObject, UserInput.IGameplayActions, UserInput.IUIActions
     {
-        if (userInput is null)
+        private UserInput userInput;
+
+        public event Action<Vector2> WalkEvent;
+
+        public event Action StartUseItemEvent;
+        public event Action EndUseItemEvent;
+
+        public event Action<int> ToolbarEvent;
+        public event Action ThrowItemEvent;
+
+        public event Action PauseEvent;
+        public event Action ResumetEvent;
+
+        private void OnEnable()
         {
-            userInput = new UserInput();
-            userInput.Gameplay.SetCallbacks(this);
-            userInput.UI.SetCallbacks(this);
+            if (userInput is null)
+            {
+                userInput = new UserInput();
+                userInput.Gameplay.SetCallbacks(this);
+                userInput.UI.SetCallbacks(this);
+            }
         }
-    }
 
-    public void OnGameplay()
-    {
-        userInput.Gameplay.Enable();
-        userInput.UI.Disable();
-    }
-
-    public void OnUI()
-    {
-        userInput.Gameplay.Disable();
-        userInput.UI.Enable();
-    }
-
-    public void OnWalk(InputAction.CallbackContext context)
-    {
-        WalkEvent?.Invoke(context.ReadValue<Vector2>());
-    }
-
-    public void OnUseItem(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-            StartUseItemEvent?.Invoke();
-
-        if (context.phase == InputActionPhase.Canceled)
-            EndUseItemEvent?.Invoke();
-    }
-
-    public void OnToolbar(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Canceled)
+        public void OnGameplay()
         {
-            var key = Convert.ToUInt16(context.control.name);
-            ToolbarEvent?.Invoke(key);
+            userInput.Gameplay.Enable();
+            userInput.UI.Disable();
         }
-    }
 
-    public void OnThrowItem(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Canceled)
+        public void OnUI()
         {
-            ThrowItemEvent?.Invoke();
+            userInput.Gameplay.Disable();
+            userInput.UI.Enable();
         }
-    }
 
-    public void OnPause(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Canceled)
+        public void OnWalk(InputAction.CallbackContext context)
         {
-            PauseEvent?.Invoke();
+            WalkEvent?.Invoke(context.ReadValue<Vector2>());
         }
-    }
 
-    public void OnResume(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Canceled)
+        public void OnUseItem(InputAction.CallbackContext context)
         {
-            ResumetEvent?.Invoke();
+            if (context.phase == InputActionPhase.Performed)
+                StartUseItemEvent?.Invoke();
+
+            if (context.phase == InputActionPhase.Canceled)
+                EndUseItemEvent?.Invoke();
+        }
+
+        public void OnToolbar(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Canceled)
+            {
+                var key = Convert.ToUInt16(context.control.name);
+                ToolbarEvent?.Invoke(key);
+            }
+        }
+
+        public void OnThrowItem(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Canceled)
+            {
+                ThrowItemEvent?.Invoke();
+            }
+        }
+
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Canceled)
+            {
+                PauseEvent?.Invoke();
+            }
+        }
+
+        public void OnResume(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Canceled)
+            {
+                ResumetEvent?.Invoke();
+            }
         }
     }
 }

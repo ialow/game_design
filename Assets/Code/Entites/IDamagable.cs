@@ -1,6 +1,9 @@
-public interface IDamagable
+namespace Ddd.Infrastructure
 {
-    public void GetDamage(float damage);
-    public void OnDeath();
-    public void OnRevival();
+    public interface IDamagable
+    {
+        public void GetDamage(float damage);
+        public void OnDeath();
+        public void OnRevival();
+    }
 }

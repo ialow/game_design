@@ -1,3 +1,4 @@
+using Ddd.Application;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,10 +6,7 @@ public class Button : MonoBehaviour
 {
     [SerializeField] private int numberChangeScean;
 
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
+    public void ExitGame() => Application.Quit();
 
     public void ExitGameScene()
     {

@@ -1,80 +1,85 @@
+using Ddd.Application;
+using Ddd.Infrastructure;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class InventorySlot : MonoBehaviour, IKeeper
+namespace Ddd.Domain
 {
-    protected Image currentSprite;
-
-    protected ISettingable itemSetting;
-    protected IInventorying itemInventorying;
-    protected GameObject visualItem;
-
-    [Header("Only UI")]
-    [SerializeField] protected Sprite selectedSlot;
-    [SerializeField] protected Sprite deselectedSlot;
-
-    [Space, SerializeField] protected GameObject visualSlotForItem;
-
-    [Header("Only settings")]
-    [SerializeField] protected float timeIgnoringItem;
-
-    [field: SerializeField] public bool Full { get; set; } = false;
-
-    private void Awake()
+    public abstract class InventorySlot : MonoBehaviour, IKeeper
     {
-        currentSprite = transform.gameObject.GetComponent<Image>();
-        Deselected();
-    }
+        protected Image currentSprite;
 
-    public abstract TypeSlot TypeInventorySlot();
+        protected ISettingable itemSetting;
+        protected IInventorying itemInventorying;
+        protected GameObject visualItem;
 
-    public abstract void Selected();
-    public abstract void Deselected();
-    protected void DisableActionSlot() => PlayerController.SetActionUsingItem(null, null);
+        [Header("Only UI")]
+        [SerializeField] protected Sprite selectedSlot;
+        [SerializeField] protected Sprite deselectedSlot;
 
-    public void TakeItem(Transform transform, Sprite sprite)
-    {
-        itemSetting = transform.GetComponent<ISettingable>();
-        itemInventorying = transform.GetComponent<IInventorying>();
+        [Space, SerializeField] protected GameObject visualSlotForItem;
 
-        VisualSlotForItem(sprite);
-        PhysicalSlotForItem(transform);
-        Debug.Log("Add item inventory");
-    }
+        [Header("Only settings")]
+        [SerializeField] protected float timeIgnoringItem;
 
-    public void ThrowItem()
-    {
-        if (itemSetting != null)
+        [field: SerializeField] public bool Full { get; set; } = false;
+
+        private void Awake()
         {
-            Full = false;
-            VisualSlotForItem(null);
-
-            itemSetting.SetInvisibleColiderForSeconds(timeIgnoringItem);
-            itemSetting.BreakDependency();
-            itemSetting.SetParant(null);
-
-            itemInventorying.SetActionItem(false);
-            itemInventorying.AnimationThrowItem();
-
-            itemSetting = null;
-            itemInventorying = null;
-            Debug.Log("Throw item");
+            currentSprite = transform.gameObject.GetComponent<Image>();
+            Deselected();
         }
-    }
 
-    protected virtual void VisualSlotForItem(Sprite sprite)
-    {
-        if (sprite != null)
+        public abstract TypeSlot TypeInventorySlot();
+
+        public abstract void Selected();
+        public abstract void Deselected();
+        protected void DisableActionSlot() => PlayerController.SetActionUsingItem(null, null);
+
+        public void TakeItem(Transform transform, Sprite sprite)
         {
-            visualSlotForItem.GetComponent<Image>().sprite = sprite;
-            visualSlotForItem.SetActive(true);
-        }
-        else
-        {
-            visualSlotForItem.SetActive(false);
-            visualSlotForItem.GetComponent<Image>().sprite = sprite;
-        }
-    }
+            itemSetting = transform.GetComponent<ISettingable>();
+            itemInventorying = transform.GetComponent<IInventorying>();
 
-    protected abstract void PhysicalSlotForItem(Transform transform);
+            VisualSlotForItem(sprite);
+            PhysicalSlotForItem(transform);
+            Debug.Log("Add item inventory");
+        }
+
+        public void ThrowItem()
+        {
+            if (itemSetting != null)
+            {
+                Full = false;
+                VisualSlotForItem(null);
+
+                itemSetting.SetInvisibleColiderForSeconds(timeIgnoringItem);
+                itemSetting.BreakDependency();
+                itemSetting.SetParant(null);
+
+                itemInventorying.SetActionItem(false);
+                itemInventorying.AnimationThrowItem();
+
+                itemSetting = null;
+                itemInventorying = null;
+                Debug.Log("Throw item");
+            }
+        }
+
+        protected virtual void VisualSlotForItem(Sprite sprite)
+        {
+            if (sprite != null)
+            {
+                visualSlotForItem.GetComponent<Image>().sprite = sprite;
+                visualSlotForItem.SetActive(true);
+            }
+            else
+            {
+                visualSlotForItem.SetActive(false);
+                visualSlotForItem.GetComponent<Image>().sprite = sprite;
+            }
+        }
+
+        protected abstract void PhysicalSlotForItem(Transform transform);
+    }
 }

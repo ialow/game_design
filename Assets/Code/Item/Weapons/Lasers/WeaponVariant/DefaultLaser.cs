@@ -1,28 +1,32 @@
+using Ddd.Domain;
 using UnityEngine;
 
-public class DefaultLaser : BaseLaserWeapons
+namespace Ddd.Application
 {
-    [Header("Visual effects")]
-    [SerializeField] private ParticleSystem muzzle;
-    [SerializeField] private ParticleSystem hitPoint;
-
-    protected override void ActivateLaserVFX()
+    public class DefaultLaser : BaseLaserWeapons
     {
-        base.ActivateLaserVFX();
-        muzzle.Play();
-        hitPoint.Play();
-    }
+        [Header("Visual effects")]
+        [SerializeField] private ParticleSystem muzzle;
+        [SerializeField] private ParticleSystem hitPoint;
 
-    protected override void DeactivateLaserVFX()
-    {
-        base.DeactivateLaserVFX();
-        muzzle.Stop();
-        hitPoint.Stop();
-    }
+        protected override void ActivateLaserVFX()
+        {
+            base.ActivateLaserVFX();
+            muzzle.Play();
+            hitPoint.Play();
+        }
 
-    protected override void SetParametersVFX()
-    {
-        base.SetParametersVFX();
-        hitPoint.transform.position = hitPosition;
+        protected override void DeactivateLaserVFX()
+        {
+            base.DeactivateLaserVFX();
+            muzzle.Stop();
+            hitPoint.Stop();
+        }
+
+        protected override void SetParametersVFX()
+        {
+            base.SetParametersVFX();
+            hitPoint.transform.position = hitPosition;
+        }
     }
 }

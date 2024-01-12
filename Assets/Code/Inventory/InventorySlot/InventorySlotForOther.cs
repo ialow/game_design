@@ -1,49 +1,53 @@
+using Ddd.Domain;
 using UnityEngine;
 
-public class InventorySlotForOther : InventorySlot
+namespace Ddd.Application
 {
-    [Space, SerializeField] private Transform locationInactiveItem;
-    [SerializeField] private Transform locationActiveItem;
-
-    public override TypeSlot TypeInventorySlot() => TypeSlot.OtherItem;
-
-    public override void Selected()
+    public class InventorySlotForOther : InventorySlot
     {
-        currentSprite.sprite = selectedSlot;
+        [Space, SerializeField] private Transform locationInactiveItem;
+        [SerializeField] private Transform locationActiveItem;
 
-        if (itemSetting != null)
+        public override TypeSlot TypeInventorySlot() => TypeSlot.OtherItem;
+
+        public override void Selected()
         {
-            itemSetting.SetParant(locationActiveItem);
-            itemSetting.SetLocalPosition(Vector3.zero);
-            itemSetting.SetLocalRotation(Quaternion.identity);
-            itemSetting.SetActive(true);
+            currentSprite.sprite = selectedSlot;
 
-            //Func для LKM
-            itemInventorying.SetActionItem();
+            if (itemSetting != null)
+            {
+                itemSetting.SetParant(locationActiveItem);
+                itemSetting.SetLocalPosition(Vector3.zero);
+                itemSetting.SetLocalRotation(Quaternion.identity);
+                itemSetting.SetActive(true);
+
+                //Func для LKM
+                itemInventorying.SetActionItem();
+            }
         }
-    }
 
-    public override void Deselected()
-    {
-        currentSprite.sprite = deselectedSlot;
+        public override void Deselected()
+        {
+            currentSprite.sprite = deselectedSlot;
 
-        if (itemSetting != null)
+            if (itemSetting != null)
+            {
+                itemSetting.SetParant(locationInactiveItem);
+                itemSetting.SetActive(false);
+                itemInventorying.SetActionItem(false);
+            }
+            else
+            {
+                DisableActionSlot();
+            }
+        }
+
+        protected override void PhysicalSlotForItem(Transform transform)
         {
             itemSetting.SetParant(locationInactiveItem);
             itemSetting.SetActive(false);
-            itemInventorying.SetActionItem(false);
-        }
-        else
-        {
-            DisableActionSlot();
-        }
-    }
 
-    protected override void PhysicalSlotForItem(Transform transform)
-    {
-        itemSetting.SetParant(locationInactiveItem);
-        itemSetting.SetActive(false);
-
-        InventoryManager.Instance.ChangeSelectedSlot(InputParametrs.Toolbar);
+            InventoryManager.Instance.ChangeSelectedSlot(InputParametrs.Toolbar);
+        }
     }
 }

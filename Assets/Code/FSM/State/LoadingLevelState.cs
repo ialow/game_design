@@ -1,27 +1,30 @@
-using Unity.VisualScripting;
+using Ddd.Domain;
 using UnityEngine;
 
-public class LoadingLevelState : IFSMState
+namespace Ddd.Application
 {
-    private readonly FSM levelStateMachine;
-    private readonly InputManager userInput;
-
-    public LoadingLevelState(FSM levelStateMachine, InputManager userInput)
+    public class LoadingLevelState : IFSMState
     {
-        this.levelStateMachine = levelStateMachine;
-        this.userInput = userInput;
-    }
+        private readonly FSM levelStateMachine;
+        private readonly InputManager userInput;
 
-    public void Enter()
-    {
-        Debug.Log("Loading the scene resources");
-        Time.timeScale = 1;
-        userInput.OnGameplay();
-        levelStateMachine.EnterIn<GameplayState>();
-    }
+        public LoadingLevelState(FSM levelStateMachine, InputManager userInput)
+        {
+            this.levelStateMachine = levelStateMachine;
+            this.userInput = userInput;
+        }
 
-    public void Exit()
-    {
-        Debug.Log("Completing the loading of the scene resources");
+        public void Enter()
+        {
+            Debug.Log("Loading the scene resources");
+            Time.timeScale = 1;
+            userInput.OnGameplay();
+            levelStateMachine.EnterIn<GameplayState>();
+        }
+
+        public void Exit()
+        {
+            Debug.Log("Completing the loading of the scene resources");
+        }
     }
 }

@@ -1,42 +1,46 @@
+using Ddd.Domain;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseMenuState : IFSMState
+namespace Ddd.Application
 {
-    private readonly InputManager userInput;
-    private readonly List<GameObject> disenableUI;
-    private readonly GameObject enableUI;
-
-    public PauseMenuState(List<GameObject> disenableUI, GameObject enableUI, InputManager userInput)
+    public class PauseMenuState : IFSMState
     {
-        this.userInput = userInput;
-        this.disenableUI = disenableUI;
-        this.enableUI = enableUI;
-    }
+        private readonly InputManager userInput;
+        private readonly List<GameObject> disenableUI;
+        private readonly GameObject enableUI;
 
-    public void Enter()
-    {
-        userInput.OnUI();
-        var countDisenable = disenableUI.Count;
+        public PauseMenuState(List<GameObject> disenableUI, GameObject enableUI, InputManager userInput)
+        {
+            this.userInput = userInput;
+            this.disenableUI = disenableUI;
+            this.enableUI = enableUI;
+        }
 
-        enableUI.SetActive(true);
-        for (var i = 0; i < countDisenable; i++)
-            disenableUI[i].SetActive(false);
-        Time.timeScale = 0;
+        public void Enter()
+        {
+            userInput.OnUI();
+            var countDisenable = disenableUI.Count;
 
-        Debug.Log("The gameplay is paused");
-    }
+            enableUI.SetActive(true);
+            for (var i = 0; i < countDisenable; i++)
+                disenableUI[i].SetActive(false);
+            Time.timeScale = 0;
 
-    public void Exit()
-    {
-        var countDisenable = disenableUI.Count;
+            Debug.Log("The gameplay is paused");
+        }
 
-        enableUI.SetActive(false);
-        for (var i = 0; i < countDisenable; i++)
-            disenableUI[i].SetActive(true);
+        public void Exit()
+        {
+            var countDisenable = disenableUI.Count;
 
-        userInput.OnGameplay();
-        Time.timeScale = 1;
-        Debug.Log("The gameplay has resumed");
+            enableUI.SetActive(false);
+            for (var i = 0; i < countDisenable; i++)
+                disenableUI[i].SetActive(true);
+
+            userInput.OnGameplay();
+            Time.timeScale = 1;
+            Debug.Log("The gameplay has resumed");
+        }
     }
 }

@@ -1,48 +1,51 @@
 using UnityEngine;
 
-public class NpcSpawner : MonoBehaviour
+namespace Ddd.Domain
 {
-    [SerializeField] private GameObject NPC;
-    [SerializeField] private Transform[] spawnPoints;
-    private int maxNPCs = 2;
-
-    private int previousNpcCount = 0;
-    private int currentSpawnPointIndex = 0;
-    private bool isFirstSpawn = true;
-
-    private void Awake()
+    public class NpcSpawner : MonoBehaviour
     {
-        isFirstSpawn = true;
-    }
+        [SerializeField] private GameObject NPC;
+        [SerializeField] private Transform[] spawnPoints;
+        private int maxNPCs = 2;
 
-    private void Update()
-    {
-        var npcCount = CountNPCs();
-        if (isFirstSpawn && npcCount == 0)
-            SpawnInitialNPCs();
+        private int previousNpcCount = 0;
+        private int currentSpawnPointIndex = 0;
+        private bool isFirstSpawn = true;
 
-        if (npcCount < maxNPCs && npcCount != previousNpcCount)
-            SpawnNPC();
-
-        previousNpcCount = npcCount;
-    }
-
-    private void SpawnInitialNPCs()
-    {
-        for (var i = 0; i < maxNPCs; i++)
+        private void Awake()
         {
-            var spawnPoint = spawnPoints[i % spawnPoints.Length];
-            Instantiate(NPC, spawnPoint.position, Quaternion.identity);
+            isFirstSpawn = true;
         }
-    }
 
-    private void SpawnNPC()
-    {
-        var spawnPoint = spawnPoints[currentSpawnPointIndex];
-        Instantiate(NPC, spawnPoint.position, Quaternion.identity);
-        currentSpawnPointIndex = (currentSpawnPointIndex + 1) % spawnPoints.Length;
-        isFirstSpawn = false;
-    }
+        private void Update()
+        {
+            var npcCount = CountNPCs();
+            if (isFirstSpawn && npcCount == 0)
+                SpawnInitialNPCs();
 
-    private int CountNPCs() => FindObjectsOfType<AiNpc>().Length;
+            if (npcCount < maxNPCs && npcCount != previousNpcCount)
+                SpawnNPC();
+
+            previousNpcCount = npcCount;
+        }
+
+        private void SpawnInitialNPCs()
+        {
+            for (var i = 0; i < maxNPCs; i++)
+            {
+                var spawnPoint = spawnPoints[i % spawnPoints.Length];
+                Instantiate(NPC, spawnPoint.position, Quaternion.identity);
+            }
+        }
+
+        private void SpawnNPC()
+        {
+            var spawnPoint = spawnPoints[currentSpawnPointIndex];
+            Instantiate(NPC, spawnPoint.position, Quaternion.identity);
+            currentSpawnPointIndex = (currentSpawnPointIndex + 1) % spawnPoints.Length;
+            isFirstSpawn = false;
+        }
+
+        private int CountNPCs() => FindObjectsOfType<AiNpc>().Length;
+    }
 }

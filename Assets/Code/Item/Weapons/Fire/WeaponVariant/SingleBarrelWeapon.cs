@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using Ddd.Infrastructure;
 using UnityEngine;
 
-public class SingleBarrelWeapon : VariantFireWeapon
+namespace Ddd.Domain
 {
-    public override void InitializationWeapon(BaseFireWeapons weapon)
+    public class SingleBarrelWeapon : VariantFireWeapon
     {
-        base.InitializationWeapon(weapon);
-        weapon.SetVariantShotWeapon(SingleBarrelShot);
-    }
+        public override void InitializationWeapon(BaseFireWeapons weapon)
+        {
+            base.InitializationWeapon(weapon);
+            weapon.SetVariantShotWeapon(SingleBarrelShot);
+        }
 
-    private void SingleBarrelShot(PoolObjects<GameObject> missile) => missile.ReturnActive(1);
+        private void SingleBarrelShot(PoolObjects<GameObject> missile) => missile.ReturnActive(1);
+    }
 }

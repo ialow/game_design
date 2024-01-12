@@ -1,36 +1,39 @@
+using Ddd.Domain;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
-public class DeathMenuState : IFSMState
+namespace Ddd.Application
 {
-    private readonly InputManager userInput;
-    private readonly List<GameObject> disenableUI;
-    private readonly GameObject enableUI;
-    private readonly GameScore score;
-
-    public DeathMenuState(List<GameObject> disenableUI, GameObject enableUI, InputManager userInput, GameScore score)
+    public class DeathMenuState : IFSMState
     {
-        this.userInput = userInput;
-        this.disenableUI = disenableUI;
-        this.enableUI = enableUI;
-        this.score = score;
-    }
+        private readonly InputManager userInput;
+        private readonly List<GameObject> disenableUI;
+        private readonly GameObject enableUI;
+        private readonly GameScore score;
 
-    public void Enter()
-    {
-        userInput.OnUI();
-        enableUI?.SetActive(true);
+        public DeathMenuState(List<GameObject> disenableUI, GameObject enableUI, InputManager userInput, GameScore score)
+        {
+            this.userInput = userInput;
+            this.disenableUI = disenableUI;
+            this.enableUI = enableUI;
+            this.score = score;
+        }
 
-        foreach (var ui in disenableUI)
-            ui?.SetActive(false);
+        public void Enter()
+        {
+            userInput.OnUI();
+            enableUI?.SetActive(true);
 
-        score.SaveScore();
-        Time.timeScale = 0;
-        Debug.Log("The gameplay is paused");
-    }
+            foreach (var ui in disenableUI)
+                ui?.SetActive(false);
 
-    public void Exit()
-    {
+            score.SaveScore();
+            Time.timeScale = 0;
+            Debug.Log("The gameplay is paused");
+        }
+
+        public void Exit()
+        {
+        }
     }
 }

@@ -1,5 +1,8 @@
-public interface IShootingable
+namespace Ddd.Infrastructure
 {
-    public void StartShooting();
-    public void StopShooting();
+    public interface IShootingable
+    {
+        public void StartShooting();
+        public void StopShooting();
+    }
 }

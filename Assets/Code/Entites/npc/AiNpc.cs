@@ -1,114 +1,118 @@
+using Ddd.Infrastructure;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AiNpc : AbstractEntity
+namespace Ddd.Domain
 {
-    public static Action<int> DeathEvent;
-
-    [Header("Movement parameters")]
-    private NavMeshAgent navMeshAgent;
-    private GameObject player;
-
-    [field: SerializeField] private float movementSpeed = 6f;
-    [SerializeField] private float changePositionTime = 5f;
-    [SerializeField] private float moveDistance = 30f;
-    [SerializeField] private float detectionRadius = 10f;
-
-    private bool hasDied = false;
-    private bool playerDetected = false;
-    private Vector3 patrolPoint;
-
-    [Header("GameObject")]
-    [SerializeField] private GameObject explosion;
-    [SerializeField] private GameObject NPC;
-    [SerializeField] private GameObject gearPrefab;
-    [SerializeField] private MeshRenderer npcMaterial;
-
-    private void Start()
+    public class AiNpc : AbstractEntity
     {
-        InitializeNavMeshAgent();
-        InitializePlayer();
-        InvokeRepeating(nameof(MoveNpc), changePositionTime, changePositionTime);
-    }
+        public static Action<int> DeathEvent;
 
-    private void InitializeNavMeshAgent()
-    {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.speed = movementSpeed;
-    }
+        [Header("Movement parameters")]
+        private NavMeshAgent navMeshAgent;
+        private GameObject player;
 
-    private void InitializePlayer()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
+        [field: SerializeField] private float movementSpeed = 6f;
+        [SerializeField] private float changePositionTime = 5f;
+        [SerializeField] private float moveDistance = 30f;
+        [SerializeField] private float detectionRadius = 10f;
 
-    public override void GetDamage(float damage)
-    {
-        base.GetDamage(damage);
-    }
+        private bool hasDied = false;
+        private bool playerDetected = false;
+        private Vector3 patrolPoint;
 
-    public override void OnDeath()
-    {
-        StartCoroutine(EnableExplosion(1));
-    }
+        [Header("GameObject")]
+        [SerializeField] private GameObject explosion;
+        [SerializeField] private GameObject NPC;
+        [SerializeField] private GameObject gearPrefab;
+        [SerializeField] private MeshRenderer npcMaterial;
 
-    public override void OnRevival()
-    {
-        base.OnRevival();
-    }
-
-    private Vector3 RandomNavSphere(float distance)
-    {
-        var randomDirection = UnityEngine.Random.insideUnitSphere * distance;
-        randomDirection += transform.position;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randomDirection, out navHit, distance, -1);
-        return navHit.position;
-    }
-
-    private void Update()
-    {
-        if (!hasDied && Vector3.Distance(NPC.transform.position, player.transform.position) <= 1.7f)
+        private void Start()
         {
-            player.GetComponent<IDamagable>().GetDamage(50);
-            GetDamage(50);
-            OnDeath();
-            hasDied = true;
+            InitializeNavMeshAgent();
+            InitializePlayer();
+            InvokeRepeating(nameof(MoveNpc), changePositionTime, changePositionTime);
         }
-    }
 
-    private void MoveNpc()
-    {
-        if (CanSeePlayer()) { AttackPlayer(); }
-        else { Patrol(); }
-    }
+        private void InitializeNavMeshAgent()
+        {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+            navMeshAgent.speed = movementSpeed;
+        }
 
-    private void AttackPlayer()
-    {
-        playerDetected = true;
-        navMeshAgent.SetDestination(player.transform.position);
-    }
+        private void InitializePlayer()
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
 
-    private bool CanSeePlayer()
-        => player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRadius;
+        public override void GetDamage(float damage)
+        {
+            base.GetDamage(damage);
+        }
 
-    private void Patrol()
-    {
-        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
-            navMeshAgent.SetDestination(RandomNavSphere(moveDistance));
-    }
+        public override void OnDeath()
+        {
+            StartCoroutine(EnableExplosion(1));
+        }
 
-    private IEnumerator EnableExplosion(float duration)
-    {
-        navMeshAgent.speed = 0;
-        var newExplosion = Instantiate(explosion, NPC.transform.position, Quaternion.identity);
-        var gear = Instantiate(gearPrefab, NPC.transform.position, Quaternion.identity);
-        npcMaterial.enabled = false;
-        yield return new WaitForSeconds(duration);
-        Destroy(newExplosion);
-        DeathEvent?.Invoke(UnityEngine.Random.Range(6, 15));
-        base.OnDeath();
+        public override void OnRevival()
+        {
+            base.OnRevival();
+        }
+
+        private Vector3 RandomNavSphere(float distance)
+        {
+            var randomDirection = UnityEngine.Random.insideUnitSphere * distance;
+            randomDirection += transform.position;
+            NavMeshHit navHit;
+            NavMesh.SamplePosition(randomDirection, out navHit, distance, -1);
+            return navHit.position;
+        }
+
+        private void Update()
+        {
+            if (!hasDied && Vector3.Distance(NPC.transform.position, player.transform.position) <= 1.7f)
+            {
+                player.GetComponent<IDamagable>().GetDamage(50);
+                GetDamage(50);
+                OnDeath();
+                hasDied = true;
+            }
+        }
+
+        private void MoveNpc()
+        {
+            if (CanSeePlayer()) { AttackPlayer(); }
+            else { Patrol(); }
+        }
+
+        private void AttackPlayer()
+        {
+            playerDetected = true;
+            navMeshAgent.SetDestination(player.transform.position);
+        }
+
+        private bool CanSeePlayer()
+            => player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRadius;
+
+        private void Patrol()
+        {
+            if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
+                navMeshAgent.SetDestination(RandomNavSphere(moveDistance));
+        }
+
+        private IEnumerator EnableExplosion(float duration)
+        {
+            navMeshAgent.speed = 0;
+            var newExplosion = Instantiate(explosion, NPC.transform.position, Quaternion.identity);
+            var gear = Instantiate(gearPrefab, NPC.transform.position, Quaternion.identity);
+            npcMaterial.enabled = false;
+            yield return new WaitForSeconds(duration);
+            Destroy(newExplosion);
+            DeathEvent?.Invoke(UnityEngine.Random.Range(6, 15));
+            base.OnDeath();
+        }
     }
 }

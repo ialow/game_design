@@ -1,50 +1,53 @@
+using Ddd.Domain;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FireWeapon : BaseFireWeapons
+namespace Ddd.Application
 {
-    private Coroutine shooting;
-    private float timeStartShotting;
-
-    private bool canShot = true;
-
-    public override void StartShooting()
+    public class FireWeapon : BaseFireWeapons
     {
-        shooting = StartCoroutine(Shooting());
-    }
+        private Coroutine shooting;
+        private float timeStartShotting;
 
-    public override void StopShooting()
-    {
-        if (shooting != null) StopCoroutine(shooting);
-    }
+        private bool canShot = true;
 
-    private IEnumerator Shooting()
-    {
-        while (true)
+        public override void StartShooting()
         {
-            Shot();
-
-            var remainingTimeRecharge = Time.time - timeStartShotting;
-            yield return remainingTimeRecharge;
+            shooting = StartCoroutine(Shooting());
         }
-    }
 
-    private void Shot()
-    {
-        if (canShot)
+        public override void StopShooting()
         {
-            variantShotWeapon(poolMissiles);
-
-            canShot = false;
-            StartCoroutine(Refresh());
+            if (shooting != null) StopCoroutine(shooting);
         }
-    }
 
-    private IEnumerator Refresh()
-    {
-        timeStartShotting = Time.time;
-        yield return new WaitForSeconds(variantFireWeapon.TTXWeapon.CooldownTime);
-        canShot = true;
+        private IEnumerator Shooting()
+        {
+            while (true)
+            {
+                Shot();
+
+                var remainingTimeRecharge = Time.time - timeStartShotting;
+                yield return remainingTimeRecharge;
+            }
+        }
+
+        private void Shot()
+        {
+            if (canShot)
+            {
+                variantShotWeapon(poolMissiles);
+
+                canShot = false;
+                StartCoroutine(Refresh());
+            }
+        }
+
+        private IEnumerator Refresh()
+        {
+            timeStartShotting = Time.time;
+            yield return new WaitForSeconds(variantFireWeapon.TTXWeapon.CooldownTime);
+            canShot = true;
+        }
     }
 }

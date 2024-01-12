@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrackingPosition : MonoBehaviour
+namespace Ddd.Application
 {
-    [SerializeField] private Transform targetPosition;
-    [SerializeField] private float positionLag = 2f;
-
-    private void LateUpdate()
+    public class TrackingPosition : MonoBehaviour
     {
-        PursuePositionXZ();
-    }
+        [SerializeField] private Transform targetPosition;
+        [SerializeField] private float positionLag = 2f;
 
-    private void PursuePositionXZ()
-    {
-        var targetPosition = new Vector3(this.targetPosition.position.x, 0f, this.targetPosition.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * positionLag);
+        private void LateUpdate()
+        {
+            PursuePositionXZ();
+        }
+
+        private void PursuePositionXZ()
+        {
+            var targetPosition = new Vector3(this.targetPosition.position.x, 0f, this.targetPosition.position.z);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * positionLag);
+        }
     }
 }

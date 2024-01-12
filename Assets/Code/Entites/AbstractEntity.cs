@@ -1,26 +1,30 @@
+using Ddd.Infrastructure;
 using UnityEngine;
 
-public abstract class AbstractEntity : MonoBehaviour, IDamagable
+namespace Ddd.Domain
 {
-    [field: Header("Health parameters")]
-    [field: SerializeField] public float CurrentHealth { get; protected set; } = 100f;
-
-    public virtual void GetDamage(float damage)
+    public abstract class AbstractEntity : MonoBehaviour, IDamagable
     {
-        var currentHealth = CurrentHealth - damage;
+        [field: Header("Health parameters")]
+        [field: SerializeField] public float CurrentHealth { get; protected set; } = 100f;
 
-        if (currentHealth > 0)
-            CurrentHealth = currentHealth;
-        else
-            OnDeath();
-    }
+        public virtual void GetDamage(float damage)
+        {
+            var currentHealth = CurrentHealth - damage;
 
-    public virtual void OnDeath()
-    {
-        Destroy(gameObject);
-    }
+            if (currentHealth > 0)
+                CurrentHealth = currentHealth;
+            else
+                OnDeath();
+        }
 
-    public virtual void OnRevival()
-    {
+        public virtual void OnDeath()
+        {
+            Destroy(gameObject);
+        }
+
+        public virtual void OnRevival()
+        {
+        }
     }
 }

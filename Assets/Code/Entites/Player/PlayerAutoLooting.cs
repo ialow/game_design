@@ -1,40 +1,44 @@
+using Ddd.Infrastructure;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerAutoLooting : MonoBehaviour
+namespace Ddd.Application
 {
-    private Player parameters;
-
-    [SerializeField] private CapsuleCollider areaLooting;
-
-    private void Awake()
+    public class PlayerAutoLooting : MonoBehaviour
     {
-        parameters = GetComponent<Player>();
+        private Player parameters;
 
-        InitializationParameters();
-    }
+        [SerializeField] private CapsuleCollider areaLooting;
 
-    public void InitializationParameters()
-    {
-        areaLooting.radius = parameters.RadiusAutoLooting;
-
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out IInventorying item))
+        private void Awake()
         {
-            if (item.CheckingFreeSpaceInventory())
+            parameters = GetComponent<Player>();
+
+            InitializationParameters();
+        }
+
+        public void InitializationParameters()
+        {
+            areaLooting.radius = parameters.RadiusAutoLooting;
+
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.TryGetComponent(out IInventorying item))
             {
-                Debug.Log("Trigger AutoLooting"); // Требуется корректировка;
-                StartCoroutine(TakeItem(item));
+                if (item.CheckingFreeSpaceInventory())
+                {
+                    Debug.Log("Trigger AutoLooting"); // Требуется корректировка;
+                    StartCoroutine(TakeItem(item));
+                }
             }
         }
-    }
 
-    private IEnumerator TakeItem(IInventorying item) 
-    {
-        yield return item.AnimationTakeItem();
-        item.AddItemInventorySlot();
+        private IEnumerator TakeItem(IInventorying item)
+        {
+            yield return item.AnimationTakeItem();
+            item.AddItemInventorySlot();
+        }
     }
 }

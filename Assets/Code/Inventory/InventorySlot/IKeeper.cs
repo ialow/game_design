@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public interface IKeeper
+namespace Ddd.Domain
 {
-    public TypeSlot TypeInventorySlot();
-    public bool Full { get; set; }
+    public interface IKeeper
+    {
+        public TypeSlot TypeInventorySlot();
+        public bool Full { get; set; }
 
-    public void TakeItem(Transform transform, Sprite sprite);
-    public void ThrowItem();
+        public void TakeItem(Transform transform, Sprite sprite);
+        public void ThrowItem();
+    }
 }

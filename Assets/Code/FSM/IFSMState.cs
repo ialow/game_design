@@ -1,5 +1,8 @@
-public interface IFSMState
+namespace Ddd.Application
 {
-    void Enter();
-    void Exit();
+    public interface IFSMState
+    {
+        void Enter();
+        void Exit();
+    }
 }

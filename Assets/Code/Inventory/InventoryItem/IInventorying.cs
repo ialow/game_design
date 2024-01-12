@@ -1,11 +1,14 @@
 using System.Collections;
 
-public interface IInventorying
+namespace Ddd.Infrastructure
 {
-    public bool CheckingFreeSpaceInventory();
-    public IEnumerator AnimationTakeItem();
-    public void AddItemInventorySlot();
-    public void AnimationThrowItem();
+    public interface IInventorying
+    {
+        public bool CheckingFreeSpaceInventory();
+        public IEnumerator AnimationTakeItem();
+        public void AddItemInventorySlot();
+        public void AnimationThrowItem();
 
-    public void SetActionItem(bool enable = true);
+        public void SetActionItem(bool enable = true);
+    }
 }

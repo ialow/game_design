@@ -1,38 +1,42 @@
+using Ddd.Domain;
 using UnityEngine;
 
-public class InventorySlotForWeapon : InventorySlot
+namespace Ddd.Application
 {
-    [SerializeField] private TypeSlot typeSlot;
-
-    [Space, SerializeField] private Transform locationItem;
-
-    public override TypeSlot TypeInventorySlot() => typeSlot;
-
-    public override void Selected()
+    public class InventorySlotForWeapon : InventorySlot
     {
-        currentSprite.sprite = selectedSlot;
+        [SerializeField] private TypeSlot typeSlot;
 
-        //Func для LKM
-        if (itemInventorying != null)
-            itemInventorying.SetActionItem();
-    }
+        [Space, SerializeField] private Transform locationItem;
 
-    public override void Deselected()
-    {
-        currentSprite.sprite = deselectedSlot;
+        public override TypeSlot TypeInventorySlot() => typeSlot;
 
-        if (itemInventorying != null)
-            itemInventorying.SetActionItem(false);
-        else
-            DisableActionSlot();
-    }
+        public override void Selected()
+        {
+            currentSprite.sprite = selectedSlot;
 
-    protected override void PhysicalSlotForItem(Transform transform)
-    {
-        itemSetting.SetParant(locationItem);
-        itemSetting.SetLocalPosition(Vector3.zero);
-        itemSetting.SetLocalRotation(Quaternion.identity);
+            //Func для LKM
+            if (itemInventorying != null)
+                itemInventorying.SetActionItem();
+        }
 
-        InventoryManager.Instance.ChangeSelectedSlot(InputParametrs.Toolbar);
+        public override void Deselected()
+        {
+            currentSprite.sprite = deselectedSlot;
+
+            if (itemInventorying != null)
+                itemInventorying.SetActionItem(false);
+            else
+                DisableActionSlot();
+        }
+
+        protected override void PhysicalSlotForItem(Transform transform)
+        {
+            itemSetting.SetParant(locationItem);
+            itemSetting.SetLocalPosition(Vector3.zero);
+            itemSetting.SetLocalRotation(Quaternion.identity);
+
+            InventoryManager.Instance.ChangeSelectedSlot(InputParametrs.Toolbar);
+        }
     }
 }

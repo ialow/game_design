@@ -2,37 +2,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour
+namespace Ddd.Application
 {
-    [Header("Loading data")]
-    [SerializeField] private Text loadingScroe;
-
-    [Header("Updates data")]
-    [SerializeField] private List<Text> textScore;
-
-    private void Awake()
+    public class Score : MonoBehaviour
     {
-        if(loadingScroe != null)
+        [Header("Loading data")]
+        [SerializeField] private Text loadingScroe;
+
+        [Header("Updates data")]
+        [SerializeField] private List<Text> textScore;
+
+        private void Awake()
         {
-            Debug.Log(1);
-            var scroe = new GameScore();
-            loadingScroe.text = scroe.LoadScore().ToString();
+            if (loadingScroe != null)
+            {
+                Debug.Log(1);
+                var scroe = new GameScore();
+                loadingScroe.text = scroe.LoadScore().ToString();
+            }
         }
-    }
 
-    private void Start()
-    {
-        GameScore.UIEvent += UpdateScore;
-    }
+        private void Start()
+        {
+            GameScore.UIEvent += UpdateScore;
+        }
 
-    private void UpdateScore(int score)
-    {
-        for (int i = 0; i < textScore.Count; i++)
-            textScore[i].text = score.ToString();
-    }
+        private void UpdateScore(int score)
+        {
+            for (int i = 0; i < textScore.Count; i++)
+                textScore[i].text = score.ToString();
+        }
 
-    private void OnDisable()
-    {
-        GameScore.UIEvent -= UpdateScore;
+        private void OnDisable()
+        {
+            GameScore.UIEvent -= UpdateScore;
+        }
     }
 }

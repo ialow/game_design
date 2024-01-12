@@ -1,3 +1,5 @@
+using Ddd.Application;
+using Ddd.Domain;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;

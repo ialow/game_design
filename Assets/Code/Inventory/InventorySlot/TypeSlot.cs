@@ -1,6 +1,9 @@
-public enum TypeSlot
+namespace Ddd.Domain
 {
-    OtherItem,
-    WeaponItemOne,
-    WeaponItemTwo
+    public enum TypeSlot
+    {
+        OtherItem,
+        WeaponItemOne,
+        WeaponItemTwo
+    }
 }
