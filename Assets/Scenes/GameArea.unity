@@ -2989,6 +2989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4d231d78b64cf4b8a17d275ee430ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingScroe: {fileID: 0}
   textScore:
   - {fileID: 571655883}
   - {fileID: 534214175}

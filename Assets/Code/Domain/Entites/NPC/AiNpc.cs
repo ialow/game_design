@@ -11,23 +11,24 @@ namespace Ddd.Domain
         public static Action<int> DeathEvent;
 
         [Header("Movement parameters")]
-        private NavMeshAgent navMeshAgent;
-        private GameObject player;
-
-        [field: SerializeField] private float movementSpeed = 6f;
-        [SerializeField] private float changePositionTime = 5f;
-        [SerializeField] private float moveDistance = 30f;
-        [SerializeField] private float detectionRadius = 10f;
+        [SerializeField] private float standardMovementSpeed = 2.5f;
+        [SerializeField] private float acceleratedMovementSpeed = 4f;
+        [SerializeField] private float changePositionTime = 0.2f;
+        [SerializeField] private float moveDistance = 27f;
+        [SerializeField] private float detectionRadius = 9f;
 
         private bool hasDied = false;
-        private bool playerDetected = false;
-        private Vector3 patrolPoint;
+        private bool isMovingToPlayer = false;
+        private bool isRunningCoroutine = false;
 
         [Header("GameObject")]
         [SerializeField] private GameObject explosion;
+        [SerializeField] private GameObject runNPC;
         [SerializeField] private GameObject NPC;
         [SerializeField] private GameObject gearPrefab;
         [SerializeField] private MeshRenderer npcMaterial;
+        private NavMeshAgent navMeshAgent;
+        public GameObject player;
 
         private void Start()
         {
@@ -39,7 +40,7 @@ namespace Ddd.Domain
         private void InitializeNavMeshAgent()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
-            navMeshAgent.speed = movementSpeed;
+            navMeshAgent.speed = standardMovementSpeed;
         }
 
         private void InitializePlayer()
@@ -54,7 +55,11 @@ namespace Ddd.Domain
 
         public override void OnDeath()
         {
-            StartCoroutine(EnableExplosion(1));
+            if (!hasDied)
+            {
+                StartCoroutine(EnableExplosion(1));
+                hasDied = true;
+            }
         }
 
         public override void OnRevival()
@@ -73,9 +78,13 @@ namespace Ddd.Domain
 
         private void Update()
         {
+            if (isMovingToPlayer && !isRunningCoroutine)
+            {
+                StartCoroutine(EnableRun(0.6f));
+            }
             if (!hasDied && Vector3.Distance(NPC.transform.position, player.transform.position) <= 1.7f)
             {
-                player.GetComponent<IDamagable>().GetDamage(50);
+                player.GetComponent<IDamagable>().GetDamage(33);
                 GetDamage(50);
                 OnDeath();
                 hasDied = true;
@@ -84,14 +93,21 @@ namespace Ddd.Domain
 
         private void MoveNpc()
         {
-            if (CanSeePlayer()) { AttackPlayer(); }
-            else { Patrol(); }
+            if (CanSeePlayer())
+            {
+                AttackPlayer();
+            }
+            else if (!isMovingToPlayer)
+            {
+                Patrol();
+            }
         }
 
         private void AttackPlayer()
         {
-            playerDetected = true;
             navMeshAgent.SetDestination(player.transform.position);
+            isMovingToPlayer = true;
+            navMeshAgent.speed = acceleratedMovementSpeed;
         }
 
         private bool CanSeePlayer()
@@ -100,7 +116,10 @@ namespace Ddd.Domain
         private void Patrol()
         {
             if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
+            {
                 navMeshAgent.SetDestination(RandomNavSphere(moveDistance));
+                navMeshAgent.speed = standardMovementSpeed;
+            }
         }
 
         private IEnumerator EnableExplosion(float duration)
@@ -113,6 +132,19 @@ namespace Ddd.Domain
             Destroy(newExplosion);
             DeathEvent?.Invoke(UnityEngine.Random.Range(6, 15));
             base.OnDeath();
+        }
+
+        private IEnumerator EnableRun(float duration)
+        {
+            if (!hasDied)
+            {
+                isRunningCoroutine = true;
+                var prefabRun = Instantiate(runNPC, NPC.transform.position, NPC.transform.rotation);
+                prefabRun.transform.Rotate(new Vector3(0f, 1f, 0f), 90f);
+                yield return new WaitForSeconds(duration);
+                isRunningCoroutine = false;
+                Destroy(prefabRun);
+            }
         }
     }
 }
