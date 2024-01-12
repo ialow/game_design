@@ -10890,6 +10890,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7224885351653162382, guid: a37774937f183b2439903388d75133b6, type: 3}
+      propertyPath: <CorrectorSpeedBack>k__BackingField
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224885351653162382, guid: a37774937f183b2439903388d75133b6, type: 3}
+      propertyPath: <TurnDegreesInSecond>k__BackingField
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224885351653162382, guid: a37774937f183b2439903388d75133b6, type: 3}
+      propertyPath: <CorrectorSpeedRightOrLeft>k__BackingField
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7771549180855938584, guid: a37774937f183b2439903388d75133b6, type: 3}
       propertyPath: m_Name
       value: Player

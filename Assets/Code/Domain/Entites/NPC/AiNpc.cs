@@ -13,7 +13,7 @@ namespace Ddd.Domain
         [Header("Movement parameters")]
         [SerializeField] private float standardMovementSpeed = 2.5f;
         [SerializeField] private float acceleratedMovementSpeed = 4f;
-        [SerializeField] private float changePositionTime = 0.2f;
+        [SerializeField] private float changePositionTime = 0.1f;
         [SerializeField] private float moveDistance = 27f;
         [SerializeField] private float detectionRadius = 9f;
 
@@ -129,9 +129,9 @@ namespace Ddd.Domain
             var gear = Instantiate(gearPrefab, NPC.transform.position, Quaternion.identity);
             npcMaterial.enabled = false;
             yield return new WaitForSeconds(duration);
+            base.OnDeath();
             Destroy(newExplosion);
             DeathEvent?.Invoke(UnityEngine.Random.Range(6, 15));
-            base.OnDeath();
         }
 
         private IEnumerator EnableRun(float duration)

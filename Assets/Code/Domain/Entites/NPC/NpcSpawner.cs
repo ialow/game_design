@@ -8,7 +8,7 @@ namespace Ddd.Domain
         [SerializeField] private GameObject NPC;
         [SerializeField] private Transform[] spawnPoints;
 
-        private int maxNPCs = 1;
+        private int maxNPCs = 5;
         private int previousNpcCount = 0;
         private int currentSpawnPointIndex = 0;
 

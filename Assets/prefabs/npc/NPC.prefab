@@ -213,14 +213,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CurrentHealth>k__BackingField: 7
-  movementSpeed: 4
+  standardMovementSpeed: 2.5
+  acceleratedMovementSpeed: 4
   changePositionTime: 3
   moveDistance: 20
   detectionRadius: 10
   explosion: {fileID: 4427707780555905547, guid: 62e434c06924b7543bc21842ae09d879, type: 3}
+  runNPC: {fileID: 4427707780555905547, guid: 6fb1100d87a34714cae613ef986178e1, type: 3}
   NPC: {fileID: 7771549180855938584}
   gearPrefab: {fileID: 7856472295871962048, guid: 91d92e64cf15fc540814b13a40e32a24, type: 3}
   npcMaterial: {fileID: 1049167472002964782}
+  player: {fileID: 0}
 --- !u!1 &8280167971670996383
 GameObject:
   m_ObjectHideFlags: 0
