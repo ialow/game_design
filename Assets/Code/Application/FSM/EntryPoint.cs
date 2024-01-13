@@ -18,9 +18,6 @@ namespace Ddd.Application
 
         private void Awake()
         {
-            userInput.PauseEvent += HandlerPause;
-            userInput.ResumetEvent += HandlerResume;
-
             if (Instance == null) Instance = this;
 
             var score = new GameScore();
@@ -28,12 +25,12 @@ namespace Ddd.Application
             Fsm.EnterIn<LoadingLevelState>();
         }
 
-        private void HandlerPause()
+        public void HandlerPause()
         {
             Fsm.EnterIn<PauseMenuState>();
         }
 
-        private void HandlerResume()
+        public void HandlerResume()
         {
             Fsm.EnterIn<GameplayState>();
         }

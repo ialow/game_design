@@ -2,13 +2,14 @@ using Ddd.Domain;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace Ddd.Application
 {
     public class PlayerController : MonoBehaviour
     {
+        [Inject(Id = "UserInput")] private InputManager userInput;
         [SerializeField] private Camera orthographicCamera;
-        [SerializeField] private InputManager userInput;
 
         private static Action StartUseItem;
         private static Action EndUseItem;

@@ -18,7 +18,7 @@ namespace Ddd.Application
                 [typeof(GameplayState)] = new GameplayState(),
                 [typeof(PauseMenuState)] = new PauseMenuState(disenableUI, enablePauseUI, userInput),
                 [typeof(DeathMenuState)] = new DeathMenuState(disenableUI, enableDeathUI, userInput, score),
-                [typeof(ExitGameSceneState)] = new ExitGameSceneState()
+                [typeof(ExitGameSceneState)] = new ExitGameSceneState(userInput)
             };
         }
 
