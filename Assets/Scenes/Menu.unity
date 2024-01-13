@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 832159105}
   - component: {fileID: 832159104}
   - component: {fileID: 832159108}
+  - component: {fileID: 832159109}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -755,6 +756,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberChangeScean: 1
+--- !u!114 &832159109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832159103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4d231d78b64cf4b8a17d275ee430ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScroe: {fileID: 1095087408}
+  textScore: []
 --- !u!1 &1019791329
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,7 +1001,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5125
+  m_Text: 0
 --- !u!222 &1095087409
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1045,6 +1060,7 @@ GameObject:
   - component: {fileID: 1195387305}
   - component: {fileID: 1195387304}
   - component: {fileID: 1195387307}
+  - component: {fileID: 1195387308}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1170,6 +1186,18 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1195387308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195387303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56be4e523f7638f4a93dea68128aa6f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1319804584
 GameObject:
   m_ObjectHideFlags: 0

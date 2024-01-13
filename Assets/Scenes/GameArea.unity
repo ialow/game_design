@@ -1977,7 +1977,7 @@ PrefabInstance:
     - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: NPC
       value: 
-      objectReference: {fileID: 7290634981828563348, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
+      objectReference: {fileID: 7771549180855938584, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
     - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 4
@@ -1998,6 +1998,10 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 327668864}
+    - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
+      propertyPath: spawnPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 78709515143731102, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
     - target: {fileID: 6343784878690033719, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2876,6 +2880,7 @@ GameObject:
   - component: {fileID: 479507815}
   - component: {fileID: 479507814}
   - component: {fileID: 479507813}
+  - component: {fileID: 479507816}
   m_Layer: 5
   m_Name: UI (perspectiveCamera)
   m_TagString: Untagged
@@ -2972,6 +2977,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &479507816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479507811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4d231d78b64cf4b8a17d275ee430ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScroe: {fileID: 0}
+  textScore:
+  - {fileID: 571655883}
+  - {fileID: 534214175}
 --- !u!1 &512664417
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,7 +3354,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5125
+  m_Text: 0
 --- !u!222 &534214176
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3862,7 +3883,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 543
+  m_Text: 0
 --- !u!222 &571655884
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5794,7 +5815,7 @@ PrefabInstance:
     - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: NPC
       value: 
-      objectReference: {fileID: 7290634981828563348, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
+      objectReference: {fileID: 7771549180855938584, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
     - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 4
@@ -5815,6 +5836,10 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 327668864}
+    - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
+      propertyPath: spawnPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 78709515143731102, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
     - target: {fileID: 6343784878690033719, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -9754,7 +9779,7 @@ PrefabInstance:
     - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: NPC
       value: 
-      objectReference: {fileID: 7290634981828563348, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
+      objectReference: {fileID: 7771549180855938584, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
     - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 4
@@ -9775,6 +9800,10 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 327668864}
+    - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
+      propertyPath: spawnPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 78709515143731102, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
     - target: {fileID: 6343784878690033719, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10861,6 +10890,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7224885351653162382, guid: a37774937f183b2439903388d75133b6, type: 3}
+      propertyPath: <CorrectorSpeedBack>k__BackingField
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224885351653162382, guid: a37774937f183b2439903388d75133b6, type: 3}
+      propertyPath: <TurnDegreesInSecond>k__BackingField
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224885351653162382, guid: a37774937f183b2439903388d75133b6, type: 3}
+      propertyPath: <CorrectorSpeedRightOrLeft>k__BackingField
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7771549180855938584, guid: a37774937f183b2439903388d75133b6, type: 3}
       propertyPath: m_Name
       value: Player
@@ -11824,7 +11865,7 @@ PrefabInstance:
     - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: NPC
       value: 
-      objectReference: {fileID: 7290634981828563348, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
+      objectReference: {fileID: 7771549180855938584, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
     - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 4
@@ -11845,6 +11886,10 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 327668864}
+    - target: {fileID: 4605005749321978916, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
+      propertyPath: spawnPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 78709515143731102, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
     - target: {fileID: 6343784878690033719, guid: d1aa252743e40dd47a9858527b3aab02, type: 3}
       propertyPath: m_RootOrder
       value: 3
