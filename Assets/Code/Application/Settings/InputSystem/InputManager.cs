@@ -18,9 +18,6 @@ namespace Ddd.Application
         public event Action<int> ToolbarEvent;
         public event Action ThrowItemEvent;
 
-        public event Action PauseEvent;
-        public event Action ResumetEvent;
-
         private void OnEnable()
         {
             if (userInput is null)
@@ -41,6 +38,12 @@ namespace Ddd.Application
         {
             userInput.Gameplay.Disable();
             userInput.UI.Enable();
+        }
+
+        public void OnCastomDisable()
+        {
+            userInput.Gameplay.Disable();
+            userInput.UI.Disable();
         }
 
         public void OnWalk(InputAction.CallbackContext context)
@@ -78,7 +81,7 @@ namespace Ddd.Application
         {
             if (context.phase == InputActionPhase.Canceled)
             {
-                PauseEvent?.Invoke();
+                EntryPoint.Instance.Fsm.EnterIn<PauseMenuState>();
             }
         }
 
@@ -86,7 +89,7 @@ namespace Ddd.Application
         {
             if (context.phase == InputActionPhase.Canceled)
             {
-                ResumetEvent?.Invoke();
+                EntryPoint.Instance.Fsm.EnterIn<GameplayState>();
             }
         }
     }
