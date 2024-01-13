@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cca925f74c0eac499d3baa9a97b3ce7, type: 3}
+  m_Name: MachineGun
+  m_EditorClassIdentifier: 
+  <Sprite>k__BackingField: {fileID: 21300000, guid: f223ec4624ebe6e4cb37900e450137d7, type: 3}
+  <AnimationTake>k__BackingField:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  <TimeCorrectionPerMeterTake>k__BackingField: 0.8
+  <TimeCorrectionPerMeterThrow>k__BackingField: 0.3
+  <InventorySlot>k__BackingField: 02000000
+  <MaxLeavel>k__BackingField: 2
+  <TTXFireWeapon>k__BackingField:
+    SpeedShot: 10
+    SpreadShot: 0.15
+    AutoShooting: 1
+    CooldownTime: 0.1
+  <TTXFireMissile>k__BackingField:
+    Damage: 8
+    DamageDropCoefficient: 0.1
+    DistanceWithMaxDamage: 8
+    MaxDistance: 12
+  <ImprovementSpecificationsTTX>k__BackingField:
+  - TTXWeapon:
+      SpeedShot: 12
+      SpreadShot: 0.12
+      AutoShooting: 1
+      CooldownTime: 0.1
+    TTXMissile:
+      Damage: 8
+      DamageDropCoefficient: 0.1
+      DistanceWithMaxDamage: 8
+      MaxDistance: 13
