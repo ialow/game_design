@@ -13,6 +13,10 @@ namespace Ddd.Application
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private GameObject NPC;
         [SerializeField] private Transform targetPositionPlayer;
+        [SerializeField] private GameObject player;
+        [SerializeField] private GameObject explosion;
+        [SerializeField] private GameObject runNPC;
+        [SerializeField] private GameObject gearPrefab;
 
         public override void InstallBindings()
         {
@@ -23,6 +27,10 @@ namespace Ddd.Application
             Container.Bind<Transform[]>().WithId("SpawnPoints").FromInstance(spawnPoints);
             Container.Bind<GameObject>().WithId("NPCGameobject").FromInstance(NPC);
             Container.Bind<Transform>().WithId("TargetPosition").FromInstance(targetPositionPlayer);
+            Container.Bind<GameObject>().WithId("PlayerGameobject").FromInstance(player);
+            Container.Bind<GameObject>().WithId("ExplosionGameobject").FromInstance(explosion);
+            Container.Bind<GameObject>().WithId("RunNPCGameobject").FromInstance(runNPC);
+            Container.Bind<GameObject>().WithId("GearGameobject").FromInstance(gearPrefab);
         }
     }
 }

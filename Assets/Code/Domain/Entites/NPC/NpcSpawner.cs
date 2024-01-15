@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using UnityEngine;
 using Zenject;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Ddd.Domain
 {
@@ -7,6 +9,7 @@ namespace Ddd.Domain
     {
         [Inject(Id = "NPCGameobject")] private GameObject NPC;
         [Inject(Id = "SpawnPoints")] private Transform[] spawnPoints;
+        [Inject] private DiContainer container;
 
         private int maxNPCs = 5;
         private int previousNpcCount = 0;
@@ -36,14 +39,16 @@ namespace Ddd.Domain
             for (var i = 0; i < maxNPCs; i++)
             {
                 var spawnPoint = spawnPoints[i % spawnPoints.Length];
-                Instantiate(NPC, spawnPoint.position, Quaternion.identity);
+                container.InstantiatePrefab(NPC, spawnPoint.position, Quaternion.identity, null);
+                //Instantiate(NPC, spawnPoint.position, Quaternion.identity);
             }
         }
 
         private void SpawnNPC()
         {
             var spawnPoint = spawnPoints[currentSpawnPointIndex];
-            Instantiate(NPC, spawnPoint.position, Quaternion.identity);
+            container.InstantiatePrefab(NPC, spawnPoint.position, Quaternion.identity, null);
+            //Instantiate(NPC, spawnPoint.position, Quaternion.identity);
             currentSpawnPointIndex = (currentSpawnPointIndex + 1) % spawnPoints.Length;
             isFirstSpawn = false;
         }

@@ -8238,6 +8238,10 @@ MonoBehaviour:
   - {fileID: 327668864}
   NPC: {fileID: 7290634981828563348, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
   targetPositionPlayer: {fileID: 2074775204}
+  player: {fileID: 1730118091}
+  explosion: {fileID: 4427707780555905547, guid: 62e434c06924b7543bc21842ae09d879, type: 3}
+  runNPC: {fileID: 4427707780555905547, guid: 6fb1100d87a34714cae613ef986178e1, type: 3}
+  gearPrefab: {fileID: 7856472295871962048, guid: 91d92e64cf15fc540814b13a40e32a24, type: 3}
 --- !u!1 &1237666610
 GameObject:
   m_ObjectHideFlags: 0
@@ -10361,6 +10365,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700987999}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1730118091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7771549180855938584, guid: a37774937f183b2439903388d75133b6, type: 3}
+  m_PrefabInstance: {fileID: 1805864366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1734553403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6744699329115024579, guid: e748e74f7363b534ebfab67d80f09759, type: 3}

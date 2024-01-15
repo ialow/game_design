@@ -24,20 +24,18 @@ namespace Ddd.Domain
         private bool isRunningCoroutine = false;
 
         [Header("GameObject")]
-        [SerializeField] private GameObject explosion;
-        [SerializeField] private GameObject runNPC;
+        [Inject] private DiContainer container;
         [SerializeField] private GameObject NPC;
-        [SerializeField] private GameObject gearPrefab;
-        [SerializeField] private MeshRenderer npcMaterial;
+        [SerializeField] private GameObject NPCMaterial;
         private NavMeshAgent navMeshAgent;
-        private GameObject player;
-        private DiContainer container;
-
+        [Inject(Id = "ExplosionGameobject")] private GameObject explosion;
+        [Inject(Id = "RunNPCGameobject")] private GameObject runNPC;
+        [Inject(Id = "GearGameobject")] private GameObject gearPrefab;
+        [Inject(Id = "PlayerGameobject")] private GameObject player;
 
         private void Start()
         {
             InitializeNavMeshAgent();
-            InitializePlayer();
             InvokeRepeating(nameof(MoveNpc), changePositionTime, changePositionTime);
         }
 
@@ -45,11 +43,6 @@ namespace Ddd.Domain
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             navMeshAgent.speed = standardMovementSpeed;
-        }
-
-        private void InitializePlayer()
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
         }
 
         public override void GetDamage(float damage)
@@ -128,9 +121,9 @@ namespace Ddd.Domain
 
         private IEnumerator EnableExplosion(float duration)
         {
+            NPCMaterial.SetActive(false);
             var newExplosion = Instantiate(explosion, NPC.transform.position, Quaternion.identity);
             var gear = Instantiate(gearPrefab, NPC.transform.position, Quaternion.identity);
-            npcMaterial.enabled = false;
             yield return new WaitForSeconds(duration);
             base.OnDeath();
             Destroy(newExplosion);
