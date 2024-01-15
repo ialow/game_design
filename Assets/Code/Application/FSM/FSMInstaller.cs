@@ -12,6 +12,7 @@ namespace Ddd.Application
         [SerializeField] private GameObject enableDeathUI;
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private GameObject NPC;
+        [SerializeField] private Transform targetPositionPlayer;
 
         public override void InstallBindings()
         {
@@ -21,6 +22,7 @@ namespace Ddd.Application
             Container.Bind<GameObject>().WithId("DeathUI").FromInstance(enableDeathUI);
             Container.Bind<Transform[]>().WithId("SpawnPoints").FromInstance(spawnPoints);
             Container.Bind<GameObject>().WithId("NPCGameobject").FromInstance(NPC);
+            Container.Bind<Transform>().WithId("TargetPosition").FromInstance(targetPositionPlayer);
         }
     }
 }

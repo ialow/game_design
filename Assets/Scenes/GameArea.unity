@@ -1754,7 +1754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc985354a0d87445893f1df6fb9b16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPosition: {fileID: 2074775204}
   positionLag: 2
 --- !u!1 &281947007
 GameObject:
@@ -8238,6 +8237,7 @@ MonoBehaviour:
   - {fileID: 1939879036}
   - {fileID: 327668864}
   NPC: {fileID: 7290634981828563348, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
+  targetPositionPlayer: {fileID: 2074775204}
 --- !u!1 &1237666610
 GameObject:
   m_ObjectHideFlags: 0

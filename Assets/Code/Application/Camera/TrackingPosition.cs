@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Ddd.Application
 {
     public class TrackingPosition : MonoBehaviour
     {
-        [SerializeField] private Transform targetPosition;
+        [Inject(Id = "TargetPosition")] private Transform targetPosition;
         [SerializeField] private float positionLag = 2f;
 
         private void LateUpdate()
