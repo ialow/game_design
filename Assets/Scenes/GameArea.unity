@@ -3418,7 +3418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ce9d9b0cf5f844b9603c1b2eb29c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberChangeScean: 0
 --- !u!1 &545579339
 GameObject:
   m_ObjectHideFlags: 0
@@ -8233,6 +8232,12 @@ MonoBehaviour:
   - {fileID: 28199553}
   enablePauseUI: {fileID: 1903545513}
   enableDeathUI: {fileID: 544290436}
+  spawnPoints:
+  - {fileID: 1552867970}
+  - {fileID: 763064572}
+  - {fileID: 1939879036}
+  - {fileID: 327668864}
+  NPC: {fileID: 7290634981828563348, guid: 4e4c9a1ec0d3ab049a585f3e1c3b7688, type: 3}
 --- !u!1 &1237666610
 GameObject:
   m_ObjectHideFlags: 0
@@ -11592,7 +11597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ce9d9b0cf5f844b9603c1b2eb29c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberChangeScean: 0
 --- !u!1 &1924666396
 GameObject:
   m_ObjectHideFlags: 0

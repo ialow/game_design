@@ -1,8 +1,10 @@
+using Ddd.Application;
 using Ddd.Infrastructure;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 namespace Ddd.Domain
 {
@@ -28,7 +30,9 @@ namespace Ddd.Domain
         [SerializeField] private GameObject gearPrefab;
         [SerializeField] private MeshRenderer npcMaterial;
         private NavMeshAgent navMeshAgent;
-        public GameObject player;
+        private GameObject player;
+        private DiContainer container;
+
 
         private void Start()
         {
@@ -57,7 +61,7 @@ namespace Ddd.Domain
         {
             if (!hasDied)
             {
-                StartCoroutine(EnableExplosion(1));
+                StartCoroutine(EnableExplosion(0.61f));
                 hasDied = true;
             }
         }
@@ -124,7 +128,6 @@ namespace Ddd.Domain
 
         private IEnumerator EnableExplosion(float duration)
         {
-            navMeshAgent.speed = 0;
             var newExplosion = Instantiate(explosion, NPC.transform.position, Quaternion.identity);
             var gear = Instantiate(gearPrefab, NPC.transform.position, Quaternion.identity);
             npcMaterial.enabled = false;

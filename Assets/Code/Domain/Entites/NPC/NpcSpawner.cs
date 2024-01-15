@@ -1,12 +1,12 @@
 using UnityEngine;
+using Zenject;
 
 namespace Ddd.Domain
 {
     public class NpcSpawner : MonoBehaviour
     {
-        [Header("GameObject")]
-        [SerializeField] private GameObject NPC;
-        [SerializeField] private Transform[] spawnPoints;
+        [Inject(Id = "NPCGameobject")] private GameObject NPC;
+        [Inject(Id = "SpawnPoints")] private Transform[] spawnPoints;
 
         private int maxNPCs = 5;
         private int previousNpcCount = 0;
