@@ -14,10 +14,10 @@ namespace Ddd.Domain
 
         [Header("Movement parameters")]
         [SerializeField] private float standardMovementSpeed = 2.5f;
-        [SerializeField] private float acceleratedMovementSpeed = 4f;
-        [SerializeField] private float changePositionTime = 0.1f;
-        [SerializeField] private float moveDistance = 27f;
-        [SerializeField] private float detectionRadius = 9f;
+        [SerializeField] private float acceleratedMovementSpeed = 4.2f;
+        [SerializeField] private float changePositionTime = 0.2f;
+        [SerializeField] private float moveDistance = 30f;
+        [SerializeField] private float detectionRadius = 7f;
 
         private bool hasDied = false;
         private bool isMovingToPlayer = false;
@@ -79,9 +79,9 @@ namespace Ddd.Domain
             {
                 StartCoroutine(EnableRun(0.6f));
             }
-            if (!hasDied && Vector3.Distance(NPC.transform.position, player.transform.position) <= 1.7f)
+            if (!hasDied && Vector3.Distance(NPC.transform.position, player.transform.position) <= 2f)
             {
-                player.GetComponent<IDamagable>().GetDamage(33);
+                player.GetComponent<IDamagable>().GetDamage(15);
                 GetDamage(50);
                 OnDeath();
                 hasDied = true;

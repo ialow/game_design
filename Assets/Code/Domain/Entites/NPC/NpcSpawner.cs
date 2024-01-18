@@ -11,7 +11,7 @@ namespace Ddd.Domain
         [Inject(Id = "SpawnPoints")] private Transform[] spawnPoints;
         [Inject] private DiContainer container;
 
-        private int maxNPCs = 5;
+        private int maxNPCs = 4;
         private int previousNpcCount = 0;
         private int currentSpawnPointIndex = 0;
 
