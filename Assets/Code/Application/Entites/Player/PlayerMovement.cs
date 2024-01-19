@@ -1,4 +1,5 @@
 using Ddd.Domain;
+using System;
 using UnityEngine;
 
 namespace Ddd.Application
@@ -18,6 +19,8 @@ namespace Ddd.Application
         private float speedInNewtons;
         private float correctorSpeedBack;
         private float correctorSpeedRightOrLeft;
+
+        [SerializeField] private Animator animator;
 
         private Vector3 Walk
         {
@@ -74,6 +77,7 @@ namespace Ddd.Application
             }
 
             rb.AddRelativeForce(walk, ForceMode.Force);
+            animator.SetFloat("FrontMove", OnversionRange(new Vector2(rb.velocity.x, rb.velocity.z).magnitude, maxSpeedWalk));
         }
 
         private void OffsetAngle()
@@ -86,6 +90,15 @@ namespace Ddd.Application
                 var differenceBetweenCursorAndPlayerPosition = mousePosXZ - playerPosXZ;
                 turnY = Mathf.Atan2(differenceBetweenCursorAndPlayerPosition.x, differenceBetweenCursorAndPlayerPosition.y) * Mathf.Rad2Deg;
             }
+        }
+
+        private float OnversionRange(float valueConverted, float inputRangeMax,
+        float outputRangeMax = 1, float inputRangeMin = 0, float outputRangeMin = 0)
+        {
+            var diffOutputRange = MathF.Abs(outputRangeMax - outputRangeMin);
+            var diffInputRange = MathF.Abs(inputRangeMax - inputRangeMin);
+            var convFactor = (diffOutputRange / diffInputRange);
+            return (outputRangeMin + (convFactor * (valueConverted - inputRangeMin)));
         }
     }
 }
