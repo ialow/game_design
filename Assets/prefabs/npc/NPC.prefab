@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1086999768229743306
 Transform:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   moveDistance: 26
   detectionRadius: 9
   NPC: {fileID: 7290634981828563348}
-  NPCMaterial: {fileID: 3912166581369507279}
+  NPCMaterial: {fileID: 7204849599377630117}
 --- !u!1001 &8015753506382798580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,13 +358,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 837144e5f23200142bb0137a5e283906, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837144e5f23200142bb0137a5e283906, type: 3}
+--- !u!1 &7204849599377630117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 837144e5f23200142bb0137a5e283906, type: 3}
+  m_PrefabInstance: {fileID: 8015753506382798580}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7545521850864154911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 837144e5f23200142bb0137a5e283906, type: 3}
